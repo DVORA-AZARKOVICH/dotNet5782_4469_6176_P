@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DLObject": {
+      "commandName": "Project",
+      "workingDirectory": "$(SolutionDir)"
+    }
+  }
+}

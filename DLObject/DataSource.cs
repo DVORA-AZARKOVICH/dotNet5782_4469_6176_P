@@ -1,13 +1,13 @@
-﻿using DLAPI.DO;
+﻿
+using DO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DLAPI.DO;
-namespace DS
+namespace Dal
 {
-    public static class DataSource
+    internal static class DataSource
     {
         public static List<Drone> dronelist = new List<Drone>();
         public static List<Station> stationlist = new List<Station>();

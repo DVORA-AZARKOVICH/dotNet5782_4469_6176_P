@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DLAPI
+﻿namespace DALFasade
 {
     public class Class1
     {

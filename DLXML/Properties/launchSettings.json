@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DLXML": {
+      "commandName": "Project",
+      "workingDirectory": "$(SolutionDir)"
+    }
+  }
+}

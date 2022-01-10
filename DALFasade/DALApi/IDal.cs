@@ -1,14 +1,11 @@
-﻿using DLAPI.DO;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DLAPI
+namespace DALApi
 {
-    public interface IDL
+    public interface IDal
     {
+
         #region Customer
         void addCustomer(Customer item);
         Customer getCustomer(int id);

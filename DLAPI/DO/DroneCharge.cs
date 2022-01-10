@@ -4,16 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DLAPI.DO
+namespace DO
 {
-    public struct Dronecharge
+    namespace DO
     {
-        public int Droneid { set; get; }
-        public int Stationid { set; get; }
-        public bool Deleted { set; get; }
-        public override string ToString()
+        public struct DroneCharge
         {
-            return this.ToStringProperty();
+            public int Droneid { set; get; }
+            public int Stationid { set; get; }
+            public bool Deleted { set; get; }
+            public override string ToString()
+            {
+                return this.ToStringProperty();
+            }
         }
+
     }
 }

@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BLApi;
 
 namespace PL
 {
@@ -34,7 +35,7 @@ namespace PL
     /// </summary>
     public partial class DroneWindow : Window
     {
-        private BLAPI.IBL bl;
+        private BLApi.IBL bl;
         private DroneToList myDrone;
         public MyData myData;
 
@@ -42,7 +43,7 @@ namespace PL
         /// initilizes the add drone window
         /// </summary>
         /// <param name="b">object of type BL</param>
-        public DroneWindow(BLAPI.IBL b)
+        public DroneWindow(BLApi.IBL b)
         {
             InitializeComponent();
             bl = b;
@@ -71,7 +72,7 @@ namespace PL
         /// </summary>
         /// <param name="b">BL object</param>
         /// <param name="selectedItem">the selelcted drone</param>
-        public DroneWindow(BLAPI.IBL b, DroneToList selectedItem)
+        public DroneWindow(BLApi.IBL b, DroneToList selectedItem)
         {
             InitializeComponent();
             bl = b;

@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace />
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -9,7 +10,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DLAPI\DLAPI.csproj" />
+    <ProjectReference Include="..\DALFasade\DALFasade.csproj" />
+    <ProjectReference Include="..\DLAPI\DALFasade.csproj" />
+    <ProjectReference Include="..\DLObject\DLObject.csproj" />
+    <ProjectReference Include="..\DLXML\DLXML.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="BL\" />
   </ItemGroup>
 
 </Project>

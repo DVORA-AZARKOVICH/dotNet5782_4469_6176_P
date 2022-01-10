@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName />
+    <RootNamespace>Dal</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -9,8 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DLAPI\DLAPI.csproj" />
-    <ProjectReference Include="..\DS\DS.csproj" />
+    <ProjectReference Include="..\DALFasade\DALFasade.csproj" />
+    <ProjectReference Include="..\DLAPI\DALFasade.csproj" />
   </ItemGroup>
 
 </Project>

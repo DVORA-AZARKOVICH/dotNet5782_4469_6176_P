@@ -3,19 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DLAPI;
-using DLAPI.DO;
+using DALApi;
 using DLObject.Exceptions;
-using DS;
+using DO;
 
-namespace DL
+namespace Dal
 {
-    public class DLObjectt:IDL
+    public class DLObjectt :IDal
     {
         #region singelton
         static readonly DLObjectt instance = new DLObjectt();
-        static DLObjectt() { }
-        DLObjectt() { }
+        static DLObjectt() { DataSource.Initialize(); }
         public static DLObjectt Instance { get => instance; }
         #endregion
 
@@ -623,7 +621,6 @@ namespace DL
             throw new Exceptions.IDdNotFoundExeption("Customer was not found");
         }
         #endregion
-
 
     }
 }

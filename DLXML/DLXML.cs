@@ -1,9 +1,10 @@
-﻿using DLAPI;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace DLXML
 {
@@ -19,8 +20,22 @@ namespace DLXML
         string dronePath = @"DroneXml.xnml";//XMLSerialzer
         string dronchargePath = @"DroneChargeXml.xml";//XMLSerialzer
         string stationPath = @"StationXml.xml";//XMLSerialzer\
-
-
         #endregion
+        void addStation(Station station1)
+        {
+
+        }
+        Station getStation(int id)
+        {
+
+        }
+        public IEnumerable <DLAPI.DO.Station> getStationList()
+        {
+            List<Station> ListStations = XMLTools.LoadListFromXMLSerialzer<Station>(stationPath);
+            return from station in ListStations
+                   select station;
+        }
+        IEnumerable<Station> getFreeCharges();
+        void deleteStation(int id);
     }
 }

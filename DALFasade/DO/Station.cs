@@ -19,5 +19,4 @@ namespace DO
             return this.ToStringProperty();
         }
     }
-
 }

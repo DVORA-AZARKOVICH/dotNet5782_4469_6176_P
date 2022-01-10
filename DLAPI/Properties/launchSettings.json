@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DALFasade": {
+      "commandName": "Project",
+      "workingDirectory": "$(SolutionDir)"
+    }
+  }
+}

@@ -1,26 +1,29 @@
 ﻿using BL.BO;
 using BL.Exceptions;
-using BLAPI;
-using DLAPI;
+using BLApi;
+using DALApi;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//using DLObject;
-//using DL;
+using DALApi;
+using DO;
+using DLObject;
+using DALFasade;
+using BL.BO;
 
 namespace BL
     {
-        public class BLImp : IBL
+        sealed class BL : IBL
         {
             #region Constructor
 
-            static readonly BLAPI.IBL instance = new BLImp();
-            internal static IBL Instance { get => instance; }
+            static readonly BLApi.IBL instance = new BL();
+            public static IBL Instance { get => instance; }
 
-            internal IDL dalob = DLFactory.GetDal();
-            BLImp()
+            internal IDal dalob = DALFasade.DALApi.DalFactory.GetDal();
+            BL()
             {
                 this.Initilize();
             }
@@ -28,8 +31,9 @@ namespace BL
             public Random rand = new Random();
             public List<DroneToList> dronetolistBL = new List<DroneToList>();
             public double[] ob = new double[5];
+        
 
-            public IDL Dalob { get => dalob; set => dalob = value; }
+            public IDal Dalob { get => dalob; set => dalob = value; }
             public void Initilize()
             {
                 ob = Dalob.PowerConsumptionRequest();
@@ -93,12 +97,12 @@ namespace BL
                                                                        //searching for the sender to know its location for the calculation.
                                     try
                                     {
-                                        DLAPI.DO.Customer sender = Dalob.getCustomer(itemparcel.Senderid);
+                                        DO.Customer sender = Dalob.getCustomer(itemparcel.Senderid);
                                         Location location = new Location(sender.Latitude, sender.Longitude);
                                         //case the parcel wasnt picked up yet
                                         if (itemparcel.Pickedup == null)
                                         {
-                                            DLAPI.DO.Station? s = ClosestStation(stationlist, location);
+                                            DO.Station? s = ClosestStation(stationlist, location);
                                             if (s != null)
                                             {
                                                 Location l = new Location(s.Value.Latitude, s.Value.Longitude);
@@ -118,7 +122,7 @@ namespace BL
                                             //updatedrone.Location.Longitude = sender.Latitude;
                                         }
                                         //distance betwean drone and sender
-                                        DLAPI.DO.Parcel? p = itemparcel;
+                                        DO.Parcel? p = itemparcel;
                                         double minrateofcharge = SumCharge(p, updatedrone);
                                         if (minrateofcharge < 100)
                                         {
@@ -199,7 +203,7 @@ namespace BL
                                     item.ParcelId = tt[i].Id;
                                 else
                                 {
-                                    DLAPI.DO.Parcel p = Dalob.getParcel(tt[i].Id);
+                                    DO.Parcel p = Dalob.getParcel(tt[i].Id);
                                     p.Droneid = 0;
                                     Dalob.deleteParcel(p.Id);
                                     Dalob.addParcel(p);
@@ -216,7 +220,7 @@ namespace BL
             #region Customer
             public void AddCustomer(BO.Customer c)
             {
-                DLAPI.DO.Customer newcustomer = new DLAPI.DO.Customer();
+                DO.Customer newcustomer = new DO.Customer();
                 if (CheckIdentityNumber(c.Id))
                 {
                     newcustomer.Id = c.Id;
@@ -249,7 +253,7 @@ namespace BL
             {
                 try
                 {
-                    DLAPI.DO.Customer updatecustomer = new DLAPI.DO.Customer();
+                    DO.Customer updatecustomer = new DO.Customer();
                     updatecustomer = Dalob.getCustomer(numofcustomer);
                     Dalob.deleteCustomer(numofcustomer);
                     updatecustomer.Name = name;
@@ -266,7 +270,7 @@ namespace BL
                     throw new Exception("Phone number is incorrect");
                 try
                 {
-                    DLAPI.DO.Customer updatecustomer = new DLAPI.DO.Customer();
+                    DO.Customer updatecustomer = new DO.Customer();
                     updatecustomer = Dalob.getCustomer(numofcustomer);
                     Dalob.deleteCustomer(numofcustomer);
                     updatecustomer.Phone = phone;
@@ -277,10 +281,10 @@ namespace BL
                     throw new Exceptions.myExceptions.itemNotFoundExceptions(ex.Message, ex);
                 }
             }
-            public Customer getCustomer(int num)
+            public BO.Customer getCustomer(int num)
             {
 
-                DLAPI.DO.Customer c = Dalob.getCustomer(num);
+                DO.Customer c = Dalob.getCustomer(num);
                 var Ingoing = from parcel in Dalob.getParcelList(item => item.Senderid == c.Id && item.Deleted == false)
                                   //where parcel.Senderid == c.Id
                               select new ParcelInCustomer { Id = parcel.Id, Priority = (Priority)parcel.Priority, Weight = (WeightCategories)parcel.Weightcategory };
@@ -412,7 +416,7 @@ namespace BL
 
 
             }
-            public BO.DroneToList UpdateInMaintence(int count, BO.DroneToList d, IEnumerable<DLAPI.DO.Station> stationlist)
+            public BO.DroneToList UpdateInMaintence(int count, BO.DroneToList d, IEnumerable<DO.Station> stationlist)
             //public void UpdateInMaintence(int count, BO.DroneToList d, IEnumerable<IDAL.DO.Station> stationlist)
             {
                 //random a station with an free chargslot
@@ -441,7 +445,7 @@ namespace BL
                 dronetolistBL.Add(d);
                 return d;
             }
-            public BO.DroneToList UpdateFree(BO.DroneToList d, IEnumerable<DLAPI.DO.Parcel> parcellist, IEnumerable<DLAPI.DO.Customer> customerlist, IEnumerable<DLAPI.DO.Station> stationlist)
+            public BO.DroneToList UpdateFree(BO.DroneToList d, IEnumerable<DO.Parcel> parcellist, IEnumerable<DO.Customer> customerlist, IEnumerable<DO.Station> stationlist)
             {
                 Random rand = new Random();
                 int index = rand.Next(0, parcellist.Count() - 1);
@@ -682,7 +686,7 @@ namespace BL
                 }
 
             }
-            public Drone getDrone(int num)
+            public BO.Drone getDrone(int num)
             {
                 Drone d = new();
                 foreach (var item in dronetolistBL)
@@ -702,7 +706,7 @@ namespace BL
                 }
                 return d;
             }
-            public ParcelInTransfer convertToParcelInTransfer(DLAPI.DO.Parcel p)
+            public ParcelInTransfer convertToParcelInTransfer(DO.Parcel p)
             {
 
                 ParcelInTransfer parcel = new()
@@ -760,7 +764,7 @@ namespace BL
                 }
 
             }
-            public DLAPI.DO.Station ClosestStation(IEnumerable<DLAPI.DO.Station> stationlist, Location c)
+            public DO.Station ClosestStation(IEnumerable<DO.Station> stationlist, Location c)
             {
                 double mindistance = 2000000, temp = 0;
                 DLAPI.DO.Station s = new DLAPI.DO.Station();
@@ -816,7 +820,7 @@ namespace BL
 
 
             }
-            public Station getStation(int num)
+            public BO.Station getStation(int num)
             {
                 DLAPI.DO.Station st = Dalob.getStation(num);
                 var Drones = from drone in Dalob.getDroneChargeList(drone => drone.Stationid == st.Id)
@@ -849,7 +853,7 @@ namespace BL
                     return stations;
                 throw new Exceptions.emptyListException("Station list is empty");
             }
-            public StationToList convertToStationList(DLAPI.DO.Station s)
+            public StationToList convertToStationList(<DO.Station s)
             {
                 StationToList station = new StationToList
                 {
@@ -910,7 +914,7 @@ namespace BL
                     throw new Exceptions.myExceptions.itemAllreadyExistException(ex.Message, ex);
                 }
             }
-            public DLAPI.DO.Parcel? CheckByWeight(IEnumerable<DLAPI.DO.Parcel> parcellist, WeightCategories weight, Location c, double mindistance, DroneToList dts)
+            public DO.Parcel? CheckByWeight(IEnumerable<DO.Parcel> parcellist, WeightCategories weight, Location c, double mindistance, DroneToList dts)
             {
                 if (weight == WeightCategories.heavy)
                 {
@@ -948,7 +952,7 @@ namespace BL
                 return null;
 
             }
-            public DLAPI.DO.Parcel? CheckByDistance(IEnumerable<DLAPI.DO.Parcel> parcellist, Location c, double mindistance, DroneToList dts)
+            public DO.Parcel? CheckByDistance(IEnumerable<DO.Parcel> parcellist, Location c, double mindistance, DroneToList dts)
             {
                 var ttt = parcellist.ToList();
                 if (ttt.Count() == 0)
@@ -1057,7 +1061,7 @@ namespace BL
                 }
 
             }
-            public Parcel getParcel(int num)
+            public BO.Parcel getParcel(int num)
             {
                 DLAPI.DO.Parcel p = (DLAPI.DO.Parcel)Dalob.getParcel(num);
                 Parcel parcel = new Parcel()
@@ -1075,7 +1079,7 @@ namespace BL
                 };
                 return parcel;
             }
-            public DroneInParcel convertTodroneInParcel(DLAPI.DO.Drone d)
+            public DroneInParcel convertTodroneInParcel(DO.Drone d)
             {
                 DroneInParcel drone = new DroneInParcel(d.Id);
                 foreach (var item in dronetolistBL)
@@ -1221,7 +1225,7 @@ namespace BL
                     return true;
                 return false;
             }
-            public double SumCharge(DLAPI.DO.Parcel? itemparcel, DroneToList updatedrone)
+            public double SumCharge(DO.Parcel? itemparcel, DroneToList updatedrone)
             {
                 double distaceDroneToSender = dalob.DistanceCustomer(itemparcel.Value.Senderid, updatedrone.Location.Latitude, updatedrone.Location.Longitude);
                 //distance betwean sender to target
@@ -1247,3 +1251,4 @@ namespace BL
             #endregion
         }
     }
+

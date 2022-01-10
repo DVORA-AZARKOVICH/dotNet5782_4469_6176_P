@@ -1,18 +1,19 @@
-﻿using System;
+﻿using DALApi;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DLAPI
+namespace DALFasade.DALApi
 {
-    public static class DLFactory
+    public class DalFactory
     {
-        public static IDL GetDal()
+        public static IDal GetDal()
         {
-            string dalType = DLConfig.DalName;
-            string dalPkg = DLConfig.DalPackages[dalType];
+            string dalType = DalConfig.DalName;
+            string dalPkg = DalConfig.DalPackages[dalType];
             if (dalPkg == null) throw new DalConfigException($"Package {dalType} is not found in packages list in dal-config.xml");
 
             try { Assembly.Load(dalPkg); }
@@ -21,7 +22,7 @@ namespace DLAPI
             Type type = Type.GetType($"Dal.{dalPkg}, {dalPkg}");
             if (type == null) throw new DalConfigException($"Class {dalPkg} was not found in the {dalPkg}.dll");
 
-            IDL dal = (IDL)type.GetProperty("Instance",
+            IDal dal = (IDal)type.GetProperty("Instance",
                       BindingFlags.Public | BindingFlags.Static).GetValue(null);
             if (dal == null) throw new DalConfigException($"Class {dalPkg} is not a singleton or wrong propertry name for Instance");
 
