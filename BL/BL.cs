@@ -66,7 +66,7 @@ namespace BL
                     bool flag1 = true, flag2 = true;
                     try
                     {
-                        DLAPI.DO.Customer c = Dalob.getCustomer(itemparcel.Targetid);
+                        DO.Customer c = Dalob.getCustomer(itemparcel.Targetid);
                     }
                     catch (Exception ex)
                     {
@@ -75,7 +75,7 @@ namespace BL
                     }
                     try
                     {
-                        DLAPI.DO.Customer c = Dalob.getCustomer(itemparcel.Senderid);
+                        DO.Customer c = Dalob.getCustomer(itemparcel.Senderid);
                     }
                     catch (Exception ex)
                     {
@@ -215,10 +215,15 @@ namespace BL
 
             }
 
-            #endregion
+        private DO.Station? ClosestStation(IEnumerable<Station> stationlist, Location location)
+        {
+            throw new NotImplementedException();
+        }
 
-            #region Customer
-            public void AddCustomer(BO.Customer c)
+        #endregion
+
+        #region Customer
+        public void AddCustomer(BO.Customer c)
             {
                 DO.Customer newcustomer = new DO.Customer();
                 if (CheckIdentityNumber(c.Id))
