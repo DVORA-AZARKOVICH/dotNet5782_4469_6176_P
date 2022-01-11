@@ -12,7 +12,7 @@ using DO;
 using DLObject;
 using DALFasade;
 using BL.BO;
-using DALFasade.DALApi
+using DALFasade.DALApi;
 
 namespace BL
     {
@@ -216,10 +216,10 @@ namespace BL
 
             }
 
-        private DO.Station? ClosestStation(IEnumerable<DO.Station> stationlist, Location location)
+        /*private DO.Station? ClosestStation(IEnumerable<DO.Station> stationlist, Location location)
         {
             throw new NotImplementedException();
-        }
+        }*/
 
         #endregion
 
@@ -293,7 +293,7 @@ namespace BL
                 DO.Customer c = Dalob.getCustomer(num);
                 var Ingoing = from parcel in Dalob.getParcelList(item => item.Senderid == c.Id && item.Deleted == false)
                                   //where parcel.Senderid == c.Id
-                              select new ParcelInCustomer { Id = parcel.Id, Priority = (Priority)parcel.Priority, Weight = (WeightCategories)parcel.Weightcategory };
+                              select new ParcelInCustomer { Id = parcel.Id, Priority = (Priority)parcel.Priority, Weight = (BO.WeightCategories)parcel.Weightcategory };
                 foreach (var item in Ingoing)
                 {
                     // var indexParcel = dalob.getParcelList(c => c.Id == item.Id);
@@ -310,7 +310,7 @@ namespace BL
                 }
                 var outgoing = from parcel in Dalob.getParcelList(item => item.Senderid == c.Id)
                                    //where parcel.Senderid == c.Id
-                               select new ParcelInCustomer { Id = parcel.Id, Priority = (Priority)parcel.Priority, Weight = (WeightCategories)parcel.Weightcategory };
+                               select new ParcelInCustomer { Id = parcel.Id, Priority = (Priority)parcel.Priority, Weight = (BO.WeightCategories)parcel.Weightcategory };
                 foreach (var item in outgoing)
                 {
                     var indexParcel = Dalob.getParcelList(item => item.Deleted == false).ToList().FindIndex(c => c.Id == item.Id);
@@ -1257,4 +1257,5 @@ namespace BL
             #endregion
         }
     }
+
 
