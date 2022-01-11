@@ -653,11 +653,11 @@ namespace BL
                         {
                             //updating the distance the drone can fly according to its battery
                             double maxdistance = 0;
-                            if (dts.Weight == WeightCategories.light)
+                            if (dts.Weight == BO.WeightCategories.light)
                                 maxdistance = dts.BatteryStatus / ob[1];
-                            if (dts.Weight == WeightCategories.medium)
+                            if (dts.Weight == BO.WeightCategories.medium)
                                 maxdistance = dts.BatteryStatus / ob[2];
-                            if (dts.Weight == WeightCategories.heavy)
+                            if (dts.Weight == BO.WeightCategories.heavy)
                                 maxdistance = dts.BatteryStatus / ob[3];
                             var parcell = Dalob.getParcelList(item => item.Deleted == false).Where(item => item.Scheduled == null && SumCharge(item, dts) <= dts.BatteryStatus);
                             //seperating the list DAL parcels to differnt lists according to their priority
@@ -1059,7 +1059,7 @@ namespace BL
                             throw new Exception("Improper sequence of activities");
                         }
                     }
-                    DLAPI.DO.Customer? c = Dalob.getCustomer(p.Targetid);
+                    DO.Customer? c = Dalob.getCustomer(p.Targetid);
                 }
                 catch (Exception ex)
                 {
