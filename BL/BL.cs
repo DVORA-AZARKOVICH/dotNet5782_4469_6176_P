@@ -223,7 +223,7 @@ namespace BL
 
         #endregion
 
-        #region Customer
+            #region Customer
         public void AddCustomer(BO.Customer c)
             {
                 DO.Customer newcustomer = new DO.Customer();
@@ -720,7 +720,7 @@ namespace BL
                     Id = p.Id,
                     Sender = new CustomerInParcel(Dalob.getCustomer(p.Senderid).Id, Dalob.getCustomer(p.Senderid).Name),
                     Reciver = new CustomerInParcel(Dalob.getCustomer(p.Targetid).Id, Dalob.getCustomer(p.Targetid).Name),
-                    Weight = (WeightCategories)p.Weightcategory,
+                    Weight = (BO.WeightCategories)p.Weightcategory,
                     Destination = new Location(Dalob.getCustomer(p.Targetid).Latitude, Dalob.getCustomer(p.Targetid).Longitude),
                     Pickup = new Location(Dalob.getCustomer(p.Senderid).Latitude, Dalob.getCustomer(p.Senderid).Longitude),
                 };
@@ -860,6 +860,7 @@ namespace BL
                 throw new Exceptions.emptyListException("Station list is empty");
             }
             public StationToList convertToStationList(DO.Station s)
+
             {
                 StationToList station = new StationToList
                 {

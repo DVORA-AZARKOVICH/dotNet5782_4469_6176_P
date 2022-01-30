@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 using static DLXML.Exceptions;
 
@@ -17,8 +18,43 @@ namespace DLXML
             if (!Directory.Exists(dir))
                 Directory.CreateDirectory(dir);
         }
+        #region SaveLoadWithXElement
+        public static void SaveListToXmlElement(XElement rootElem, string filePath)
+        {
+            try
+            {
+                rootElem.Save(filePath);
+            }
+            catch (Exception ex)
+            {
+                throw new XmlFailedToLoadCreatException(filePath, $"fail to create xml file: {filePath}", ex);
+            }
+        }
+
+        public static XElement LoadListFromXmlElement(string filePath)
+        {
+            try
+            {
+                if (File.Exists(filePath))
+                {
+                    return XElement.Load(filePath);
+                }
+                else
+                {
+                    XElement rootElem = new XElement(filePath);
+                    rootElem.Save(filePath);
+                    return rootElem;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new XmlFailedToLoadCreatException(filePath, $"fail to load xml file: {filePath}", ex);
+            }
+        }
+        #endregion
+
         #region SaveLoadWithXMLSerializer
-        public static void SaveListToXNLSerialzer<T>(List<T>list ,string filePath)
+        public static void SaveListToXNLSerialzer<T>(List<T> list, string filePath)
         {
             try
             {
@@ -26,10 +62,9 @@ namespace DLXML
                 XmlSerializer x = new XmlSerializer(list.GetType());
                 file.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                throw new XMLFileLoadCreateException(filePath, ex);
-                //throw new XMLFileLoadCreateException(filePath, $"faile to create xml file:{filePath}", ex);
+                throw new XmlFailedToLoadCreatException(filePath, $"faile to create xml file:{filePath}", ex);
             }
         }
         public static List<T> LoadListFromXMLSerialzer<T>(string filePath)
@@ -50,10 +85,11 @@ namespace DLXML
             }
             catch (Exception ex)
             {
-                throw new XMLFileLoadCreateException(filePath, ex);
-                //throw new XMLFileLoadCreateException(filePath, $"faile to create xml file:{filePath}", ex);
+                throw new XmlFailedToLoadCreatException(filePath, $"faile to create xml file:{filePath}", ex);
             }
         }
         #endregion
     }
 }
+
+
