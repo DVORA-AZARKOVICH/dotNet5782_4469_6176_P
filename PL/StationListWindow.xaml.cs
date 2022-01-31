@@ -27,23 +27,19 @@ namespace PL
 
             InitializeComponent();
             bl = b;
+            stationToListDataGrid.IsReadOnly = true;
             stationToListDataGrid.DataContext = bl.getStationList();
             
         }
 
         private void Sort_Click(object sender, RoutedEventArgs e)
         {
-            int num = Convert.ToInt32(Selector.Text);
+            stationToListDataGrid.ItemsSource = bl.getStationList(item => item.FreeChargingSlots == Convert.ToInt32(Selector.Text));
+        }
 
-            if (Selector.Text.Length == 0)
-            {
-                stationToListDataGrid.ItemsSource = bl.getStationList();
-            }
-            else
-            {
-                stationToListDataGrid.ItemsSource = bl.getStationList(item => item.FreeChargingSlots == num);
-            }
-        
+        private void refresh_Click(object sender, RoutedEventArgs e)
+        {
+            stationToListDataGrid.ItemsSource = bl.getStationList();
         }
     }
 }

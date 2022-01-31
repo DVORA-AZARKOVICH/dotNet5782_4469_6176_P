@@ -14,16 +14,17 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
             <TextBox Name="Selector" Grid.Column="1" Grid.Row="0"/>
-            <Button Name="Sort" Content="refresh/show sorted list" Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="1"  Margin="0,-2,0,2" Click="Sort_Click"/>
+            <Button Name="Sort" Content="show sorted list" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"  Margin="266,-2,138,2" Click="Sort_Click"/>
+            <Button Name="refresh" Content="refresh" Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="1"  Margin="134,-2,0,2" Click="refresh_Click"/>
             <Label Name="SortByFreechargingSlots" Content="choose amount of available charging slots:" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"  Margin="0,-2,0,2"/>
         </Grid >
         <DataGrid x:Name="stationToListDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="196,138,196,81" RowDetailsVisibilityMode="VisibleWhenSelected">
-                <DataGrid.Columns>
-                    <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader" IsReadOnly="True"/>
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader" IsReadOnly="True"/>
                 <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="SizeToHeader" IsReadOnly="True"/>
                 <DataGridTextColumn x:Name="busyChargingSlotsColumn" Binding="{Binding BusyChargingSlots}" Header="Busy Charging Slots" Width="SizeToHeader" IsReadOnly="True"/>
                 <DataGridTextColumn x:Name="freeChargingSlotsColumn" Binding="{Binding FreeChargingSlots}" Header="Free Charging Slots" Width="SizeToHeader" IsReadOnly="True"/>
-                </DataGrid.Columns>
-            </DataGrid>
-        </Grid>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
 </Window>
