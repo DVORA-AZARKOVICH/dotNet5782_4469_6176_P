@@ -41,7 +41,7 @@ namespace PL
             }
             else
             {
-                stationToListDataGrid.ItemsSource = bl.getStationList(item => item.FreeChargingSlots == num && item.Deleted == false);
+    //            stationToListDataGrid.ItemsSource = bl.getStationList(item => item.FreeChargingSlots == num);
             }
         
         }
