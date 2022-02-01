@@ -41,5 +41,15 @@ namespace PL
         {
             stationToListDataGrid.ItemsSource = bl.getStationList();
         }
+
+        private void showStation_Click(object sender, RoutedEventArgs e)
+        {
+            StationToList selectedStation = (stationToListDataGrid.SelectedItem as StationToList);
+            if (selectedStation != null)
+            {
+                StationViewWindow win = new StationViewWindow(selectedStation);
+                win.ShowDialog();
+            }
+        }
     }
 }
