@@ -1,4 +1,5 @@
 ﻿
+using Dal;
 using DALApi;
 using DO;
 using System;
@@ -517,38 +518,40 @@ namespace DLXML
         {
 
             List<DO.Station> stationList = XMLTools.LoadListFromXMLSerialzer<DO.Station>(stationPath);
-            int index = stationList.FindIndex(t => t.Id == id && t.Deleted == false);
+            int index = stationList.FindIndex(t => t.Id == numofstation && t.Deleted == false);
             if (index == -1)
                 throw new Exception("DAL: Station with the same id not found...");
-            Station s= stationList.FirstOrDefault(t => t.Id == id && t.Deleted == false);
+            Station s= stationList.FirstOrDefault(t => t.Id == numofstation && t.Deleted == false);
             return s.Latitude;
         }
         public double DistanceStationLONG(int numofstation)
         {
             List<DO.Station> stationList = XMLTools.LoadListFromXMLSerialzer<DO.Station>(stationPath);
-            int index = stationList.FindIndex(t => t.Id == id && t.Deleted == false);
+            int index = stationList.FindIndex(t => t.Id == numofstation && t.Deleted == false);
             if (index == -1)
                 throw new Exception("DAL: Station with the same id not found...");
-            Station s = stationList.FirstOrDefault(t => t.Id == id && t.Deleted == false);
+            Station s = stationList.FirstOrDefault(t => t.Id == numofstation && t.Deleted == false);
             return s.Longitude;
 
         }
         //to use customer's
         public double DistanceCustomerLAT(int numofcustomer)
         {
-            List<DO.Station> stationList = XMLTools.LoadListFromXMLSerialzer<DO.Station>(stationPath);
-            int index = stationList.FindIndex(t => t.Id == id && t.Deleted == false);
+            List<DO.Customer> customerList = XMLTools.LoadListFromXMLSerialzer<DO.Customer>(customerPath);
+            int index = customerList.FindIndex(t => t.Id == numofcustomer && t.Deleted == false);
             if (index == -1)
-                throw new Exception("DAL: Station with the same id not found...");
-            return stationList.FirstOrDefault(t => t.Id == id && t.Deleted == false);
+                throw new Exception("DAL: Customer with the same id not found...");
+            Customer c = customerList.FirstOrDefault(t => t.Id == numofcustomer && t.Deleted == false);
+            return c.Latitude;
         }
         public double DistanceCustomerLONG(int numofcustomer)
         {
-            List<DO.Station> stationList = XMLTools.LoadListFromXMLSerialzer<DO.Station>(stationPath);
-            int index = stationList.FindIndex(t => t.Id == id && t.Deleted == false);
+            List<DO.Customer> customerList = XMLTools.LoadListFromXMLSerialzer<DO.Customer>(customerPath);
+            int index = customerList.FindIndex(t => t.Id == numofcustomer && t.Deleted == false);
             if (index == -1)
-                throw new Exception("DAL: Station with the same id not found...");
-            return stationList.FirstOrDefault(t => t.Id == id && t.Deleted == false);
+                throw new Exception("DAL: Customer with the same id not found...");
+            Customer c = customerList.FirstOrDefault(t => t.Id == numofcustomer && t.Deleted == false);
+            return c.Longitude;
         }
 
         public IEnumerable<Station> getStationList(Predicate<Station> predicate)
