@@ -207,7 +207,7 @@ namespace Dal
                     Station newstation = DataSource.stationlist[i];
                     //the property of status was deleted.
                     DataSource.stationlist.Remove(DataSource.stationlist[i]);
-                    newstation.Chargslot--;
+                    newstation.Chargslot++;
                     DataSource.stationlist.Add(newstation);
                     flag = true;
                 }
@@ -309,12 +309,11 @@ namespace Dal
             DataSource.parcellist.Add(parcel1);
             return Convert.ToString(parcel1.Id);
         }
-        public string updateParcel2(Parcel parcel1)
+        public void updateParcel2(Parcel parcel1)
         {
             parcel1.Id = parcel1.Id;
             parcel1.Deleted = false;
             DataSource.parcellist.Add(parcel1);
-            return Convert.ToString(parcel1.Id);
         }
         /// <summary>
         /// when given parcel id, returns the details of a parcel.
@@ -621,6 +620,7 @@ namespace Dal
             throw new Exceptions.IDdNotFoundExeption("Customer was not found");
         }
         #endregion
+
 
     }
 }

@@ -40,7 +40,7 @@ namespace DALApi
         void UpDateDelieverd(int numofparcel);
         IEnumerable<Parcel> getParcelsWithNoDrone();
         void deleteParcel(int id);
-        string updateParcel2(Parcel parcel1);
+        void updateParcel2(Parcel parcel1);
         #endregion
 
         #region Station
