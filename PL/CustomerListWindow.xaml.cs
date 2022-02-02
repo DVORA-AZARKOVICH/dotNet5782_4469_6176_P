@@ -34,7 +34,7 @@ namespace PL
             CustomerForList selected = (customerForListDataGrid.SelectedItem as CustomerForList);
             if (selected != null)
             {
-                CustomersViewWindow win = new CustomersViewWindow(selected);
+                CustomersViewWindow win = new CustomersViewWindow(bl,selected);
                 win.ShowDialog();
             }
         }

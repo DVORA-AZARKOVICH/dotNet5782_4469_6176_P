@@ -70,7 +70,7 @@ namespace PL
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK,MessageBoxImage.);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK,MessageBoxImage.Error);
             }
         }
 
