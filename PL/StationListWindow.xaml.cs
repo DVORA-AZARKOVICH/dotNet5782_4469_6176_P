@@ -28,13 +28,23 @@ namespace PL
             InitializeComponent();
             bl = b;
             stationToListDataGrid.IsReadOnly = true;
-            stationToListDataGrid.DataContext = bl.getStationList();
+            stationToListDataGrid.ItemsSource = bl.getStationList();
             
         }
 
         private void Sort_Click(object sender, RoutedEventArgs e)
         {
-            stationToListDataGrid.ItemsSource = bl.getStationList(item => item.FreeChargingSlots == Convert.ToInt32(Selector.Text));
+            try
+            {
+                var t = bl.getStationList(item => item.FreeChargingSlots == Convert.ToInt32(Selector.Text));
+                stationToListDataGrid.ItemsSource = t;
+                if (!t.Any())
+                    throw new Exception("there are no station with this amount of slots");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message,"Error",MessageBoxButton.OK,MessageBoxImage.Error);
+            }
         }
 
         private void refresh_Click(object sender, RoutedEventArgs e)
@@ -47,7 +57,7 @@ namespace PL
             StationToList selectedStation = (stationToListDataGrid.SelectedItem as StationToList);
             if (selectedStation != null)
             {
-                StationViewWindow win = new StationViewWindow(selectedStation);
+                StationViewWindow win = new StationViewWindow(bl,selectedStation);
                 win.ShowDialog();
             }
         }

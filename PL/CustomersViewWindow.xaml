@@ -66,9 +66,23 @@
 
             </Grid.RowDefinitions>
             <Label Content="Ingoing Parcels:" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <DataGrid x:Name="ingoingParcelsDataGrid" DisplayMemberPath="IngoingParcels" HorizontalAlignment="Left" Height="100" ItemsSource="{Binding}" Margin="3,3,0,3" Grid.Row="1" Width="297" MouseDoubleClick="ingoingParcelsDataGrid_MouseDoubleClick"/>
+            <DataGrid x:Name="ingoingParcelsDataGrid" DisplayMemberPath="IngoingParcels" HorizontalAlignment="Left" Height="100" ItemsSource="{Binding}" Margin="3,3,0,3" Grid.Row="1" Width="297" MouseDoubleClick="ingoingParcelsDataGrid_MouseDoubleClick">
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
+                    <DataGridTextColumn x:Name="priorityColumn" Binding="{Binding Priority}" Header="Priority" Width="SizeToHeader"/>
+                    <DataGridTextColumn x:Name="statusColumn" Binding="{Binding Status}" Header="Status" Width="SizeToHeader"/>
+                    <DataGridTextColumn x:Name="weightColumn" Binding="{Binding Weight}" Header="Weight" Width="SizeToHeader"/>
+                </DataGrid.Columns>
+            </DataGrid>
             <Label Content="Outgoing Parcels:" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-            <DataGrid x:Name="outgoingParcelsDataGrid" DisplayMemberPath="OutgoingParcels" HorizontalAlignment="Left" Height="164" ItemsSource="{Binding}" Margin="3,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="287" MouseDoubleClick="outgoingParcelsDataGrid_MouseDoubleClick"/>
+            <DataGrid x:Name="outgoingParcelsDataGrid" DisplayMemberPath="OutgoingParcels" HorizontalAlignment="Left" Height="164" ItemsSource="{Binding}" Margin="3,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="287" MouseDoubleClick="outgoingParcelsDataGrid_MouseDoubleClick">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="idParcel" Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="priority" Binding="{Binding Priority}" Header="Priority" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="status" Binding="{Binding Status}" Header="Status" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="weight" Binding="{Binding Weight}" Header="Weight" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+            </DataGrid>
         </Grid>
         <Button x:Name="update" Content="update" HorizontalAlignment="Left" Margin="61,353,0,0" VerticalAlignment="Top" Height="44" Width="75" Click="update_Click"/>
         <Button x:Name="add" Content="add customer" HorizontalAlignment="Left" Margin="150,353,0,0" VerticalAlignment="Top" Height="44" Width="75" Click="add_Click"/>

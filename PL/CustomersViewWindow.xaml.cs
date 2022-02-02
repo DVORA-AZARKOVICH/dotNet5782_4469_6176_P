@@ -22,14 +22,24 @@ namespace PL
     {
         private Customer customer;
         private BLApi.IBL bl;
-
+        /// <summary>
+        /// initilizes the grids shown when adding a new customer.
+        /// </summary>
+        /// <param name="b"></param>
         public CustomersViewWindow(BLApi.IBL b)
         {
             InitializeComponent();
             grid1.Visibility = Visibility.Hidden;
             parcels.Visibility = Visibility.Hidden;
             addGrid.Visibility = Visibility.Visible;
+            add.Visibility = Visibility.Hidden;
+            update.Visibility = Visibility.Hidden;
         }
+        /// <summary>
+        /// initilizes the grids that are shown when updating or viewing a customer's details.
+        /// </summary>
+        /// <param name="b"></param>
+        /// <param name="c"></param>
         public CustomersViewWindow(BLApi.IBL b,BL.BO.CustomerForList c)
         {
             InitializeComponent();
@@ -40,6 +50,7 @@ namespace PL
             grid1.Visibility = Visibility.Visible;
             parcels.Visibility = Visibility.Visible;
             addGrid.Visibility = Visibility.Visible;
+            addThis.Visibility = Visibility.Hidden;
         }
 
         private void ingoingParcelsDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
