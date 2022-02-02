@@ -23,8 +23,8 @@
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader" IsReadOnly="True"/>
                 <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="SizeToHeader" IsReadOnly="True"/>
-                <DataGridTextColumn x:Name="busyChargingSlotsColumn" Binding="{Binding BusyChargingSlots}" Header="Busy Charging Slots" Width="SizeToHeader" IsReadOnly="True"/>
                 <DataGridTextColumn x:Name="freeChargingSlotsColumn" Binding="{Binding FreeChargingSlots}" Header="Free Charging Slots" Width="SizeToHeader" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="busyChargingSlotsColumn" Binding="{Binding BusyChargingSlots}" Header="Busy Charging Slots" Width="SizeToHeader" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button Name="showStation" Content="show station" HorizontalAlignment="Left" Margin="327,379,0,0" VerticalAlignment="Top" Height="35" Width="87" Click="showStation_Click"/>

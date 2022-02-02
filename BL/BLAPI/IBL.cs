@@ -15,6 +15,9 @@ namespace BLApi
         void AddCustomer(Customer c);
         void UpdateCustomerName(int numofcustomer, string name);
         void UpdateCustomerPhone(int numofcustomer, string phone);
+        public Customer getCustomer(int num);
+        public List<CustomerForList> getCustomerList();
+        public IEnumerable<CustomerForList> getCustomerList(Predicate<DroneToList> predicate);
         #endregion
 
         #region Drone

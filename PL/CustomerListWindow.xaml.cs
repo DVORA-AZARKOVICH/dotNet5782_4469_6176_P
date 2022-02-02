@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BL.BO;
 
 namespace PL
 {
@@ -25,6 +26,17 @@ namespace PL
             InitializeComponent();
             bl = b;
             customerForListDataGrid.IsReadOnly = true;
+            customerForListDataGrid.ItemsSource = b.getCustomerList();
+        }
+
+        private void viewCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            CustomerForList selected = (customerForListDataGrid.SelectedItem as CustomerForList);
+            if (selected != null)
+            {
+                CustomersViewWindow win = new CustomersViewWindow(selected);
+                win.ShowDialog();
+            }
         }
     }
 }

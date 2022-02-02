@@ -7,11 +7,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DALApi;
+//using DALApi;
 using DO;
 using DLObject;
 using DALFasade;
-using BL.BO;
+//using BL.BO;
 using DALFasade.DALApi;
 
 namespace BL
@@ -375,10 +375,20 @@ namespace BL
                     return customers;
                 throw new Exceptions.emptyListException("this list is empty");
             }
-            #endregion
 
-            #region Drone
-            public void AddDrone(BO.Drone d, int idstation)
+        public IEnumerable<CustomerForList> getCustomerList(Predicate<CustomerForList> predicate)
+        {
+            {
+                var customers = from item in getCustomersList()
+                             where predicate(item)
+                             select item;
+                return customers;
+            }
+        }
+        #endregion
+
+        #region Drone
+        public void AddDrone(BO.Drone d, int idstation)
             {
 
                 d.BatteryStatus = 20 + rand.NextDouble() * 20;
