@@ -36,10 +36,8 @@ namespace PL
         {
             try
             {
-                var t = bl.getStationList(item => item.FreeChargingSlots == Convert.ToInt32(Selector.Text));
+                var t = bl.getStationList().GroupBy(x=>x.FreeChargingSlots);
                 stationToListDataGrid.ItemsSource = t;
-                if (!t.Any())
-                    throw new Exception("there are no station with this amount of slots");
             }
             catch (Exception ex)
             {
@@ -60,6 +58,11 @@ namespace PL
                 StationViewWindow win = new StationViewWindow(bl,selectedStation);
                 win.ShowDialog();
             }
+        }
+
+        private void Group_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

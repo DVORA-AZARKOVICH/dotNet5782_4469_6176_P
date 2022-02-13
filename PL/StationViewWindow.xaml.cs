@@ -23,6 +23,7 @@ namespace PL
     {
         private BLApi.IBL bl;
         private Station station;
+        
         /// <summary>
         /// initilizes the grids that are shown when viewing/updating a station's details.
         /// </summary>
@@ -92,4 +93,5 @@ namespace PL
             this.Close();
         }
     }
+
 }

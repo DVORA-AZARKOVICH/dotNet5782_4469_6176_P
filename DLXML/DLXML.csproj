@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DALFasade\DALFasade.csproj" />
-    <ProjectReference Include="..\DLAPI\DALFasade.csproj" />
   </ItemGroup>
 
 </Project>

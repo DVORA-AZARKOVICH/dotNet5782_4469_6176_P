@@ -14,10 +14,8 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
-            <TextBox Name="Selector" Grid.Column="1" Grid.Row="0"/>
-            <Button Name="Sort" Content="show sorted list" Grid.Column="2" Grid.Row="0"  Margin="7,-2,5,2" Click="Sort_Click" RenderTransformOrigin="0.5,0.5"/>
-            <Button Name="refresh" Content="refresh" Grid.Column="3" Grid.Row="0"  Margin="0,-2,0,2" Click="refresh_Click"/>
-            <Label Name="SortByFreechargingSlots" Content="show station with _ slots:" Grid.Column="0" Grid.Row="0"  Margin="0,-2,10,2"/>
+            <Button Name="Group" Content="show stations by free charging slots" Grid.Column="1" Grid.Row="0"  Margin="7,-2,5,2" Click="Group_Click" RenderTransformOrigin="0.5,0.5"/>
+            <Button Name="refresh" Content="refresh" Grid.Column="2" Grid.Row="0"  Margin="0,-2,0,2" Click="refresh_Click"/>
         </Grid >
         <DataGrid x:Name="stationToListDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="196,138,196,81" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
