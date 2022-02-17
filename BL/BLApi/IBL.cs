@@ -15,6 +15,7 @@ namespace BLApi
         void AddCustomer(Customer c);
         void UpdateCustomerName(int numofcustomer, string name);
         void UpdateCustomerPhone(int numofcustomer, string phone);
+        IEnumerable<CustomerForList> getCustomersList();
         #endregion
 
         #region Drone
@@ -38,6 +39,7 @@ namespace BLApi
         void UpdateStationName(int numofstation, string name);
         Station getStation(int num);
         IEnumerable<StationToList> getStationList();
+        IEnumerable<StationToList> getStationList(Predicate<StationToList> predicate);
         StationToList convertToStationList(DO.Station s);
         IEnumerable<StationToList> getStationWithFreeChargingSlotsList();
 
@@ -49,6 +51,7 @@ namespace BLApi
         DO.Parcel? CheckByDistance(IEnumerable<DO.Parcel> parcellist, Location c, double mindistance, DroneToList dts);
         void UpdatePickedByDrone(int numofdrone);
         void UpdateDeliverdByDrone(int numofdrone);
+        IEnumerable<ParcelForList> getParcelList();
         #endregion
 
         #region CalculationAndChecks
