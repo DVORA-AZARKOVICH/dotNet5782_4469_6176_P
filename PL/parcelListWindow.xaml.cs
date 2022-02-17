@@ -15,16 +15,14 @@ using System.Windows.Shapes;
 namespace PL
 {
     /// <summary>
-    /// Interaction logic for CustomerListWindow.xaml
+    /// Interaction logic for parcelListWindow.xaml
     /// </summary>
-    public partial class CustomerListWindow : Window
-    {
-        private BLApi.IBL bl;
-        public CustomerListWindow(BLApi.IBL b)
+    public partial class parcelListWindow : Window
+    {    
+        public parcelListWindow()
         {
             InitializeComponent();
-            bl = b;
-            customerForListDataGrid.IsReadOnly = true;
+            parcelForListDataGrid.IsReadOnly = true;
         }
     }
 }

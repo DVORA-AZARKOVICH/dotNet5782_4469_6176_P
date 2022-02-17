@@ -38,6 +38,7 @@ namespace BLApi
         void UpdateStationName(int numofstation, string name);
         Station getStation(int num);
         IEnumerable<StationToList> getStationList();
+        IEnumerable<StationToList> getStationList(Predicate<StationToList> predicate);
         StationToList convertToStationList(DO.Station s);
         IEnumerable<StationToList> getStationWithFreeChargingSlotsList();
 

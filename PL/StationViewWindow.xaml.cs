@@ -15,16 +15,18 @@ using System.Windows.Shapes;
 namespace PL
 {
     /// <summary>
-    /// Interaction logic for CustomerListWindow.xaml
+    /// Interaction logic for StationViewWindow.xaml
     /// </summary>
-    public partial class CustomerListWindow : Window
+    public partial class StationViewWindow : Window
     {
-        private BLApi.IBL bl;
-        public CustomerListWindow(BLApi.IBL b)
+        public StationViewWindow(BL.BO.StationToList st)
         {
             InitializeComponent();
-            bl = b;
-            customerForListDataGrid.IsReadOnly = true;
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -859,8 +859,15 @@ namespace BL
                     return stations;
                 throw new Exceptions.emptyListException("Station list is empty");
             }
-            public StationToList convertToStationList(DO.Station s)
+        public IEnumerable<StationToList> getStationsList(Predicate<StationToList> predicate)
+        {
+            var stations = from item in getStationList()
+                         where predicate(item)
+                         select item;
+            return stations;
+        }
 
+        public StationToList convertToStationList(DO.Station s)
             {
                 StationToList station = new StationToList
                 {
