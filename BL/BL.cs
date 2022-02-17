@@ -224,7 +224,7 @@ namespace BL
         #endregion
 
             #region Customer
-        public void AddCustomer(BO.Customer c)
+            public void AddCustomer(BO.Customer c)
             {
                 DO.Customer newcustomer = new DO.Customer();
                 if (CheckIdentityNumber(c.Id))
@@ -375,10 +375,10 @@ namespace BL
                     return customers;
                 throw new Exceptions.emptyListException("this list is empty");
             }
-            #endregion
+        #endregion
 
             #region Drone
-            public void AddDrone(BO.Drone d, int idstation)
+        public void AddDrone(BO.Drone d, int idstation)
             {
 
                 d.BatteryStatus = 20 + rand.NextDouble() * 20;
@@ -859,7 +859,7 @@ namespace BL
                     return stations;
                 throw new Exceptions.emptyListException("Station list is empty");
             }
-        public IEnumerable<StationToList> getStationsList(Predicate<StationToList> predicate)
+            public IEnumerable<StationToList> getStationsList(Predicate<StationToList> predicate)
         {
             var stations = from item in getStationList()
                          where predicate(item)
@@ -867,7 +867,7 @@ namespace BL
             return stations;
         }
 
-        public StationToList convertToStationList(DO.Station s)
+            public StationToList convertToStationList(DO.Station s)
             {
                 StationToList station = new StationToList
                 {
@@ -1262,8 +1262,13 @@ namespace BL
                 double minrateofcharge = MinCharge(sumdistancemin, updatedrone.Weight);
                 return minrateofcharge;
             }
-            #endregion
+
+        public IEnumerable<StationToList> getStationList(Predicate<StationToList> predicate)
+        {
+            throw new NotImplementedException();
         }
+        #endregion
+    }
     }
 
 

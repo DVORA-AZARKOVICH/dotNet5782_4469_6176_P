@@ -6,9 +6,28 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="parcelListWindow" Height="450" Width="800">
-    <Grid>
+    <Grid ShowGridLines="False">
+        <!-- 
+
+        <Grid.ColumnDefinitions >
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions> -->
         <DataGrid x:Name="parcelForListDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" Margin="124,81,124,95" RowDetailsVisibilityMode="VisibleWhenSelected">
-            <DataGrid.Columns>
+            <DataGrid.Columns >
                 <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="priorityColumn" Binding="{Binding Priority}" Header="Priority" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="reciverNameColumn" Binding="{Binding ReciverName}" Header="Reciver Name" Width="SizeToHeader"/>
@@ -17,5 +36,9 @@
                 <DataGridTextColumn x:Name="weightColumn" Binding="{Binding Weight}" Header="Weight" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Button Content="SortByStatus" HorizontalAlignment="Left" Margin="164,27,0,0" VerticalAlignment="Top" Height="24"/>
+
+
+
     </Grid>
 </Window>
