@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BL.BO;
 
 namespace PL
 {
@@ -25,7 +26,6 @@ namespace PL
             InitializeComponent();
             bl = b;
             customerForListDataGrid.IsReadOnly = true;
-            customerForListDataGrid.DataContext = bl.getCustomersList();
         }
     }
 }

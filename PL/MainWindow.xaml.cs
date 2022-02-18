@@ -33,5 +33,20 @@ namespace PL
         {
             new DroneListWindow(b).Show();
         }
+
+        private void parcels_Click(object sender, RoutedEventArgs e)
+        {
+            new parcelListWindow().Show();
+        }
+
+        private void station_Click(object sender, RoutedEventArgs e)
+        {
+            new StationListWindow(b).Show();
+        }
+
+        private void customers_Click(object sender, RoutedEventArgs e)
+        {
+            new CustomerListWindow(b).Show();
+        }
     }
 }
