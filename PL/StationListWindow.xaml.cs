@@ -50,19 +50,14 @@ namespace PL
             stationToListDataGrid.ItemsSource = bl.getStationList();
         }
 
-        private void showStation_Click(object sender, RoutedEventArgs e)
+        private void stationToListDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             StationToList selectedStation = (stationToListDataGrid.SelectedItem as StationToList);
             if (selectedStation != null)
             {
-                StationViewWindow win = new StationViewWindow(bl,selectedStation);
+                StationViewWindow win = new StationViewWindow(bl, selectedStation);
                 win.ShowDialog();
             }
-        }
-
-        private void Group_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
