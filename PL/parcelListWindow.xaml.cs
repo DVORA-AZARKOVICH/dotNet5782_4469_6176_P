@@ -23,6 +23,7 @@ namespace PL
         {
             InitializeComponent();
             parcelForListDataGrid.IsReadOnly = true;
+            
         }
     }
 }

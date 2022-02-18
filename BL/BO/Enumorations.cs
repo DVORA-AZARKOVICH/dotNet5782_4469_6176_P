@@ -12,5 +12,6 @@ namespace BL.BO
 
     public enum Priority { regular, fast, urgent }
 
-    public enum ParcelStatus { Created, attached, pickedUp, deliverd }
+    public enum ParcelStatus { deliverd, pickedUp, attached , Created }
+
 }

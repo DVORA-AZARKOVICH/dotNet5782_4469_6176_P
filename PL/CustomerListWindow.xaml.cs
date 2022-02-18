@@ -26,17 +26,6 @@ namespace PL
             InitializeComponent();
             bl = b;
             customerForListDataGrid.IsReadOnly = true;
-            customerForListDataGrid.ItemsSource = b.getCustomerList();
-        }
-
-        private void viewCustomer_Click(object sender, RoutedEventArgs e)
-        {
-            CustomerForList selected = (customerForListDataGrid.SelectedItem as CustomerForList);
-            if (selected != null)
-            {
-                CustomersViewWindow win = new CustomersViewWindow(bl,selected);
-                win.ShowDialog();
-            }
         }
     }
 }

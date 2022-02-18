@@ -15,7 +15,7 @@ namespace DALFasade.DALApi
         {
             XElement dalConfig = XElement.Load(@"xml\dal-config.xml");
             DalName = dalConfig.Element("dal").Value;
-            DalPackages = (from pkg in dalConfig.Element("dal-packages").Elements()
+            DalPackages = (from pkg in dalConfig.Element("dal-packeges").Elements()
                            select pkg
                           ).ToDictionary(p => "" + p.Name, p => p.Value);
         }

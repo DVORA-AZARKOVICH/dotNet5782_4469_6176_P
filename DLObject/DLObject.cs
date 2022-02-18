@@ -9,12 +9,12 @@ using DO;
 
 namespace Dal
 {
-    public class DLObjectt :IDal
+    public class DLObject :IDal
     {
         #region singelton
-        static readonly DLObjectt instance = new DLObjectt();
-        static DLObjectt() { DataSource.Initialize(); }
-        public static DLObjectt Instance { get => instance; }
+        static readonly DLObject instance = new DLObject();
+        static DLObject() { DataSource.Initialize(); }
+        public static DLObject Instance { get => instance; }
         #endregion
 
         #region Customer

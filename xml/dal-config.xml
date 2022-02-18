@@ -2,7 +2,7 @@
 <config>
 	<dal>list</dal>
 	<dal-packeges>
-		<list class ="DLObjectt" namespace ="Dal">DLObject</list>
+		<list class ="DLObject" namespace ="Dal">DLObject</list>
 		<xml>DLXML</xml>
 	</dal-packeges>
 </config>

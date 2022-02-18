@@ -828,41 +828,41 @@ namespace BL
             }
 
 
-        }
-        public BO.Station getStation(int num)
-        {
-            DO.Station st = Dalob.getStation(num);
-            var Drones = from drone in Dalob.getDroneChargeList(drone => drone.Stationid == st.Id)
-                             //where drone.Stationid == st.Id
-                         select new DroneCharge() { Id = drone.Droneid };
-            foreach (var item in Drones)
-            {
-                foreach (var drone in dronetolistBL)
-                    if (item.Id == drone.Id)
-                    {
-                        item.BatteryStatus = drone.BatteryStatus;
-                        break;
-                    }
             }
-            BO.Station s = new BO.Station()
+            public BO.Station getStation(int num)
             {
-                Id = st.Id,
-                Name = st.Name,
-                Location = new Location(st.Latitude, st.Longitude),
-                Chargslot = st.Chargslot,
-                DronesInCharging = Drones,
-            };
-            return s;
-        }
-        public IEnumerable<StationToList> getStationList()
-        {
-            var stations = from station in Dalob.getStationList(station => station.Deleted == false)
-                           select convertToStationList(station);
-            if (stations.Any())
-                return stations;
-            throw new Exceptions.emptyListException("Station list is empty");
-        }
-        public IEnumerable<StationToList> getStationsList(Predicate<StationToList> predicate)
+                DO.Station st = Dalob.getStation(num);
+                var Drones = from drone in Dalob.getDroneChargeList(drone => drone.Stationid == st.Id)
+                                 //where drone.Stationid == st.Id
+                             select new DroneCharge() { Id = drone.Droneid };
+                foreach (var item in Drones)
+                {
+                    foreach (var drone in dronetolistBL)
+                        if (item.Id == drone.Id)
+                        {
+                            item.BatteryStatus = drone.BatteryStatus;
+                            break;
+                        }
+                }
+                BO.Station s = new BO.Station()
+                {
+                    Id = st.Id,
+                    Name = st.Name,
+                    Location = new Location(st.Latitude, st.Longitude),
+                    Chargslot = st.Chargslot,
+                    DronesInCharging = Drones,
+                };
+                return s;
+            }
+            public IEnumerable<StationToList> getStationList()
+            {
+                var stations = from station in Dalob.getStationList(station => station.Deleted == false)
+                               select convertToStationList(station);
+                if (stations.Any())
+                    return stations;
+                throw new Exceptions.emptyListException("Station list is empty");
+            }
+            public IEnumerable<StationToList> getStationsList(Predicate<StationToList> predicate)
         {
             var stations = from item in getStationList()
                            where predicate(item)
@@ -1242,39 +1242,44 @@ namespace BL
 
             return 10 - sum;
 
-        }//The function returns the audit digit of the ID card.
-        public bool CheckIdentityNumber(int id)
-        {
-            int x = id % 10;
-            if (x == LastDigitID(id / 10))
-                return true;
-            return false;
-        }
-        public double SumCharge(DO.Parcel? itemparcel, DroneToList updatedrone)
-        {
-            double distaceDroneToSender = dalob.DistanceCustomer(itemparcel.Value.Senderid, updatedrone.Location.Latitude, updatedrone.Location.Longitude);
-            //distance betwean sender to target
-            double targetlat = dalob.DistanceCustomerLAT(itemparcel.Value.Targetid);
-            double targetlong = dalob.DistanceCustomerLONG(itemparcel.Value.Targetid);
-            double distanceSenderToTarget = dalob.DistanceCustomer(itemparcel.Value.Senderid, targetlat, targetlong);
-            //distance betwean target to the closest station
-            double mindistance1 = 0, newdistance1 = 0, newlong1 = 0, newlat1 = 0;
-            foreach (var itemstation in Dalob.getStationList(item => item.Deleted == false))
+            }//The function returns the audit digit of the ID card.
+            public bool CheckIdentityNumber(int id)
             {
-                newdistance1 = dalob.DistanceStation(itemstation.Id, targetlat, targetlong);
-                if (newdistance1 < mindistance1)
-                {
-                    newlong1 = itemstation.Longitude;
-                    newlat1 = itemstation.Latitude;
-                    mindistance1 = newdistance1;
-                }
+                int x = id % 10;
+                if (x == LastDigitID(id / 10))
+                    return true;
+                return false;
             }
-            double sumdistancemin = distaceDroneToSender + distanceSenderToTarget + mindistance1;
-            double minrateofcharge = MinCharge(sumdistancemin, updatedrone.Weight);
-            return minrateofcharge;
+            public double SumCharge(DO.Parcel? itemparcel, DroneToList updatedrone)
+            {
+                double distaceDroneToSender = dalob.DistanceCustomer(itemparcel.Value.Senderid, updatedrone.Location.Latitude, updatedrone.Location.Longitude);
+                //distance betwean sender to target
+                double targetlat = dalob.DistanceCustomerLAT(itemparcel.Value.Targetid);
+                double targetlong = dalob.DistanceCustomerLONG(itemparcel.Value.Targetid);
+                double distanceSenderToTarget = dalob.DistanceCustomer(itemparcel.Value.Senderid, targetlat, targetlong);
+                //distance betwean target to the closest station
+                double mindistance1 = 0, newdistance1 = 0, newlong1 = 0, newlat1 = 0;
+                foreach (var itemstation in Dalob.getStationList(item => item.Deleted == false))
+                {
+                    newdistance1 = dalob.DistanceStation(itemstation.Id, targetlat, targetlong);
+                    if (newdistance1 < mindistance1)
+                    {
+                        newlong1 = itemstation.Longitude;
+                        newlat1 = itemstation.Latitude;
+                        mindistance1 = newdistance1;
+                    }
+                }
+                double sumdistancemin = distaceDroneToSender + distanceSenderToTarget + mindistance1;
+                double minrateofcharge = MinCharge(sumdistancemin, updatedrone.Weight);
+                return minrateofcharge;
+            }
+
+        public IEnumerable<StationToList> getStationList(Predicate<StationToList> predicate)
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }
-}
+    }
 
 
