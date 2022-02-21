@@ -6,8 +6,11 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="StationListWindow" Height="450" Width="800">
+    <Window.Background>
+        <ImageBrush ImageSource="/images/view.jpg" Stretch="Fill" />
+    </Window.Background>
     <Grid>
-        <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="60" Grid.Row="0" VerticalAlignment="Top" Width="auto">
+        <Grid Name="UpGrid" Height="60" Grid.Row="0" VerticalAlignment="Top" Width="auto" Margin="0,23,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -15,7 +18,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
             <Button Name="Group" Content="group stations by free charging slots" Grid.Row="0"  Margin="187,-2,5,2" Click="Group_Click" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2"/>
-            <Button Name="refresh" Content="refresh" Grid.Column="2" Grid.Row="0"  Margin="0,-2,0,2" Click="refresh_Click"/>
+            <Button Name="refresh" Content="refresh" Grid.Column="2" Grid.Row="0"  Margin="0,-2,0,2" Click="refresh_Click" Width="200"/>
         </Grid >
         <DataGrid x:Name="stationToListDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="196,138,196,81" RowDetailsVisibilityMode="VisibleWhenSelected" MouseDoubleClick="stationToListDataGrid_MouseDoubleClick">
             <DataGrid.Columns>
