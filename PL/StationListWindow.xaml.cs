@@ -59,5 +59,10 @@ namespace PL
                 win.ShowDialog();
             }
         }
+
+        private void Group_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
