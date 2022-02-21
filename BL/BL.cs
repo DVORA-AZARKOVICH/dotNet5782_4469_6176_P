@@ -1274,10 +1274,10 @@ namespace BL
                 return minrateofcharge;
             }
 
-        public IEnumerable<StationToList> getStationList(Predicate<StationToList> predicate)
-        {
-            throw new NotImplementedException();
-        }
+        //public IEnumerable<StationToList> getStationList(Predicate<StationToList> predicate)
+        //{
+        //    throw new NotImplementedException();
+        //}
         #endregion
     }
     }

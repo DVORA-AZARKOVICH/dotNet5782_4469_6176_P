@@ -18,6 +18,5 @@
                 <DataGridTextColumn x:Name="sentParcelsColumn" Binding="{Binding SentParcels}" Header="Sent Parcels" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Name="viewCustomer" Content="View customer" HorizontalAlignment="Left" Margin="332,368,0,0" VerticalAlignment="Top" Height="35" Width="110" Click="viewCustomer_Click"/>
     </Grid>
 </Window>

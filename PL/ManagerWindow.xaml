@@ -1,0 +1,106 @@
+﻿<Window x:Class="PL.ManagerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="ManagerWindow" Height="450" Width="800">
+    <Grid ShowGridLines="False" HorizontalAlignment="Left" Width="800" Margin="10,0,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Button Name="Drones" Content="View drone list"  Click="Button_Click_1" Grid.RowSpan="1" Grid.Row="6" Grid.ColumnSpan="8" Background="#FF563BD9" Margin="-5,7,4,1" Grid.Column="0" FontWeight="Normal" FontFamily="Aharoni" FontSize="36" FontStyle="Normal" >
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.16"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <Button.OpacityMask>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FFED1717" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.OpacityMask>
+
+        </Button>
+        <Button Name="parcels" Content="View parcel list"  Click="parcels_Click" Grid.RowSpan="1" Grid.Row="5" Grid.ColumnSpan="8" Background="#FF563BD9" Margin="-5,7,4,1" Grid.Column="0" FontWeight="Normal" FontFamily="Aharoni" FontSize="36" FontStyle="Normal" >
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.16"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <Button.OpacityMask>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FFED1717" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.OpacityMask>
+
+        </Button>
+        <Button Name="station" Content="View station list"  Click="station_Click" Grid.RowSpan="1" Grid.Row="4" Grid.ColumnSpan="8" Background="#FF563BD9" Margin="-5,7,4,1" Grid.Column="0" FontWeight="Normal" FontFamily="Aharoni" FontSize="36" FontStyle="Normal" >
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.16"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <Button.OpacityMask>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FFED1717" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.OpacityMask>
+        </Button>
+        <Button Name="customers" Content="View customer list"  Click="customers_Click" Grid.RowSpan="1" Grid.Row="3" Grid.ColumnSpan="8" Background="#FF563BD9" Margin="-5,7,4,1" Grid.Column="0" FontWeight="Normal" FontFamily="Aharoni" FontSize="36" FontStyle="Normal" >
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.16"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <Button.OpacityMask>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FFED1717" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.OpacityMask>
+
+        </Button>
+        <Label Content="    Hello manager" Grid.ColumnSpan="3" Grid.RowSpan="2" Grid.Column="3" FontSize="35" Margin="0,62,0,0" FontFamily="Cooper Black" >
+            <Label.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FFD32E2E" Offset="1"/>
+                </LinearGradientBrush>
+            </Label.BorderBrush>
+        </Label>
+    </Grid>
+</Window>
