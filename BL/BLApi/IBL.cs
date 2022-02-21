@@ -54,6 +54,7 @@ namespace BLApi
         void UpdatePickedByDrone(int numofdrone);
         void UpdateDeliverdByDrone(int numofdrone);
         IEnumerable<ParcelForList> getParcelList();
+        IEnumerable<ParcelForList> getParcelList(Predicate<ParcelForList> pradicate);
         #endregion
 
         #region CalculationAndChecks

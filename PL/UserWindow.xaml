@@ -14,8 +14,6 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -27,7 +25,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label Content="    welcome!" Grid.ColumnSpan="3" Grid.RowSpan="2" Grid.Column="3" FontSize="35" Margin="0,62,0,0" FontFamily="Cooper Black" >
+        <Label Content="welcome!" Grid.ColumnSpan="3" Grid.RowSpan="2" Grid.Column="3" FontSize="35" Margin="0,62,0,0" FontFamily="Cooper Black" >
             <Label.BorderBrush>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black"/>
@@ -35,6 +33,8 @@
                 </LinearGradientBrush>
             </Label.BorderBrush>
         </Label>
-        <Button Grid.Column="1" Content="Button" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Center" Height="54" Width="228" Grid.ColumnSpan="3" Margin="114,0,0,0"/>
+        <Button Name="ShowOutgoing" Grid.Column="2" Content="show my Outgoing parcels" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Center" Height="54" Width="160" Click="ShowOutgoing_Click"/>
+        <Button Name="Add" Grid.Column="3" Content="add a parcel" HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Center" Height="54" Width="160" Click="Add_Click"/>
+        <Button x:Name="ShowIngoing" Grid.Column="4" Content="show my Incoming parcels" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Center" Height="54" Width="160" Click="ShowIngoing_Click"/>
     </Grid>
 </Window>

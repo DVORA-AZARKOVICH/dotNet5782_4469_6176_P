@@ -27,7 +27,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Button Name="Drones" Content="View drone list"  Click="Button_Click_1" Grid.RowSpan="1" Grid.Row="6" Grid.ColumnSpan="8" Background="#FF563BD9" Margin="-5,7,4,1" Grid.Column="0" FontWeight="Normal" FontFamily="Aharoni" FontSize="36" FontStyle="Normal" >
+        <Button Name="Drones" Content="View drone list" Click="Button_Click_1" Grid.RowSpan="1" Grid.Row="6" Grid.ColumnSpan="8" Background="#FF563BD9" Margin="-5,7,4,1" Grid.Column="0" FontWeight="Normal" FontFamily="Aharoni" FontSize="36" FontStyle="Normal" >
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>

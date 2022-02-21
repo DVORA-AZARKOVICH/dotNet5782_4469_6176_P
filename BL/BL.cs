@@ -1162,6 +1162,14 @@ namespace BL
             CustomerInParcel customerInParcel = new CustomerInParcel(c.Id, c.Name);
             return customerInParcel;
         }
+        public IEnumerable<ParcelForList> getParcelList(Predicate<ParcelForList> predicate)
+        {
+            var parcels = from item in getParcelList()
+                         where predicate(item)
+                         select item;
+            return parcels;
+            //throw new Exceptions.emptyListException("there are no drones of this type");
+        }
 
         #endregion
 

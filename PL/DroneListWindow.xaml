@@ -27,7 +27,7 @@
             <ComboBox Name="StatusSelector" Grid.Column="4" Grid.Row="0" SelectionChanged="StatusSelector_SelectionChanged"/>
             <Label Name="SortByWeight" Content="choose wheight category:" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" />
         </Grid >
-        <DataGrid Name="DroneListView" Grid.Row ="1" Margin="0,68,0,137" HorizontalAlignment="Center" Width="720" MouseDoubleClick="DroneListView_MouseDoubleClick" SelectionChanged="DroneListView_SelectionChanged"/>
+        <DataGrid Name="DroneListView" Grid.Row ="1" Margin="0,68,0,137" HorizontalAlignment="Center" Width="720" MouseDoubleClick="DroneListView_MouseDoubleClick"/>
         <Button Name="AddDrone" Content="AddDrone" Margin="185,298,521,40" Grid.Row="1" Click="AddDrone_Click"/>
         <Button Name="ExitDrone" Content="ExitDrone" Margin="491,298,215,40" Grid.Row="1" Click="ExitDrone_Click"/>
         <Image Margin="25,327,718,14" Grid.Row="1" DataContext="image/plane.jpg"/>

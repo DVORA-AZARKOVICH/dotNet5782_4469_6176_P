@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BL.BO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,11 +18,37 @@ namespace PL
     /// <summary>
     /// Interaction logic for UserWindow.xaml
     /// </summary>
+
     public partial class UserWindow : Window
     {
-        public UserWindow()
+        private BLApi.IBL bl;
+        private Customer customer;
+        public UserWindow(BL.BO.Customer c)
         {
             InitializeComponent();
+            customer = c;
+        }
+
+
+        private void ShowIncoming_Click(object sender, RoutedEventArgs e)
+        {
+            parcelListWindow win=new parcelListWindow(bl,customer);
+
+        }
+
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+            parcelListWindow win = new parcelListWindow(bl, customer,e);
+        }
+
+        private void ShowIngoing_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ShowOutgoing_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

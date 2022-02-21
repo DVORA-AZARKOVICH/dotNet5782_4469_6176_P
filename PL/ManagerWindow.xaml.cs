@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLApi;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,32 @@ namespace PL
     /// </summary>
     public partial class ManagerWindow : Window
     {
+
+        internal readonly IBL b = BLFactory.GetBL();
+
         public ManagerWindow()
         {
             InitializeComponent();
         }
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            new DroneListWindow(b).Show();
+        }
+
+        private void parcels_Click(object sender, RoutedEventArgs e)
+        {
+            new parcelListWindow().Show();
+        }
+
+        private void station_Click(object sender, RoutedEventArgs e)
+        {
+            new StationListWindow(b).Show();
+        }
+
+        private void customers_Click(object sender, RoutedEventArgs e)
+        {
+            new CustomerListWindow(b).Show();
+        }
+
     }
 }
