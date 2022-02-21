@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="DroneListWindow" Height="450" Width="800">
+    <Window.Background>
+        <ImageBrush ImageSource="/images/view.jpg" Stretch="Fill" />
+    </Window.Background>
     <Grid Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="50*"/>
@@ -27,5 +30,7 @@
         <DataGrid Name="DroneListView" Grid.Row ="1" Margin="0,68,0,137" HorizontalAlignment="Center" Width="720" MouseDoubleClick="DroneListView_MouseDoubleClick"/>
         <Button Name="AddDrone" Content="AddDrone" Margin="185,298,521,40" Grid.Row="1" Click="AddDrone_Click"/>
         <Button Name="ExitDrone" Content="ExitDrone" Margin="491,298,215,40" Grid.Row="1" Click="ExitDrone_Click"/>
+        <Image Margin="25,327,718,14" Grid.Row="1" DataContext="image/plane.jpg"/>
+
     </Grid>
 </Window>

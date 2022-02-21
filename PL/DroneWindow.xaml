@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="DroneWindow" Height="450" Width="800">
+    <Window.Background>
+        <ImageBrush ImageSource="/images/view.jpg" Stretch="Fill" />
+    </Window.Background>
     <Grid ShowGridLines="False" HorizontalAlignment="Left" Width="800" Margin="10,0,0,0" Name="droneGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="115*"/>
@@ -57,13 +60,13 @@
                 </LinearGradientBrush>
             </ComboBox.Background>
         </ComboBox>
-        <Button Name="add"  Content="Add drone" Grid.Column="2" HorizontalAlignment="Left" Margin="11,0,0,0" Grid.Row="10" VerticalAlignment="Center" Height="33" Width="235" Click="add_Click" Background="#FF563BD9" FontFamily="Aharoni" FontSize="16"/>
-        <Button Name="update"  Content="update model" Grid.Column="2" HorizontalAlignment="Left" Margin="11,0,0,0" Grid.Row="11" VerticalAlignment="Center" Height="33" Width="235" Click="update_Click" Background="#FF563BD9" FontFamily="Aharoni" FontSize="16"/>
-        <Button Name="sendToParcel"  Content="send to parcel" Grid.Column="2" HorizontalAlignment="Left" Margin="11,0,0,0" Grid.Row="10" VerticalAlignment="Center" Height="33" Width="235" Click="sendToParcel_Click" Background="#FF563BD9" FontFamily="Aharoni" FontSize="16"/>
-        <Button Name="sendToCharging"  Content="send to charging" Grid.Column="1" HorizontalAlignment="Left" Margin="11,0,0,0" Grid.Row="10" VerticalAlignment="Center" Height="33" Width="235" Click="sendToCharging_Click" Background="#FF563BD9" FontFamily="Aharoni" FontSize="16"/>
-        <Button Name="release"  Content="release from charging" Grid.Column="2" HorizontalAlignment="Left" Margin="11,0,0,0" Grid.Row="10" VerticalAlignment="Center" Height="33" Width="235" Click="release_Click" Background="#FF563BD9" FontFamily="Aharoni" FontSize="16"/>
-        <Button Name="delieverd"  Content="update delivery" Grid.Column="2" HorizontalAlignment="Left" Margin="11,0,0,0" Grid.Row="10" VerticalAlignment="Center" Height="33" Width="235" Click="delieverd_Click" Background="#FF563BD9" FontFamily="Aharoni" FontSize="16"/>
-        <Button Name="pickUp"  Content="update pick up" Grid.Column="1" HorizontalAlignment="Left" Margin="11,0,0,0" Grid.Row="10" VerticalAlignment="Center" Height="33" Width="235" Click="pickUp_Click" Background="#FF563BD9" FontFamily="Aharoni" FontSize="16"/>
+        <Button Name="add"  Content="Add drone" Grid.Column="2" HorizontalAlignment="Left" Margin="11,0,0,0" Grid.Row="10" VerticalAlignment="Center" Height="33" Width="235" Click="add_Click" FontFamily="Aharoni" FontSize="16"/>
+        <Button Name="update"  Content="update model" Grid.Column="2" HorizontalAlignment="Left" Margin="11,0,0,0" Grid.Row="11" VerticalAlignment="Center" Height="33" Width="235" Click="update_Click"  FontFamily="Aharoni" FontSize="16"/>
+        <Button Name="sendToParcel"  Content="send to parcel" Grid.Column="2" HorizontalAlignment="Left" Margin="11,0,0,0" Grid.Row="10" VerticalAlignment="Center" Height="33" Width="235" Click="sendToParcel_Click"  FontFamily="Aharoni" FontSize="16"/>
+        <Button Name="sendToCharging"  Content="send to charging" Grid.Column="1" HorizontalAlignment="Left" Margin="11,0,0,0" Grid.Row="10" VerticalAlignment="Center" Height="33" Width="235" Click="sendToCharging_Click"  FontFamily="Aharoni" FontSize="16"/>
+        <Button Name="release"  Content="release from charging" Grid.Column="2" HorizontalAlignment="Left" Margin="11,0,0,0" Grid.Row="10" VerticalAlignment="Center" Height="33" Width="235" Click="release_Click"  FontFamily="Aharoni" FontSize="16"/>
+        <Button Name="delieverd"  Content="update delivery" Grid.Column="2" HorizontalAlignment="Left" Margin="11,0,0,0" Grid.Row="10" VerticalAlignment="Center" Height="33" Width="235" Click="delieverd_Click"  FontFamily="Aharoni" FontSize="16"/>
+        <Button Name="pickUp"  Content="update pick up" Grid.Column="1" HorizontalAlignment="Left" Margin="11,0,0,0" Grid.Row="10" VerticalAlignment="Center" Height="33" Width="235" Click="pickUp_Click" FontFamily="Aharoni" FontSize="16"/>
         <TextBox Name ="status_d" Text="" TextWrapping="Wrap" Margin="11,34,76,8" Grid.Column="2" Grid.Row="4" Grid.RowSpan="2"/>
         <TextBox x:Name="weight_d" Text="" TextWrapping="Wrap" Grid.Column="2" Margin="10,4,76,1" Grid.Row="3" RenderTransformOrigin="0.5,0.5">
         </TextBox>
