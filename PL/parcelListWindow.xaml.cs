@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BL.BO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,12 +19,28 @@ namespace PL
     /// Interaction logic for parcelListWindow.xaml
     /// </summary>
     public partial class parcelListWindow : Window
-    {    
+    {
+        private BLApi.IBL bl;
         public parcelListWindow()
         {
             InitializeComponent();
+            parcelForListDataGrid.IsReadOnly = true;  
+        }
+        public parcelListWindow(BLApi.IBL b, Customer c)
+        {
+            InitializeComponent();
+            bl = b;
             parcelForListDataGrid.IsReadOnly = true;
             
+           IEnumerable<ParcelForList> parcels=b.getParcelList(item=>item.ReciverName==c.Name);
+        }
+        public parcelListWindow(BLApi.IBL b, Customer c,EventArgs e)
+        {
+            InitializeComponent();
+            bl = b;
+            parcelForListDataGrid.IsReadOnly = true;
+
+            IEnumerable<ParcelForList> parcels = b.getParcelList(item => item.SenderName == c.Name);
         }
     }
 }

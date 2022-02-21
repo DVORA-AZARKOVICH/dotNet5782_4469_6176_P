@@ -32,16 +32,16 @@ namespace PL
             
         }
 
-        private void Sort_Click(object sender, RoutedEventArgs e)
+        private void Group_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                var t = bl.getStationList().GroupBy(x=>x.FreeChargingSlots);
+                var t = bl.getStationList().GroupBy(x => x.FreeChargingSlots);
                 stationToListDataGrid.ItemsSource = t;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message,"Error",MessageBoxButton.OK,MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
