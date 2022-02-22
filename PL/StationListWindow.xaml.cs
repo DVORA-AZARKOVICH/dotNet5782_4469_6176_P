@@ -60,9 +60,9 @@ namespace PL
             }
         }
 
-        private void Group_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+   //     private void Group_Click(object sender, RoutedEventArgs e)
+    //    {
+//
+ //       }
     }
 }

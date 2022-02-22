@@ -4,6 +4,14 @@
              xmlns:local="clr-namespace:PL"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+
+        <!--Styles for woindow-->
+        <ImageBrush x:Key="WindowBackgroungImage" ImageSource="images\view.jpg"/>
+        <LinearGradientBrush x:Key="WindowBorderBrush" EndPoint="0.5,1" StartPoint="0.5,0" >
+            <GradientStop Color="Black" Offset="0"/>
+            <GradientStop Color="White" Offset="1"/>
+        </LinearGradientBrush>
+
         <Style  TargetType="Button">
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="Foreground" Value="Black"/>
@@ -11,57 +19,12 @@
             <Setter Property="FontFamily" Value="Comic Sans MS"/>
             <Setter Property="FontSize" Value="14"/>
         </Style>
-        
+
         <Style x:Key="CustomerDefinition" TargetType="TextBlock">
             <Setter Property="Control.FontFamily" Value="Tahoma"/>
             <Setter Property="Control.FontSize" Value="12"/>
             <Setter Property="Control.Foreground" Value="Red"/>
         </Style>
-        <Style TargetType="{x:Type Label}">
-            <Setter Property="Width" Value="100"/>
-        </Style>
-        <Style  TargetType="{x:Type TextBox}">
-            <Setter Property="SnapsToDevicePixels" Value="True"/>
-            <Setter Property="OverridesDefaultStyle" Value="True"/>
-            <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
-            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-            <Setter Property="MinWidth" Value="120"/>
-            <Setter Property="MinHeight" Value="20"/>
-            <Setter Property="AllowDrop" Value="true"/>
-            <Setter Property="Width" Value="200"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type TextBoxBase}">
-                        <Border
-                               Name="Border"
-                               Background="White"
-                               BorderBrush= "Black"
-                               BorderThickness="1"
-                               CornerRadius="2"
-                               Padding="3">
-                            <ScrollViewer x:Name="PART_ContentHost" Margin="0"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter TargetName="Border" Property="Background"
-                                                       Value=""/>
-                                <Setter TargetName="Border" Property="BorderBrush"
-                                                       Value="White"/>
-                                <Setter Property="Foreground" Value="Black"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <LinearGradientBrush x:Key="NormalBrush" StartPoint="0,0" EndPoint="0,1">
-            <GradientBrush.GradientStops>
-                <GradientStopCollection>
-                    <GradientStop Offset="0.0" Color="White"/>
-                    <GradientStop Offset="1.0" Color="White"/>
-                </GradientStopCollection>
-            </GradientBrush.GradientStops>
-        </LinearGradientBrush>
-       
+
     </Application.Resources>
 </Application>

@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="UserWindow" Height="450" Width="800">
+    <Window.Background>
+        <ImageBrush ImageSource="/images/view.jpg" Stretch="Fill" />
+    </Window.Background>
     <Grid ShowGridLines="False" HorizontalAlignment="Left" Width="800" Margin="10,0,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0*"/>

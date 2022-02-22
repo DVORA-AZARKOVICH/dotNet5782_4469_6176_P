@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BLApi;
+using System.ComponentModel;
 
 namespace PL
 {
@@ -35,6 +36,8 @@ namespace PL
     /// </summary>
     public partial class DroneWindow : Window
     {
+        BackgroundWorker worker; //field
+        bool F;
         private BLApi.IBL bl;
         private DroneToList myDrone;
         public MyData myData;
@@ -46,6 +49,14 @@ namespace PL
         public DroneWindow(BLApi.IBL b)
         {
             InitializeComponent();
+            worker = new BackgroundWorker();
+            worker.DoWork += Worker_DoWork;
+            worker.ProgressChanged += Worker_ProgressChanged;
+            worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
+
+            worker.WorkerReportsProgress = true;
+            worker.WorkerSupportsCancellation = true;
+
             bl = b;
             myData = new MyData();
             Status.ItemsSource = Enum.GetValues(typeof(DroneStatus));
@@ -67,6 +78,21 @@ namespace PL
             DroneId.Text = " ";
         }
 
+        private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// initilizes the drone update window
         /// </summary>
@@ -75,6 +101,13 @@ namespace PL
         public DroneWindow(BLApi.IBL b, DroneToList selectedItem)
         {
             InitializeComponent();
+            worker = new BackgroundWorker();
+            worker.DoWork += Worker_DoWork;
+            worker.ProgressChanged += Worker_ProgressChanged;
+            worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
+            worker.WorkerReportsProgress = true;
+            worker.WorkerSupportsCancellation = true;
+
             bl = b;
             myDrone = selectedItem;
             myData = new MyData() { Id = selectedItem.Id, BatteryStatus = selectedItem.BatteryStatus, Status = selectedItem.Status, Model = selectedItem.Model, Location = selectedItem.Location, ParcelId = selectedItem.ParcelId, Weight = selectedItem.Weight };
@@ -266,6 +299,8 @@ namespace PL
             this.DataContext = myData;
             this.Close();
         }
+       
+
 
 
     }
