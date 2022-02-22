@@ -295,7 +295,7 @@ namespace Dal
 
         #endregion
 
-        #region Paercel
+        #region Parcel
 
         /// <summary>
         /// a new parcel that have been ordered.
@@ -322,10 +322,11 @@ namespace Dal
         /// <returns></returns>
         public Parcel getParcel(int id)
         {
-            foreach (var item in DataSource.parcellist)
+            for(int i = 0;i<DataSource.parcellist.Count();i++)
+           // foreach (var item in DataSource.parcellist)
             {
-                if (item.Id == id && item.Deleted == false)
-                    return item;
+                if (DataSource.parcellist[i].Id == id && DataSource.parcellist[i].Deleted == false)
+                    return DataSource.parcellist[i];
             }
             throw new Exceptions.IDdNotFoundExeption("Parcel was not found");
         }
