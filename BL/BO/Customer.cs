@@ -14,6 +14,7 @@ namespace BL.BO
         public Location Location { get; set; }
         public IEnumerable<ParcelInCustomer> OutgoingParcels { get; set; }// חבילות שנשלחו ע"י הלקוח
         public IEnumerable<ParcelInCustomer> IngoingParcels { get; set; }// חבילות שנשלחו ללקוח
+        public string passward { get; set; }
 
         public override string ToString()
         {

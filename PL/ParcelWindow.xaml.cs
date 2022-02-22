@@ -10,34 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BL;
-using BL.BO;
-using BLApi;
 
 namespace PL
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ParcelWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ParcelWindow : Window
     {
-        internal readonly IBL b = BLFactory.GetBL();
-
-        public MainWindow()
+        public ParcelWindow()
         {
             InitializeComponent();
-        }
-
-        private void manager_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void customer_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

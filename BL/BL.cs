@@ -197,10 +197,10 @@ namespace BL
                                 item.ParcelId = tt[i].Id;
                             else
                             {
-                                DO.Parcel p = Dalob.getParcel(tt[i].Id);
-                                p.Droneid = 0;
-                                Dalob.deleteParcel(p.Id);
-                                Dalob.addParcel(p);
+                                //DO.Parcel p = Dalob.getParcel(tt[i].Id);
+                               // p.Droneid = 0;
+                               // Dalob.deleteParcel(p.Id);
+                               // Dalob.addParcel(p);
                             }
                         }
 
@@ -217,6 +217,7 @@ namespace BL
         #endregion
 
         #region Customer
+
         public void AddCustomer(BO.Customer c)
         {
             DO.Customer newcustomer = new DO.Customer();

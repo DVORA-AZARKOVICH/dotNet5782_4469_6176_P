@@ -1,0 +1,26 @@
+﻿<Window x:Class="PL.verifyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="verifyWindow" Height="200" Width="300">
+    <Grid Name="Grid" ShowGridLines="True">
+        <Grid Margin="23,51,23,51">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Name="id" Text="user ID:" FontSize="20"/>
+            <TextBlock Name="name" Text="user name:" Grid.Column="0" Grid.Row="1"  FontSize="20"/>
+            <TextBox Name="UserID" Grid.Column="1" Grid.Row="0"/>
+            <TextBox Name="UserName" Grid.Column="1" Grid.Row="1"/>
+        </Grid>
+        <Button Name="cEnter" Content="Enter" HorizontalAlignment="Left" Margin="96,133,0,0" VerticalAlignment="Top" Height="29" Width="76" Click="cEnter_Click"/>
+    </Grid>
+</Window>

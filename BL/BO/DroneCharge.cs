@@ -10,6 +10,7 @@ namespace BL.BO
     {
         public int Id { get; set; }
         public double BatteryStatus { get; set; }
+        //public DateTime startCarging { get; set; }
         public override string ToString()
         {
             return this.ToStringProperty();

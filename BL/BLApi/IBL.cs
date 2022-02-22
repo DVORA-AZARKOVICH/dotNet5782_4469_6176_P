@@ -18,6 +18,7 @@ namespace BLApi
         public Customer getCustomer(int num);
         public IEnumerable<CustomerForList> getCustomerList();
         public IEnumerable<CustomerForList> getCustomerList(Predicate<CustomerForList> predicate);
+       // public bool checkPassword(string name,int id);
         #endregion
 
         #region Drone

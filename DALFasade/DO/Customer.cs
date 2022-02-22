@@ -14,6 +14,7 @@ namespace DO
         public double Longitude { set; get; }//קו  רוחב
         public double Latitude { set; get; }//קו אורך
         public bool Deleted { set; get; }
+        public string password { set; get; }
         public override string ToString()
         {
             return this.ToStringProperty();
