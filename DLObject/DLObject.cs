@@ -217,7 +217,7 @@ namespace Dal
             DataSource.dronechargelist.Remove(removedronecharge);
 
         }
-        public double[] PowerConsumptionRequest()
+        public double[] GetElectricity()
         {
             double[] describe = new double[5];
             describe[0] = DataSource.Config.available;

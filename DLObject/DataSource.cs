@@ -2,9 +2,13 @@
 using DO;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+
+
 namespace Dal
 {
     internal static class DataSource
@@ -14,6 +18,8 @@ namespace Dal
         public static List<Customer> customelist = new List<Customer>();
         public static List<Parcel> parcellist = new List<Parcel>();
         public static List<Dronecharge> dronechargelist = new List<Dronecharge>();
+
+    
         static DataSource()
         {
             Initialize();
@@ -27,6 +33,7 @@ namespace Dal
             public static double medium = 4;
             public static double heavy = 6;
             public static double chargingRate = 0.1;
+
         }
         internal static void Initialize()
         {
@@ -143,6 +150,7 @@ namespace Dal
                 p.Deleted = false;
                 parcellist.Add(p);
             }
+
 
 
         }

@@ -12,18 +12,15 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PL", "PL\PL.csproj", "{81B40AB7-1E47-43BF-A8F7-24F4B24AF0A7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9B159BC8-F116-4F18-9538-19ACDA021E5B}"
-	ProjectSection(SolutionItems) = preProject
-		xml\dal-config.xml = xml\dal-config.xml
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DLXML", "DLXML\DLXML.csproj", "{8BF7113E-B0B2-4483-BB0E-D94D78989B99}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{F54467F2-E0E9-4124-9237-93C3D8E80715}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DALFasade", "DALFasade\DALFasade.csproj", "{8CBBC2D7-B329-4006-B4BF-0F70D46B6F24}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{DAAA2DEC-01F4-4FED-9A62-30CF9AAFB68B}"
 	ProjectSection(SolutionItems) = preProject
 		dal-config.xml = dal-config.xml
 	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DALFasade", "DALFasade\DALFasade.csproj", "{8CBBC2D7-B329-4006-B4BF-0F70D46B6F24}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

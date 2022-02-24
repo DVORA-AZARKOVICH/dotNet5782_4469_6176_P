@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DLXML
+namespace Dal
 {
     public class Class1
     {
