@@ -15,23 +15,24 @@ namespace BLApi
         void AddCustomer(Customer c);
         void UpdateCustomerName(int numofcustomer, string name);
         void UpdateCustomerPhone(int numofcustomer, string phone);
-        public Customer getCustomer(int num);
-        public IEnumerable<CustomerForList> getCustomerList();
-        public IEnumerable<CustomerForList> getCustomerList(Predicate<CustomerForList> predicate);
+        Customer getCustomer(int num);
+        IEnumerable<CustomerForList> getCustomerList();
+        IEnumerable<CustomerForList> getCustomerList(Predicate<CustomerForList> predicate);
         #endregion
 
         #region Drone
-        public void AddDrone(Drone d, int idstation);
-        public DroneToList UpdateInMaintence(int count, DroneToList d, IEnumerable<DO.Station> stationlist);
-        public DroneToList UpdateFree(DroneToList d, IEnumerable<DO.Parcel> parcellist, IEnumerable<DO.Customer> customerlist, IEnumerable<DO.Station> stationlist);
-        public void UpdateDrone(int numofdrone, string model);
-        public void UpdateDroneToCharge(int numofdrone);
-        public void UpdateReleseDroneFromCharge(int numofdrone, DateTime? time1);
+        void AddDrone(Drone d, int idstation);
+        DroneToList UpdateInMaintence(int count, DroneToList d, IEnumerable<DO.Station> stationlist);
+        DroneToList UpdateFree(DroneToList d, IEnumerable<DO.Parcel> parcellist, IEnumerable<DO.Customer> customerlist, IEnumerable<DO.Station> stationlist);
+        void UpdateDrone(int numofdrone, string model);
+        void UpdateDroneToCharge(int numofdrone);
+        void UpdateReleseDroneFromCharge(int numofdrone, DateTime? time1);
         public void UpdateParcelToDrone(int numofdrone);
-        public Drone getDrone(int num);
-        public ParcelInTransfer convertToParcelInTransfer(DO.Parcel p);
-        public List<DroneToList> getdroneList();
-        public IEnumerable<DroneToList> getdroneList(Predicate<DroneToList> predicate);
+        Drone getDrone(int num);
+        ParcelInTransfer convertToParcelInTransfer(DO.Parcel p);
+        List<DroneToList> getdroneList();
+        IEnumerable<DroneToList> getdroneList(Predicate<DroneToList> predicate);
+        DroneToList NextState(int id);
         #endregion
 
         #region Station
@@ -64,6 +65,7 @@ namespace BLApi
         int LastDigitID(int x);
         bool CheckIdentityNumber(int id);
         double SumCharge(DO.Parcel? itemparcel, DroneToList updatedrone);
+        DroneToList NextState(string text);
 
 
         #endregion
