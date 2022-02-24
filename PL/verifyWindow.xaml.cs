@@ -19,15 +19,16 @@ namespace PL
     /// </summary>
     public partial class verifyWindow : Window
     {
-        public BL.BO.Customer customer;
-        public verifyWindow(BL.BO.Customer c)
+        internal readonly BLApi.IBL bl;
+        public verifyWindow(BLApi.IBL b)
         {
             InitializeComponent();
-            customer = c;
+            bl = b;
         }
 
         private void cEnter_Click(object sender, RoutedEventArgs e)
         {
+            
             if (UserName.Text == customer.Name && Convert.ToInt32(UserID.Text) == customer.Id)
             {
                 UserWindow win = new UserWindow(customer);

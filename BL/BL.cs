@@ -223,7 +223,6 @@ namespace BL
         #endregion
 
         #region Customer
-
         public void AddCustomer(BO.Customer c)
         {
             DO.Customer newcustomer = new DO.Customer();

@@ -25,6 +25,7 @@ namespace PL
     {
         internal readonly IBL b = BLFactory.GetBL();
 
+
         public MainWindow()
         {
             InitializeComponent();
@@ -37,7 +38,8 @@ namespace PL
 
         private void customer_Click(object sender, RoutedEventArgs e)
         {
-
+            verifyWindow win = new verifyWindow(b).ShowDialog();
         }
     }
 }
+
