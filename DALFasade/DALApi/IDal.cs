@@ -20,8 +20,9 @@ namespace DALApi
         IEnumerable<Drone> getDroneList(Predicate<Drone> predicate);
         void UpDatenotcharging(int numofdrone);
         void UpDateCharging(int numofdrone, int numofstation);
-        double[] PowerConsumptionRequest();
+        double[] GetElectricity();
         void deleteDrone(int id);
+
         #endregion
 
         #region DroneCharge
@@ -64,6 +65,7 @@ namespace DALApi
         double DistanceStationLONG(int numofstation);
         double DistanceCustomerLAT(int numofcustomer);
         double DistanceCustomerLONG(int numofcustomer);
+   //     double[] GetElectricity();
         #endregion
     }
 }

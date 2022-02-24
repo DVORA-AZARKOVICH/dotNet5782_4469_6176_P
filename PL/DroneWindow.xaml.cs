@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BLApi;
 using System.ComponentModel;
+using System.Threading;
 
 namespace PL
 {
@@ -29,6 +30,8 @@ namespace PL
         public DroneStatus Status { get; set; }
         public Location Location { get; set; }
         public int ParcelId { get; set; }
+
+        
 
     }
     /// <summary>
@@ -80,17 +83,50 @@ namespace PL
 
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            throw new NotImplementedException();
+
+            /*if (e.Cancelled == true)
+            {
+                worker.Value = 0;
+                curPer.PersonalStatus = Status.SINGLE;
+                MessageBox.Show("Try next time...");
+            }
+            else
+            {
+                curPer.PersonalStatus = Status.MARRIED;
+                MessageBox.Show("Mazal Tov!!");
+            }
+            this.Cursor = Cursors.Arrow;*/
         }
 
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            throw new NotImplementedException();
+            int precent = e.ProgressPercentage;
+            battery.Text =Convert.ToString( precent);
         }
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            throw new NotImplementedException();
+            //bl.simultor(cuurent drone, e.Argument, bw ) // 
+            DroneToList d = new DroneToList();
+            d = bl.NextState(DroneId.Text);
+            for (int i = 0; i <= 100;i++)
+            {
+                if (worker.CancellationPending == true)
+                {
+                    e.Cancel = true;
+                    break;
+                }
+                else
+                {
+                    Thread.Sleep(500);
+                    if (worker.WorkerReportsProgress == true)
+                    {
+                        i = (int)d.BatteryStatus;
+                        worker.ReportProgress(i);
+                    }
+
+                }
+            }
         }
 
         /// <summary>
@@ -299,7 +335,12 @@ namespace PL
             this.DataContext = myData;
             this.Close();
         }
-       
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+         //    worker.RunWorkerAsync(cbDays.SelectedValue);
+        }
 
 
 

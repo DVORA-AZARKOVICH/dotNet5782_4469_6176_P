@@ -7,12 +7,14 @@ using System.Collections.Generic;
 using System.Linq;
 //using DALApi;
 
+
 namespace BL
 {
     sealed class BL : IBL
     {
         #region Constructor
 
+        
         static readonly BLApi.IBL instance = new BL();
         public static IBL Instance { get => instance; }
 
@@ -30,14 +32,20 @@ namespace BL
         public IDal Dalob { get => dalob; set => dalob = value; }
         public void Initilize()
         {
-            ob = Dalob.PowerConsumptionRequest();
-            double available = ob[0];
-            double light = ob[1];
-            double medium = ob[2];
-            double heavy = ob[3];
-            double chargingRate = ob[4];
-            //converting the DAL drone list to BL list
-            IEnumerable<DroneToList> temp;
+
+            double available = 0;
+            double light = 2.5;
+            double medium = 5.5;
+            double heavy = 7.5;
+            double chargingRate = 2;
+             /*  ob = Dalob.GetElectricity();
+               double available = ob[0];
+               double light = ob[1];
+               double medium = ob[2];
+               double heavy = ob[3];
+               double chargingRate = ob[4];*/
+             //converting the DAL drone list to BL list
+             IEnumerable <DroneToList> temp;
             temp = from item in Dalob.getDroneList(item => item.Deleted == false)
                    select new BO.DroneToList()
                    {
@@ -200,25 +208,19 @@ namespace BL
                         {
                             if (dronetolistBL[k].Status == DroneStatus.busy)
                                 dronetolistBL[k].ParcelId = tt[i].Id;
-                            //else
-                            //{
-                            //    DO.Parcel p = Dalob.getParcel(tt[i].Id);
-                            //    p.Droneid = 0;
-                            //    Dalob.deleteParcel(p.Id);
-                            //    Dalob.addParcel(p);
-                            //}
+                            else
+                            {
+                                DO.Parcel p = Dalob.getParcel(tt[i].Id);
+                                p.Droneid = 0;
+                                Dalob.deleteParcel(p.Id);
+                                Dalob.addParcel(p);
+                            }
                         }
                     }
 
                 }
             }
         }
-
-
-        /*private DO.Station? ClosestStation(IEnumerable<DO.Station> stationlist, Location location)
-        {
-            throw new NotImplementedException();
-        }*/
 
         #endregion
 
@@ -757,6 +759,23 @@ namespace BL
             return drones;
             //throw new Exceptions.emptyListException("there are no drones of this type");
         }
+        public DroneToList NextState(int id)
+        {
+            DroneToList d2 = dronetolistBL.Find(d3 => d3.Id == id);
+            dronetolistBL.Remove(d2);
+            if (d2.BatteryStatus==100)
+            {
+                d2.Status = DroneStatus.free;
+            }
+            else
+            {
+                d2.BatteryStatus += 5;
+                d2.Status = DroneStatus.inMaintence;
+            }
+            dronetolistBL.Add(d2);
+            return d2;          
+        }
+
         #endregion
 
         #region Station
@@ -1287,6 +1306,11 @@ namespace BL
                 double minrateofcharge = MinCharge(sumdistancemin, updatedrone.Weight);
                 return minrateofcharge;
             }
+
+        public DroneToList NextState(string text)
+        {
+            throw new NotImplementedException();
+        }
 
 
         #endregion

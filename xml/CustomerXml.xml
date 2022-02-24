@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<ArrayOfCustomer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Customer>
+    <Id>325036176</Id>
+    <Name>customr: 97</Name>
+    <Phone>0533128566</Phone>
+    <Longitude>32.77649910970428</Longitude>
+    <Latitude>33.96579355186121</Latitude>
+    <Deleted>false</Deleted>
+  </Customer>
+  <Customer>
+    <Id>325036177</Id>
+    <Name>customr: 98</Name>
+    <Phone>533128567</Phone>
+    <Longitude>30.386234118783022</Longitude>
+    <Latitude>34.43961126005259</Latitude>
+    <Deleted>false</Deleted>
+  </Customer>
+  <Customer>
+    <Id>325036178</Id>
+    <Name>customr: 99</Name>
+    <Phone>533128568</Phone>
+    <Longitude>30.705410604227993</Longitude>
+    <Latitude>34.281941325069376</Latitude>
+    <Deleted>false</Deleted>
+  </Customer>
+  <Customer>
+    <Id>325036179</Id>
+    <Name>customr: 100</Name>
+    <Phone>533128569</Phone>
+    <Longitude>32.82323651799152</Longitude>
+    <Latitude>35.87631594663314</Latitude>
+    <Deleted>false</Deleted>
+  </Customer>
+  <Customer>
+    <Id>325036180</Id>
+    <Name>customr: 101</Name>
+    <Phone>533128570</Phone>
+    <Longitude>29.510529625932932</Longitude>
+    <Latitude>33.994579163843106</Latitude>
+    <Deleted>false</Deleted>
+  </Customer>
+  <Customer>
+    <Id>325036181</Id>
+    <Name>customr: 102</Name>
+    <Phone>533128571</Phone>
+    <Longitude>32.39993479633701</Longitude>
+    <Latitude>35.78573630693636</Latitude>
+    <Deleted>false</Deleted>
+  </Customer>
+  <Customer>
+    <Id>325036182</Id>
+    <Name>customr: 103</Name>
+    <Phone>533128572</Phone>
+    <Longitude>29.451249324461095</Longitude>
+    <Latitude>36.20807965435464</Latitude>
+    <Deleted>false</Deleted>
+  </Customer>
+  <Customer>
+    <Id>325036183</Id>
+    <Name>customr: 104</Name>
+    <Phone>533128573</Phone>
+    <Longitude>32.05824931573972</Longitude>
+    <Latitude>34.15595388745701</Latitude>
+    <Deleted>false</Deleted>
+  </Customer>
+  <Customer>
+    <Id>325036184</Id>
+    <Name>customr: 105</Name>
+    <Phone>533128574</Phone>
+    <Longitude>32.23639219870623</Longitude>
+    <Latitude>34.40156824905498</Latitude>
+    <Deleted>false</Deleted>
+  </Customer>
+  <Customer>
+    <Id>325036185</Id>
+    <Name>customr: 106</Name>
+    <Phone>533128575</Phone>
+    <Longitude>30.373013101226192</Longitude>
+    <Latitude>33.81885450976847</Latitude>
+    <Deleted>false</Deleted>
+  </Customer>
+</ArrayOfCustomer>

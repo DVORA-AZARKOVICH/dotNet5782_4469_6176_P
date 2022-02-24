@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Xml.Serialization;
-using static DLXML.Exceptions;
+using static Dal.Exceptions;
 
-namespace DLXML
+namespace Dal
 {
     class XMLTools
     {
@@ -35,6 +35,7 @@ namespace DLXML
         {
             try
             {
+               // if(System.IO.File.Exists(filePath))
                 if (File.Exists(filePath))
                 {
                     return XElement.Load(filePath);
@@ -42,8 +43,10 @@ namespace DLXML
                 else
                 {
                     XElement rootElem = new XElement(filePath);
-                    rootElem.Save(filePath);
-                    return rootElem;
+                    //System.IO.File.Create(filePath);
+                    //return XElement.Load(filePath);
+                   rootElem.Save(filePath);
+                   return rootElem;
                 }
             }
             catch (Exception ex)
@@ -60,6 +63,7 @@ namespace DLXML
             {
                 FileStream file = new FileStream(dir + filePath, FileMode.Create);
                 XmlSerializer x = new XmlSerializer(list.GetType());
+                x.Serialize(file, list);
                 file.Close();
             }
             catch (Exception ex)

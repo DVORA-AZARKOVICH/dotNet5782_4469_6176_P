@@ -4,24 +4,25 @@ using DALApi;
 using DO;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 
-
-
-namespace DLXML
+namespace Dal
 {
-    sealed class DLXML :  IDal
+    sealed class DLXML : IDal
     {
-       
+
         public static readonly IDal instance = new DLXML();
         static DLXML() { }
         public static IDal Instance { get => instance; }
         private DLXML()
         {
             DataSource.Initialize();
+           
         }
 
         #region DS XML Files
@@ -32,7 +33,7 @@ namespace DLXML
         string dronePath = @"DroneXml.xnml";//XMLSerialzer
         string dronchargePath = @"DroneChargeXml.xml";//XMLSerialzer
         string stationPath = @"StationXml.xml";//XMLSerialzer\
-        string powerConsumptionRequest = @" PowerConsumptionRequestXml.xml";//XMLSerialzer\
+        string powerConsumptionRequest = @"PowerConsumptionRequestXml.xml";//XMLSerialzer\
         #endregion
 
         #region Customer
@@ -46,7 +47,8 @@ namespace DLXML
         {
             try
             {
-                CustomerRoot = XElement.Load(customerPath);
+                //CustomerRoot = XElement.Load(customerPath);
+                CustomerRoot = XMLTools.LoadListFromXmlElement(customerPath);
             }
             catch
             {
@@ -63,15 +65,15 @@ namespace DLXML
                 XElement name = new XElement("name", item.Name);
                 XElement phone = new XElement("phone", item.Phone);
                 XElement longitude = new XElement("longitude", item.Longitude);
-                XElement latitude = new XElement("latitude",item.Latitude);
+                XElement latitude = new XElement("latitude", item.Latitude);
                 XElement deleted = new XElement("deleted", item.Deleted);
-                XElement customer = new XElement("customer", id, name,phone,longitude,latitude,deleted);
+                XElement customer = new XElement("customer", id, name, phone, longitude, latitude, deleted);
                 CustomerRoot.Add(customer);
 
                 addCustomer(item);
             }
 
-             CustomerRoot.Save(customerPath);
+            CustomerRoot.Save(customerPath);
         }
         public void SaveCustomerListLinq(List<Customer> CustomerList)
         {
@@ -80,7 +82,7 @@ namespace DLXML
             var v = from p in CustomerList
                     select new XElement("Customer",
                                                 new XElement("id", p.Id),
-                                                new XElement("name",p.Name),
+                                                new XElement("name", p.Name),
                                                 new XElement("phone", p.Phone),
                                                 new XElement("longitude", p.Longitude),
                                                 new XElement("latitude", p.Latitude),
@@ -112,17 +114,17 @@ namespace DLXML
             try
             {
                 customer = (from p in CustomerRoot.Elements()
-                           where Convert.ToInt32(p.Element("id").Value) == id
-                           select new Customer()
-                           {
-                               Id = Convert.ToInt32(p.Element("id").Value),
-                               Name = p.Element("name").Element("name").Value,
-                               Phone= p.Element("phone").Element("phone").Value,
-                               Longitude = Convert.ToDouble(p.Element("longitude").Value),
-                               Latitude = Convert.ToDouble(p.Element("latitude").Value),
-                               Deleted = Convert.ToBoolean(p.Element("deleted").Value)
+                            where Convert.ToInt32(p.Element("Id").Value) == id
+                            select new Customer()
+                            {
+                                Id = Convert.ToInt32(p.Element("Id").Value),
+                                Name = p.Element("Name").Value,
+                                Phone = p.Element("Phone").Value,
+                                Longitude = Convert.ToDouble(p.Element("Longitude").Value),
+                                Latitude = Convert.ToDouble(p.Element("Latitude").Value),
+                                Deleted = Convert.ToBoolean(p.Element("Deleted").Value)
 
-                           }).FirstOrDefault();
+                            }).FirstOrDefault();
             }
             catch
             {
@@ -137,15 +139,18 @@ namespace DLXML
             try
             {
                 Customers = (from p in CustomerRoot.Elements()
-                            select new Customer()
-                            {
-                                Id = Convert.ToInt32(p.Element("id").Value),
-                                 Name = p.Element("name").Element("name").Value,
-                                Phone = p.Element("phone").Element("phone").Value,
-                                Longitude = Convert.ToDouble(p.Element("longitude").Value),
-                                Latitude = Convert.ToDouble(p.Element("latitude").Value),
-                                Deleted = Convert.ToBoolean(p.Element("deleted").Value)
-                            }).ToList();
+                             select 
+                             
+                             
+                             new Customer()
+                             {
+                                 Id = Convert.ToInt32(p.Element("Id").Value),
+                                 Name = p.Element("Name").Value,
+                                 Phone = p.Element("Phone").Value,
+                                 Longitude = Convert.ToDouble(p.Element("Longitude").Value),
+                                 Latitude = Convert.ToDouble(p.Element("Latitude").Value),
+                                 Deleted = Convert.ToBoolean(p.Element("Deleted").Value)
+                             }).ToList();
             }
             catch
             {
@@ -159,8 +164,8 @@ namespace DLXML
             try
             {
                 CustomerElement = (from p in CustomerRoot.Elements()
-                                  where Convert.ToInt32(p.Element("id").Value) == id
-                                  select p).FirstOrDefault();
+                                   where Convert.ToInt32(p.Element("id").Value) == id
+                                   select p).FirstOrDefault();
                 CustomerElement.Remove();
                 CustomerRoot.Save(customerPath);
             }
@@ -176,7 +181,7 @@ namespace DLXML
         {
             List<DO.Drone> droneList = XMLTools.LoadListFromXMLSerialzer<DO.Drone>(dronePath);
 
-            int index = droneList.FindIndex(t => t.Id == item.Id&&t.Deleted ==false);
+            int index = droneList.FindIndex(t => t.Id == item.Id && t.Deleted == false);
             if (index == -1)
             {
                 throw new IdExistException("DL: Drone with the same id already exists...");
@@ -189,10 +194,10 @@ namespace DLXML
         public Drone getDrone(int id)
         {
             List<DO.Drone> droneList = XMLTools.LoadListFromXMLSerialzer<DO.Drone>(dronePath);
-            int index = droneList.FindIndex(t => t.Id == id&&t.Deleted ==false);
+            int index = droneList.FindIndex(t => t.Id == id && t.Deleted == false);
             if (index == -1)
                 throw new Exception("DAL: Drone with the same id not found...");
-            return droneList.FirstOrDefault(t => t.Id == id&&t.Deleted ==false);
+            return droneList.FirstOrDefault(t => t.Id == id && t.Deleted == false);
         }
         public IEnumerable<Drone> getDroneList(Predicate<Drone> predicate)
         {
@@ -200,13 +205,13 @@ namespace DLXML
             return from drone in droneList
                    where drone.Deleted == false
                    select drone;
-            
+
         }
         public void UpDatenotcharging(int numofdrone)
         {
 
-            List<DO.Drone>droneList = XMLTools.LoadListFromXMLSerialzer<DO.Drone>(dronePath);
-            int index = droneList.FindIndex(t => t.Id == numofdrone&& t.Deleted == false);
+            List<DO.Drone> droneList = XMLTools.LoadListFromXMLSerialzer<DO.Drone>(dronePath);
+            int index = droneList.FindIndex(t => t.Id == numofdrone && t.Deleted == false);
             if (index == -1)
             {
                 throw new IDdNotFoundExeption("DL: Drone with the same id not found...");
@@ -225,7 +230,7 @@ namespace DLXML
             {
                 throw new IDdNotFoundExeption("DL: Station with the same id not found...");
             }
-             Station s = stationList.Find(item => item.Id == dc.Stationid && item.Deleted == false);
+            Station s = stationList.Find(item => item.Id == dc.Stationid && item.Deleted == false);
             s.Chargslot++;
             dc.Deleted = true;
             dronechargeList[index2] = dc;
@@ -242,12 +247,12 @@ namespace DLXML
                 throw new IDdNotFoundExeption("DL: Drone with the same id not found...");
             }
             List<DO.Station> stationList = XMLTools.LoadListFromXMLSerialzer<DO.Station>(stationPath);
-            int index3 = stationList.FindIndex(t => t.Id ==numofstation && t.Deleted == false);
+            int index3 = stationList.FindIndex(t => t.Id == numofstation && t.Deleted == false);
             if (index3 == -1)
             {
                 throw new IDdNotFoundExeption("DL: Station with the same id not found...");
             }
-            Station s = stationList.Find(item => item.Id == numofstation&& item.Deleted == false);
+            Station s = stationList.Find(item => item.Id == numofstation && item.Deleted == false);
             s.Chargslot--;
             stationList[index3] = s;
             XMLTools.SaveListToXNLSerialzer<DO.Station>(stationList, stationPath);
@@ -282,7 +287,7 @@ namespace DLXML
         {
             List<DO.Station> stationList = XMLTools.LoadListFromXMLSerialzer<DO.Station>(stationPath);
 
-            int index = stationList.FindIndex(t => t.Id == station1.Id&&t.Deleted ==false);
+            int index = stationList.FindIndex(t => t.Id == station1.Id && t.Deleted == false);
             if (index != -1)
             {
                 throw new IdExistException("DL: Station with the same id already exists...");
@@ -298,27 +303,34 @@ namespace DLXML
             int index = stationList.FindIndex(t => t.Id == id && t.Deleted == false);
             if (index == -1)
                 throw new Exception("DAL: Station with the same id not found...");
-            return stationList.FirstOrDefault(t => t.Id== id&&t.Deleted ==false);
+            return stationList.FirstOrDefault(t => t.Id == id && t.Deleted == false);
         }
-        public IEnumerable <DO.Station> getStationList()
+        public IEnumerable<Station> getStationList(Predicate<Station> predicate)
         {
             List<Station> ListStations = XMLTools.LoadListFromXMLSerialzer<Station>(stationPath);
             return from station in ListStations
-                   where station.Deleted ==false
+                   where station.Deleted == false && predicate(station)
+                   select station;
+        }
+        public IEnumerable<DO.Station> getStationList()
+        {
+            List<Station> ListStations = XMLTools.LoadListFromXMLSerialzer<Station>(stationPath);
+            return from station in ListStations
+                   where station.Deleted == false
                    select station;
         }
         public IEnumerable<Station> getFreeCharges()
         {
             List<DO.Station> stationList = XMLTools.LoadListFromXMLSerialzer<DO.Station>(stationPath);
-            return  from item in stationList
-                    where item.Chargslot!=1&&item.Deleted ==false
-                    select item; //item.Clone();
+            return from item in stationList
+                   where item.Chargslot != 1 && item.Deleted == false
+                   select item; //item.Clone();
         }
         public void deleteStation(int id)
         {
             List<DO.Station> stationList = XMLTools.LoadListFromXMLSerialzer<DO.Station>(stationPath);
             int index = stationList.FindIndex(t => t.Id == id && t.Deleted == false);
-            if (index ==-1)
+            if (index == -1)
             {
                 throw new IDdNotFoundExeption("DL: Station with the same id not found...");
             }
@@ -352,7 +364,7 @@ namespace DLXML
             {
                 throw new IDdNotFoundExeption("DL: DroneCharge with the same id not found...");
             }
-            Dronecharge dc = dronechargeList.Find(item => item.Droneid== id && item.Deleted == false);
+            Dronecharge dc = dronechargeList.Find(item => item.Droneid == id && item.Deleted == false);
             dc.Deleted = true;
             dronechargeList[index] = dc;
             XMLTools.SaveListToXNLSerialzer<DO.Dronecharge>(dronechargeList, dronchargePath);
@@ -383,7 +395,7 @@ namespace DLXML
             parcel1.Droneid = 0;
             parcelList.Add(parcel1);
             XMLTools.SaveListToXNLSerialzer<DO.Parcel>(parcelList, parcelPath);
-            return Convert.ToString( parcel1.Id);
+            return Convert.ToString(parcel1.Id);
         }
         public Parcel getParcel(int id)
         {
@@ -450,7 +462,7 @@ namespace DLXML
         {
             List<Parcel> parcelList = XMLTools.LoadListFromXMLSerialzer<Parcel>(parcelPath);
             return from parcel in parcelList
-                   where parcel.Deleted == false&&parcel.Droneid ==0
+                   where parcel.Deleted == false && parcel.Droneid == 0
                    select parcel;
         }
         public void deleteParcel(int id)
@@ -521,7 +533,7 @@ namespace DLXML
             int index = stationList.FindIndex(t => t.Id == numofstation && t.Deleted == false);
             if (index == -1)
                 throw new Exception("DAL: Station with the same id not found...");
-            Station s= stationList.FirstOrDefault(t => t.Id == numofstation && t.Deleted == false);
+            Station s = stationList.FirstOrDefault(t => t.Id == numofstation && t.Deleted == false);
             return s.Latitude;
         }
         public double DistanceStationLONG(int numofstation)
@@ -554,22 +566,32 @@ namespace DLXML
             return c.Longitude;
         }
 
-        public IEnumerable<Station> getStationList(Predicate<Station> predicate)
-        {
-            throw new NotImplementedException();
-        }
+
         #endregion
 
         #region PowerConsumptionRequest
         public double[] GetElectricity()
         {
-            var temp1 = XMLTools.LoadListFromXmlElement(powerConsumptionRequest);
-            var temp2 = temp1.Element("electricityRates").Elements();
-            var temp3 = temp2.Select(e => Convert.ToDouble(e.Value)).ToArray();
+
+            double[] temp3 = new double[5];
+            var stream = File.OpenRead(powerConsumptionRequest);
+            {
+                var serializer = new XmlSerializer(typeof(double[]));
+                serializer.Deserialize(stream);
+            }
             return temp3;
+          /*  var temp1 = XMLTools.LoadListFromXmlElement(powerConsumptionRequest);
+            var temp2 = temp1.Element("double").Elements();
+            var temp3 = temp2.Select(e => Convert.ToDouble(e.Value)).ToArray();
+            return temp3;*/
 
         }
+
+       
         #endregion
 
+
+
     }
+
 }
