@@ -49,18 +49,20 @@ namespace BL
                    };
 
             dronetolistBL = temp.ToList();
-            var parcellist = Dalob.getParcelList(item => item.Deleted == false);
+            var parcellist = Dalob.getParcelList(item => item.Deleted == false).ToList();
             var stationlist = Dalob.getStationList(item => item.Deleted == false);
             var customerlist = Dalob.getCustomerList(item => item.Deleted == false);
             //Goes through all the packages and updates data accordingly
-            foreach (var itemparcel in parcellist)
+            for (int i = 0; i < parcellist.Count(); i++)
+
+            //   foreach (var itemparcel in parcellist)
             {
 
-                //checking if the customer - sender and customer target of parcel exist case not throw exception
+                // checking if the customer - sender and customer target of parcel exist case not throw exception
                 bool flag1 = true, flag2 = true;
                 try
                 {
-                    DO.Customer c = Dalob.getCustomer(itemparcel.Targetid);
+                    DO.Customer c = Dalob.getCustomer(parcellist[i].Targetid);
                 }
                 catch (Exception ex)
                 {
@@ -69,7 +71,7 @@ namespace BL
                 }
                 try
                 {
-                    DO.Customer c = Dalob.getCustomer(itemparcel.Senderid);
+                    DO.Customer c = Dalob.getCustomer(parcellist[i].Senderid);
                 }
                 catch (Exception ex)
                 {
@@ -79,28 +81,29 @@ namespace BL
                 if (flag1 && flag2)
                 {
                     //In case the parcel was conect to a drone byut has not yet been delivered to the customer
-                    if (itemparcel.Droneid != 0 && itemparcel.Delieverd == null)
+                    if (parcellist[i].Droneid != 0 && parcellist[i].Delieverd == null)
                     {
-                        foreach (var updatedrone in dronetolistBL)
+                        for (int j = 0; j < dronetolistBL.Count(); j++)
+                        //foreach (var updatedrone in dronetolistBL)
                         {
                             //finding the drone in the list and updating
-                            if (updatedrone.Id == itemparcel.Droneid)
+                            if (dronetolistBL[j].Id == parcellist[i].Droneid)
                             {
-                                updatedrone.Status = DroneStatus.busy;
-                                int idsender = itemparcel.Senderid;//the id of the sender
-                                                                   //searching for the sender to know its location for the calculation.
+                                dronetolistBL[j].Status = DroneStatus.busy;
+                                int idsender = parcellist[i].Senderid;//the id of the sender
+                                                                      //searching for the sender to know its location for the calculation.
                                 try
                                 {
-                                    DO.Customer sender = Dalob.getCustomer(itemparcel.Senderid);
+                                    DO.Customer sender = Dalob.getCustomer(parcellist[i].Senderid);
                                     Location location = new Location(sender.Latitude, sender.Longitude);
                                     //case the parcel wasnt picked up yet
-                                    if (itemparcel.Pickedup == null)
+                                    if (parcellist[i].Pickedup == null)
                                     {
                                         DO.Station? s = ClosestStation(stationlist, location);
                                         if (s != null)
                                         {
                                             Location l = new Location(s.Value.Latitude, s.Value.Longitude);
-                                            updatedrone.Location = l;
+                                            dronetolistBL[j].Location = l;
 
                                         }
                                         else
@@ -108,23 +111,23 @@ namespace BL
 
                                     }
                                     //case the parcel did picked up but hasnt got to the target yet
-                                    else if (itemparcel.Pickedup != null && itemparcel.Delieverd == null)
+                                    else if (parcellist[i].Pickedup != null && parcellist[i].Delieverd == null)
                                     {
                                         Location droneLocation = new Location(sender.Latitude, sender.Longitude);
-                                        updatedrone.Location = droneLocation;
+                                        dronetolistBL[j].Location = droneLocation;
                                         //updatedrone.Location.Latitude = sender.Latitude;
                                         //updatedrone.Location.Longitude = sender.Latitude;
                                     }
                                     //distance betwean drone and sender
-                                    DO.Parcel? p = itemparcel;
-                                    double minrateofcharge = SumCharge(p, updatedrone);
+                                    DO.Parcel? p = parcellist[i];
+                                    double minrateofcharge = SumCharge(p, dronetolistBL[j]);
                                     if (minrateofcharge < 100)
                                     {
-                                        updatedrone.BatteryStatus = minrateofcharge + rand.NextDouble() * 100;
+                                        dronetolistBL[j].BatteryStatus = minrateofcharge + rand.NextDouble() * 100;
                                     }
                                     else if (minrateofcharge == 100)
                                     {
-                                        updatedrone.BatteryStatus = 100;
+                                        dronetolistBL[j].BatteryStatus = 100;
                                     }
                                     else
                                     {
@@ -190,24 +193,27 @@ namespace BL
             {
                 if (tt[i].Droneid != 0)
                 {
-                    foreach (var item in dronetolistBL)
-                        if (item.Id == tt[i].Droneid)
+                    // foreach (var item in dronetolistBL)
+                    for (int k = 0; k < dronetolistBL.Count(); k++)
+                    {
+                        if (dronetolistBL[k].Id == tt[i].Droneid)
                         {
-                            if (item.Status == DroneStatus.busy)
-                                item.ParcelId = tt[i].Id;
-                            else
-                            {
-                                //DO.Parcel p = Dalob.getParcel(tt[i].Id);
-                               // p.Droneid = 0;
-                               // Dalob.deleteParcel(p.Id);
-                               // Dalob.addParcel(p);
-                            }
+                            if (dronetolistBL[k].Status == DroneStatus.busy)
+                                dronetolistBL[k].ParcelId = tt[i].Id;
+                            //else
+                            //{
+                            //    DO.Parcel p = Dalob.getParcel(tt[i].Id);
+                            //    p.Droneid = 0;
+                            //    Dalob.deleteParcel(p.Id);
+                            //    Dalob.addParcel(p);
+                            //}
                         }
+                    }
 
                 }
             }
-
         }
+
 
         /*private DO.Station? ClosestStation(IEnumerable<DO.Station> stationlist, Location location)
         {
@@ -1173,7 +1179,7 @@ namespace BL
         }
 
         #endregion
-
+       
         #region CalculationAndChecks
         public double MinCharge(double sumdistancemin, BO.WeightCategories weight)
         {
