@@ -33,12 +33,14 @@ namespace PL
 
         private void manager_Click(object sender, RoutedEventArgs e)
         {
-
+            ManagerWindow win=new ManagerWindow();
+            win.Show();
         }
 
         private void customer_Click(object sender, RoutedEventArgs e)
         {
-            verifyWindow win = new verifyWindow(b).ShowDialog();
+            verifyWindow win = new verifyWindow(b);//.ShowDialog();
+            win.Show();
         }
     }
 }

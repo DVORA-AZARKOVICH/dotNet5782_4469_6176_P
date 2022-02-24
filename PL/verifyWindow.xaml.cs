@@ -20,6 +20,7 @@ namespace PL
     public partial class verifyWindow : Window
     {
         internal readonly BLApi.IBL bl;
+        public BL.BO.Customer customer;
         public verifyWindow(BLApi.IBL b)
         {
             InitializeComponent();
@@ -28,13 +29,25 @@ namespace PL
 
         private void cEnter_Click(object sender, RoutedEventArgs e)
         {
-            
-            if (UserName.Text == customer.Name && Convert.ToInt32(UserID.Text) == customer.Id)
+            try
             {
-                UserWindow win = new UserWindow(customer);
-                this.Close();
+                BL.BO.Customer c = bl.getCustomer(Convert.ToInt32(UserID.Text));
+
+                if (UserName.Text == c.Name)
+                {
+                    UserWindow win = new UserWindow(customer);
+                    this.Close();
+                }
+                else throw new Exception("ID or user name is incorrect");
             }
-                
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message,
+                    "ERROR",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
         }
     }
 }

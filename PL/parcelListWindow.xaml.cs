@@ -21,9 +21,10 @@ namespace PL
     public partial class parcelListWindow : Window
     {
         private BLApi.IBL bl;
-        public parcelListWindow()
+        public parcelListWindow(BLApi.IBL b)
         {
             InitializeComponent();
+            bl = b;
             parcelForListDataGrid.IsReadOnly = true; 
             sort.ItemsSource=Enum.GetValues(typeof(ParcelStatus));
         }

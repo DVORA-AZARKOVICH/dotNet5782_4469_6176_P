@@ -740,9 +740,9 @@ namespace BL
         }
         public List<DroneToList> getdroneList()
         {
-            // var drones = from drone in dalob.getDroneList(station => station.Deleted == false)
-            //               select convertTodroneInParcel(drone);
-            if (this.dronetolistBL.Any())
+             var drones = from drone in dalob.getDroneList(station => station.Deleted == false)
+                          select convertTodroneInParcel(drone);
+            if (drones.Any())
             {
                 var t = dronetolistBL.ToList();
                 return t;
