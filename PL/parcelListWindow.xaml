@@ -6,11 +6,10 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="parcelListWindow" Height="450" Width="800">
-    <Window.Background>
+ <!--   <Window.Background>
         <ImageBrush ImageSource="/images/view.jpg" Stretch="Fill" />
-    </Window.Background>
+    </Window.Background> -->
     <Grid ShowGridLines="False">
-        <!-- 
 
         <Grid.ColumnDefinitions >
             <ColumnDefinition Width="*"/>
@@ -28,7 +27,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-        </Grid.RowDefinitions> -->
+        </Grid.RowDefinitions> 
         <DataGrid x:Name="parcelForListDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" Margin="124,81,124,95" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns >
                 <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
@@ -39,9 +38,9 @@
                 <DataGridTextColumn x:Name="weightColumn" Binding="{Binding Weight}" Header="Weight" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="SortByStatus" HorizontalAlignment="Left" Margin="164,27,0,0" VerticalAlignment="Top" Height="24"/>
-
-
-
+        <Button Name="sender" Content="group by sender" HorizontalAlignment="Left" Margin="124,28,0,0" VerticalAlignment="Top" Height="30" Width="127" RenderTransformOrigin="0.496,0.461" Click="sender_Click"/>
+        <Button Name="reciver" Content="group by reciver" HorizontalAlignment="Left" Margin="268,28,0,0" VerticalAlignment="Top" Height="30" Width="132" RenderTransformOrigin="0.496,0.461" Click="reciver_Click"/>
+        <Label Name="sortLable" Content="status:" HorizontalAlignment="Left" Margin="420,30,0,0" VerticalAlignment="Top" Width="78" Height="28"/>
+        <ComboBox Name="sort" HorizontalAlignment="Left" Margin="503,30,0,0" VerticalAlignment="Top" Width="130" Height="28" SelectionChanged="sort_SelectionChanged"/>
     </Grid>
 </Window>

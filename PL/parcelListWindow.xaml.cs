@@ -21,10 +21,12 @@ namespace PL
     public partial class parcelListWindow : Window
     {
         private BLApi.IBL bl;
-        public parcelListWindow()
+        public parcelListWindow(BLApi.IBL b)
         {
             InitializeComponent();
-            parcelForListDataGrid.IsReadOnly = true;  
+            bl = b;
+            parcelForListDataGrid.IsReadOnly = true; 
+            sort.ItemsSource=Enum.GetValues(typeof(ParcelStatus));
         }
         public parcelListWindow(BLApi.IBL b, Customer c)
         {
@@ -33,6 +35,8 @@ namespace PL
             parcelForListDataGrid.IsReadOnly = true;
             
            IEnumerable<ParcelForList> parcels=b.getParcelList(item=>item.ReciverName==c.Name);
+            sort.ItemsSource = Enum.GetValues(typeof(ParcelStatus));
+
         }
         public parcelListWindow(BLApi.IBL b, Customer c,EventArgs e)
         {
@@ -41,6 +45,78 @@ namespace PL
             parcelForListDataGrid.IsReadOnly = true;
 
             IEnumerable<ParcelForList> parcels = b.getParcelList(item => item.SenderName == c.Name);
+            sort.ItemsSource = Enum.GetValues(typeof(ParcelStatus));
+
+        }
+
+        private void sender_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var t = bl.getParcelList().GroupBy(x => x.SenderName);
+                parcelForListDataGrid.ItemsSource= t;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void reciver_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var t = bl.getParcelList().GroupBy(x => x.ReciverName);
+                parcelForListDataGrid.ItemsSource = t;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void sort_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                if ((ParcelStatus)sort.SelectedItem == ParcelStatus.attached)
+                {
+                    var t = bl.getParcelList(item => item.Status == ParcelStatus.attached);
+                    parcelForListDataGrid.ItemsSource = t;
+                    if (!t.Any())
+                        throw new Exception("there are no drones of this type");
+                }
+                if ((ParcelStatus)sort.SelectedItem == ParcelStatus.Created)
+                {
+                    var t = bl.getParcelList(item => item.Status == ParcelStatus.Created);
+                    parcelForListDataGrid.ItemsSource = t;
+                    if (!t.Any())
+                        throw new Exception("there are no drones of this type");
+                }
+                if ((ParcelStatus)sort.SelectedItem == ParcelStatus.deliverd)
+                {
+                    var t = bl.getParcelList(item => item.Status == ParcelStatus.deliverd);
+                    parcelForListDataGrid.ItemsSource = t;
+                    if (!t.Any())
+                        throw new Exception("there are no drones of this type");
+                }
+                if ((ParcelStatus)sort.SelectedItem == ParcelStatus.pickedUp)
+                {
+                    var t = bl.getParcelList(item => item.Status == ParcelStatus.pickedUp);
+                    parcelForListDataGrid.ItemsSource = t;
+                    if (!t.Any())
+                        throw new Exception("there are no drones of this type");
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message,
+                    "ERROR",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
         }
     }
 }

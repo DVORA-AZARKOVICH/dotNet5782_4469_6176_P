@@ -25,28 +25,23 @@ namespace PL
     {
         internal readonly IBL b = BLFactory.GetBL();
 
+
         public MainWindow()
         {
             InitializeComponent();
         }
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+
+        private void manager_Click(object sender, RoutedEventArgs e)
         {
-            new DroneListWindow(b).Show();
+            ManagerWindow win=new ManagerWindow();
+            win.Show();
         }
 
-        private void parcels_Click(object sender, RoutedEventArgs e)
+        private void customer_Click(object sender, RoutedEventArgs e)
         {
-            new parcelListWindow().Show();
-        }
-
-        private void station_Click(object sender, RoutedEventArgs e)
-        {
-            new StationListWindow(b).Show();
-        }
-
-        private void customers_Click(object sender, RoutedEventArgs e)
-        {
-            new CustomerListWindow(b).Show();
+            verifyWindow win = new verifyWindow(b);//.ShowDialog();
+            win.Show();
         }
     }
 }
+

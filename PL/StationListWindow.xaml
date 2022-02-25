@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="StationListWindow" Height="450" Width="800">
-    <Window.Background>
+    <!--  <Window.Background>
         <ImageBrush ImageSource="/images/view.jpg" Stretch="Fill" />
-    </Window.Background>
+    </Window.Background> -->
     <Grid>
         <Grid Name="UpGrid" Height="60" Grid.Row="0" VerticalAlignment="Top" Width="auto" Margin="0,23,0,0">
             <Grid.ColumnDefinitions>

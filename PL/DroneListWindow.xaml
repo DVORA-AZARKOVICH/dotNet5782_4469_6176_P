@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="DroneListWindow" Height="450" Width="800">
-    <Window.Background>
+    <!--  <Window.Background>
         <ImageBrush ImageSource="/images/view.jpg" Stretch="Fill" />
-    </Window.Background>
+    </Window.Background> -->
     <Grid Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="50*"/>
