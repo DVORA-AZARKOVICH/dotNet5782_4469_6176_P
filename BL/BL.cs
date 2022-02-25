@@ -120,7 +120,7 @@ namespace BL
                                         if (s != null)
                                         {
                                             Location l = new Location(s.Value.Latitude, s.Value.Longitude);
-                                            dronetolistBL[j].Location = l;
+                                            dronetolistBL[j].Location1 = l;
 
                                         }
                                         else
@@ -131,7 +131,7 @@ namespace BL
                                     else if (parcellist[i].Pickedup != null && parcellist[i].Delieverd == null)
                                     {
                                         Location droneLocation = new Location(sender.Latitude, sender.Longitude);
-                                        dronetolistBL[j].Location = droneLocation;
+                                        dronetolistBL[j].Location1 = droneLocation;
                                         //updatedrone.Location.Latitude = sender.Latitude;
                                         //updatedrone.Location.Longitude = sender.Latitude;
                                     }
@@ -183,7 +183,7 @@ namespace BL
                 {
                     DroneToList t = new DroneToList();
                     t = item;
-                    t.Location = new Location(item.Location.Latitude, item.Location.Longitude);
+                    t.Location1 = new Location(item.Location1.Latitude, item.Location1.Longitude);
                     t = UpdateInMaintence(stationlist.Count(), t, stationlist);
 
                 }
@@ -198,7 +198,7 @@ namespace BL
                 {
                     DroneToList t = new DroneToList();
                     t = item;
-                    t.Location = new Location(34, 31);
+                    t.Location1 = new Location(34, 31);
                     t = UpdateFree(t, v, customerlist, stationlist);
                     dronetolistBL.Remove(item);
                     dronetolistBL.Add(t);
@@ -420,7 +420,7 @@ namespace BL
                     newdronetolist.Model = d.Model;
                     newdronetolist.Status = d.Status;
                     newdronetolist.Weight = d.Weight;
-                    newdronetolist.Location = d.CurrentLocation;
+                    newdronetolist.Location1 = d.CurrentLocation;
                     newdronetolist.BatteryStatus = d.BatteryStatus;
                     newdronetolist.ParcelId = 0;
                     dronetolistBL.Add(newdronetolist);
@@ -463,7 +463,7 @@ namespace BL
             Dalob.addStation(s);
             //updation the drone's location
             dronetolistBL.Remove(d);
-            d.Location = new Location(t[index].Latitude, t[index].Longitude);
+            d.Location1 = new Location(t[index].Latitude, t[index].Longitude);
             //adding a dronecharge variable
             Dalob.UpDateCharging(d.Id, t[index].Id);
             //random the battery amount of the drone
@@ -480,8 +480,8 @@ namespace BL
             try
             {
                 DO.Customer? c = Dalob.getCustomer(idcustomer);
-                d.Location.Longitude = c.Value.Longitude;
-                d.Location.Latitude = c.Value.Latitude;
+                d.Location1.Longitude = c.Value.Longitude;
+                d.Location1.Latitude = c.Value.Latitude;
             }
             catch (Exception ex)
             {
@@ -489,10 +489,10 @@ namespace BL
             }
 
             double mindistance = 0;
-            DO.Station? s = ClosestStation(stationlist, d.Location);
+            DO.Station? s = ClosestStation(stationlist, d.Location1);
             if (s != null)
             {
-                mindistance = dalob.DistanceStation(s.Value.Id, d.Location.Latitude, d.Location.Longitude);
+                mindistance = dalob.DistanceStation(s.Value.Id, d.Location1.Latitude, d.Location1.Longitude);
                 double mincharge1 = MinCharge(mindistance, d.Weight);
                 if (mincharge1 > 100)
                     throw new Exceptions.ExceptionExceptionExceedingPossibleQuantity("There is not inough battery for this flight");
@@ -552,7 +552,7 @@ namespace BL
                     throw new Exception("the Done is not free to deliver to charge");//הרחפן לא פנוי אז אי אפשר לשלוח אותו לטעינה
                 IEnumerable<DO.Station> stationlist = Dalob.getStationList(item => item.Deleted == false);
                 List<DO.Station> t = stationlist.ToList();
-                Location c = new Location(dronetolist.Location.Latitude, dronetolist.Location.Longitude);
+                Location c = new Location(dronetolist.Location1.Latitude, dronetolist.Location1.Longitude);
                 bool succeed = false;
                 double mindistance = 0;
                 DO.Station s;
@@ -563,7 +563,7 @@ namespace BL
                         s = ClosestStation(stationlist, c);
                         if (s.Chargslot > 0)
                         {
-                            mindistance = dalob.DistanceStation(s.Id, dronetolist.Location.Latitude, dronetolist.Location.Longitude);
+                            mindistance = dalob.DistanceStation(s.Id, dronetolist.Location1.Latitude, dronetolist.Location1.Longitude);
                             double min = MinCharge(mindistance, dronetolist.Weight);
                             if (min > dronetolist.BatteryStatus)
                                 throw new Exceptions.ExceptionExceptionExceedingPossibleQuantity("There is not inough battery for moving to the closest station");
@@ -585,8 +585,8 @@ namespace BL
                         dronetolistBL.Remove(dronetolist);
                         //updates the BL drone
                         dronetolist.BatteryStatus = MinCharge(mindistance, dronetolist.Weight);
-                        dronetolist.Location.Latitude = s.Latitude;
-                        dronetolist.Location.Longitude = s.Longitude;
+                        dronetolist.Location1.Latitude = s.Latitude;
+                        dronetolist.Location1.Longitude = s.Longitude;
                         dronetolist.Status = DroneStatus.inMaintence;
                         dronetolistBL.Add(dronetolist);
                         //updates the DAL station in less one free charge slots
@@ -685,7 +685,7 @@ namespace BL
                         var parcellistfast = parcell.Where(item => (Priority)item.Priority == Priority.fast);
                         var parcellistregular = parcell.Where(item => (Priority)item.Priority == Priority.regular);
                         //the location of this drone
-                        Location c = new Location(dts.Location.Latitude, dts.Location.Longitude);
+                        Location c = new Location(dts.Location1.Latitude, dts.Location1.Longitude);
                         DO.Parcel? p = CheckByWeight(parcellisturgent, dts.Weight, c, maxdistance, dts);
                         if (p is null)
                             p = CheckByWeight(parcellistfast, dts.Weight, c, maxdistance, dts);
@@ -726,7 +726,7 @@ namespace BL
                     d.Status = item.Status;
                     if (item.ParcelId != 0)
                         d.TheParcel = convertToParcelInTransfer(Dalob.getParcel(item.ParcelId));
-                    d.CurrentLocation = item.Location;
+                    d.CurrentLocation = item.Location1;
                     break;
                 }
             }
@@ -784,6 +784,84 @@ namespace BL
             dronetolistBL.Add(d2);
             return d2;
         }
+        void IBL.NextState(int id)
+        {
+            bool flag = false;
+            BO.Drone d = getDrone(id);
+            switch (d.Status)
+            {
+                case BO.DroneStatus.free:
+                    {
+                        try
+                        {
+                            UpdateParcelToDrone(id);
+                        }
+                        catch (Exception)
+                        {
+                            UpdateDroneToCharge(id);
+                        }
+                    }
+                    break;
+                case BO.DroneStatus.inMaintence:
+                    {
+                        if (d.BatteryStatus == 100)
+                        {
+                            UpdateReleseDroneFromCharge(id, DateTime.Now);
+                            UpdateParcelToDrone(id);
+                        }
+                        else
+                        {
+                            flag = true;
+                        }
+
+                    }
+                    break;
+                case BO.DroneStatus.busy:
+                    {
+                        switch (d.TheParcel.Status)
+                        {
+                            case BO.ParcelInTransf.intransfer:
+                                {
+                                    UpdateDeliverdByDrone(id);
+                                }
+                                break;
+                            case BO.ParcelInTransf.wautToCollect:
+                                {
+                                    UpdatePickedByDrone(id);
+                                }
+                                break;
+
+                        }
+
+                    }
+                    break;
+                    if (flag)
+                    {
+                        d.BatteryStatus = (int)(Math.Min(5 + d.BatteryStatus, 100) * 100) / 100.0;
+                    }
+                    var dtt = dronetolistBL.Find(item => item.Id == d.Id);
+                    dronetolistBL.Remove(dtt);
+                    dtt.BatteryStatus = d.BatteryStatus;
+                    dtt.Location1 = new Location(d.CurrentLocation.Longitude, d.CurrentLocation.Latitude);
+                    dtt.ParcelId = (d.TheParcel == null) ? 0 : d.TheParcel.Id;
+                    dtt.Status = d.Status;
+                    dronetolistBL.Add(dtt);
+                    /* BO.DroneToList dtl = new BO.DroneToList()
+                     {
+                         Id = d.Id,
+                         Model = d.Model,
+                         Weight = d.Weight,
+                         BatteryStatus = d.BatteryStatus,
+                         Status = d.Status,
+                         Location1 = new Location(d.CurrentLocation.Longitude, d.CurrentLocation.Latitude),
+                         ParcelId = (d.TheParcel==null)?0:d.TheParcel.Id
+
+                     };
+                     dronetolistBL.Add(dtl);*/
+            }
+
+
+        }
 
 
         #endregion
@@ -829,7 +907,7 @@ namespace BL
             {
                 DO.Station updatestation = new DO.Station();
                 updatestation = Dalob.getStation(numofstation);
-                int x = dronetolistBL.Where(item => (item.Status == DroneStatus.inMaintence) && (item.Location.Longitude == updatestation.Longitude) && (item.Location.Latitude == updatestation.Latitude)).Count();
+                int x = dronetolistBL.Where(item => (item.Status == DroneStatus.inMaintence) && (item.Location1.Longitude == updatestation.Longitude) && (item.Location1.Latitude == updatestation.Latitude)).Count();
                 numofchargeslots = numofchargeslots - x;
                 if (numofchargeslots < 0)
                     throw new Exception("not enough charge slots - extending amount");//אם ישנו את מספר עמדות הטעינה זה לא תקין כי הפנויות יהיו מינוס והמינימום הוא0
@@ -904,7 +982,6 @@ namespace BL
                            select item;
             return stations;
         }
-
         public StationToList convertToStationList(DO.Station s)
         {
             StationToList station = new StationToList
@@ -1064,11 +1141,11 @@ namespace BL
                     DO.Parcel p = (DO.Parcel)Dalob.getParcel((int)dts.ParcelId);
                     if (p.Pickedup == null && p.Scheduled != null)
                     {
-                        double sum1 = dalob.DistanceCustomer(p.Senderid, dts.Location.Latitude, dts.Location.Longitude);
+                        double sum1 = dalob.DistanceCustomer(p.Senderid, dts.Location1.Latitude, dts.Location1.Longitude);
                         double sumcharge = MinCharge(sum1, dts.Weight);
                         DO.Customer? c = Dalob.getCustomer(p.Senderid);
                         dts.BatteryStatus = dts.BatteryStatus - sumcharge;
-                        dts.Location = new Location(c.Value.Latitude, c.Value.Longitude);
+                        dts.Location1 = new Location(c.Value.Latitude, c.Value.Longitude);
                         Dalob.deleteParcel(p.Id);
                         p.Pickedup = DateTime.Now;
                         Dalob.updateParcel2(p);
@@ -1098,11 +1175,11 @@ namespace BL
 
                     if (p.Pickedup != null && p.Delieverd == null)
                     {
-                        double sum2 = dalob.DistanceCustomer(p.Targetid, dts.Location.Latitude, dts.Location.Longitude);
+                        double sum2 = dalob.DistanceCustomer(p.Targetid, dts.Location1.Latitude, dts.Location1.Longitude);
                         double sumcharge = MinCharge(sum2, dts.Weight);
                         DO.Customer? c1 = Dalob.getCustomer(p.Targetid);
                         dts.BatteryStatus = dts.BatteryStatus - sumcharge;
-                        dts.Location = new Location(c1.Value.Latitude, c1.Value.Longitude);
+                        dts.Location1 = new Location(c1.Value.Latitude, c1.Value.Longitude);
                         dts.Status = DroneStatus.free;
                         Dalob.deleteParcel(p.Id);
                         p.Delieverd = DateTime.Now;
@@ -1147,7 +1224,7 @@ namespace BL
                 if (item.Id == d.Id)
                 {
                     drone.BatteryStatus = item.BatteryStatus;
-                    drone.CurrentLocation = item.Location;
+                    drone.CurrentLocation = item.Location1;
                     break;
                 }
             }
@@ -1295,7 +1372,7 @@ namespace BL
         }
         public double SumCharge(DO.Parcel? itemparcel, DroneToList updatedrone)
         {
-            double distaceDroneToSender = dalob.DistanceCustomer(itemparcel.Value.Senderid, updatedrone.Location.Latitude, updatedrone.Location.Longitude);
+            double distaceDroneToSender = dalob.DistanceCustomer(itemparcel.Value.Senderid, updatedrone.Location1.Latitude, updatedrone.Location1.Longitude);
             //distance betwean sender to target
             double targetlat = dalob.DistanceCustomerLAT(itemparcel.Value.Targetid);
             double targetlong = dalob.DistanceCustomerLONG(itemparcel.Value.Targetid);
@@ -1317,63 +1394,8 @@ namespace BL
             return minrateofcharge;
         }
 
-      /*  void IBL.NextState(int id)
-        {
-            bool flag = false;
-            BO.Drone d = getDrone(id);
-            switch (d.Status)
-            {
-                case BO.DroneStatus.free:
-                    {
-                        try
-                        {
-                            UpdateParcelToDrone(id);
-                        }
-                        catch (Exception)
-                        {
-                            UpdateDroneToCharge(id);
-                        }
-                    }
-                    break;
-                case BO.DroneStatus.busy:
-                    {
-                        switch (d.TheParcel.Status)
-                        {
-                            case BO.ParcelStatus.deliverd:
-
-                                break;
-                            case BO.ParcelStatus.pickedUp:
-                                break;
-
-
-                        }
-
-                    }
-
-                    break;
-                case BO.DroneStatus.inMaintence:
-                    {
-                        if (d.BatteryStatus == 100)
-                        {
-                            UpdateReleseDroneFromCharge(id, DateTime.Now);
-                            UpdateParcelToDrone(id);
-                        }
-                        else
-                        {
-                            flag = true;
-                        }
-
-                    }
-                    break;
-            }
-
-
-        }*/
 
         #endregion
     }
-
-
-
 
 }

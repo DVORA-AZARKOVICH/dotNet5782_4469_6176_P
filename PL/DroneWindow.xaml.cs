@@ -108,7 +108,8 @@ namespace PL
         {
             //bl.simultor(cuurent drone, e.Argument, bw ) // 
             DroneToList d = new DroneToList();
-            //d = bl.NextState(DroneId.Text);
+            int id2 = Convert.ToInt32(DroneId.Text);
+            bl.NextState(id2);
             for (int i = 0; i <= 100;i++)
             {
                 if (worker.CancellationPending == true)
@@ -146,7 +147,7 @@ namespace PL
 
             bl = b;
             myDrone = selectedItem;
-            myData = new MyData() { Id = selectedItem.Id, BatteryStatus = selectedItem.BatteryStatus, Status = selectedItem.Status, Model = selectedItem.Model, Location = selectedItem.Location, ParcelId = selectedItem.ParcelId, Weight = selectedItem.Weight };
+            myData = new MyData() { Id = selectedItem.Id, BatteryStatus = selectedItem.BatteryStatus, Status = selectedItem.Status, Model = selectedItem.Model, Location = selectedItem.Location1, ParcelId = selectedItem.ParcelId, Weight = selectedItem.Weight };
             this.DataContext = myData;
             add.Visibility = Visibility.Hidden;
             update.Visibility = Visibility.Visible;

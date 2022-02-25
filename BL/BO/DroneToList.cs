@@ -13,7 +13,7 @@ namespace BL.BO
         public WeightCategories Weight { get; set; }
         public double BatteryStatus { get; set; }
         public DroneStatus Status { get; set; }
-        public Location Location { get; set; }
+        public Location Location1 { get; set; }
         public int ParcelId { get; set; }
         public override string ToString()
         {
