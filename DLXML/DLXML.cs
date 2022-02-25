@@ -30,7 +30,7 @@ namespace Dal
         private static string DataDirectory = @"data";
         string customerPath = @"CustomerXml.xml";//Xelement
         string parcelPath = @"ParcelXml.xml";//XMLSerialzer
-        string dronePath = @"DroneXml.xnml";//XMLSerialzer
+        string dronePath = @"DroneXml.xml";//XMLSerialzer
         string dronchargePath = @"DroneChargeXml.xml";//XMLSerialzer
         string stationPath = @"StationXml.xml";//XMLSerialzer\
         string powerConsumptionRequest = @"PowerConsumptionRequestXml.xml";//XMLSerialzer\
@@ -61,12 +61,12 @@ namespace Dal
 
             foreach (Customer item in CustomerList)
             {
-                XElement id = new XElement("id", item.Id);
-                XElement name = new XElement("name", item.Name);
-                XElement phone = new XElement("phone", item.Phone);
-                XElement longitude = new XElement("longitude", item.Longitude);
-                XElement latitude = new XElement("latitude", item.Latitude);
-                XElement deleted = new XElement("deleted", item.Deleted);
+                XElement id = new XElement("Id", item.Id);
+                XElement name = new XElement("Name", item.Name);
+                XElement phone = new XElement("Phone", item.Phone);
+                XElement longitude = new XElement("Longitude", item.Longitude);
+                XElement latitude = new XElement("Latitude", item.Latitude);
+                XElement deleted = new XElement("Deleted", item.Deleted);
                 XElement customer = new XElement("customer", id, name, phone, longitude, latitude, deleted);
                 CustomerRoot.Add(customer);
 
@@ -81,12 +81,12 @@ namespace Dal
 
             var v = from p in CustomerList
                     select new XElement("Customer",
-                                                new XElement("id", p.Id),
-                                                new XElement("name", p.Name),
-                                                new XElement("phone", p.Phone),
-                                                new XElement("longitude", p.Longitude),
-                                                new XElement("latitude", p.Latitude),
-                                                new XElement("deleted", p.Deleted)
+                                                new XElement("Id", p.Id),
+                                                new XElement("Name", p.Name),
+                                                new XElement("Phone", p.Phone),
+                                                new XElement("Longitude", p.Longitude),
+                                                new XElement("Latitude", p.Latitude),
+                                                new XElement("Deleted", p.Deleted)
                                                 );
 
             CustomerRoot = new XElement("Customers", v);
@@ -95,12 +95,12 @@ namespace Dal
         }
         public void addCustomer(Customer item)
         {
-            XElement id = new XElement("id", item.Id);
-            XElement name = new XElement("name", item.Name);
-            XElement phone = new XElement("phone", item.Phone);
-            XElement longitude = new XElement("longitude", item.Longitude);
-            XElement latitude = new XElement("latitude", item.Latitude);
-            XElement deleted = new XElement("deleted", item.Deleted);
+            XElement id = new XElement("Id", item.Id);
+            XElement name = new XElement("Name", item.Name);
+            XElement phone = new XElement("Phone", item.Phone);
+            XElement longitude = new XElement("Longitude", item.Longitude);
+            XElement latitude = new XElement("Latitude", item.Latitude);
+            XElement deleted = new XElement("Deleted", item.Deleted);
             XElement customer = new XElement("customer", id, name, phone, longitude, latitude, deleted);
 
             CustomerRoot.Add(customer);
@@ -134,7 +134,23 @@ namespace Dal
         }
         public IEnumerable<Customer> getCustomerList(Predicate<Customer> predicate)
         {
-            LoadData();
+            XElement customerroot = XMLTools.LoadListFromXmlElement(customerPath);
+            return from customer in customerroot.Elements()
+                   let c = new Customer()
+                   {
+                       Id = Convert.ToInt32(customer.Element("Id").Value),
+                       Name = customer.Element("Name").Value,
+                       Phone = customer.Element("Phone").Value,
+                       Longitude = Convert.ToDouble(customer.Element("Longitude").Value),
+                       Latitude = Convert.ToDouble(customer.Element("Latitude").Value),
+                       Deleted = Convert.ToBoolean(customer.Element("Deleted").Value)
+                   }
+                   where (predicate(c))
+                   select c;
+
+
+
+           /* LoadData();
             List<Customer> Customers;
             try
             {
@@ -156,7 +172,7 @@ namespace Dal
             {
                 throw new Exceptions.XMLFileLoadCreateException("List of Customers is empty");
             }
-            return Customers;
+            return Customers;*/
         }
         public void deleteCustomer(int id)
         {
@@ -443,7 +459,7 @@ namespace Dal
             Parcel p = parcelList.Find(item => item.Id == numofparcel && item.Deleted == false);
             p.Pickedup = DateTime.Now;
             parcelList[index] = p;
-            XMLTools.SaveListToXNLSerialzer<DO.Parcel>(parcelList, dronePath);
+            XMLTools.SaveListToXNLSerialzer<DO.Parcel>(parcelList, parcelPath);
         }
         public void UpDateDelieverd(int numofparcel)
         {
@@ -456,7 +472,7 @@ namespace Dal
             Parcel p = parcelList.Find(item => item.Id == numofparcel && item.Deleted == false);
             p.Delieverd = DateTime.Now;
             parcelList[index] = p;
-            XMLTools.SaveListToXNLSerialzer<DO.Parcel>(parcelList, dronePath);
+            XMLTools.SaveListToXNLSerialzer<DO.Parcel>(parcelList, parcelPath);
         }
         public IEnumerable<Parcel> getParcelsWithNoDrone()
         {
@@ -476,14 +492,14 @@ namespace Dal
             Parcel p = parcelList.Find(item => item.Id == id && item.Deleted == false);
             p.Deleted = true;
             parcelList[index] = p;
-            XMLTools.SaveListToXNLSerialzer<DO.Parcel>(parcelList, dronePath);
+            XMLTools.SaveListToXNLSerialzer<DO.Parcel>(parcelList, parcelPath);
         }
         public void updateParcel2(Parcel parcel1)
         {
             List<DO.Parcel> parcelList = XMLTools.LoadListFromXMLSerialzer<DO.Parcel>(parcelPath);
             parcel1.Deleted = false;
             parcelList.Add(parcel1);
-            XMLTools.SaveListToXNLSerialzer<DO.Parcel>(parcelList, dronePath);
+            XMLTools.SaveListToXNLSerialzer<DO.Parcel>(parcelList, parcelPath);
 
         }
         #endregion
@@ -549,21 +565,42 @@ namespace Dal
         //to use customer's
         public double DistanceCustomerLAT(int numofcustomer)
         {
-            List<DO.Customer> customerList = XMLTools.LoadListFromXMLSerialzer<DO.Customer>(customerPath);
+            try
+            {
+                Customer c = this.getCustomer(numofcustomer);
+                return c.Latitude;
+            }
+            catch(IDdNotFoundExeption ex)
+            {
+                throw new IDdNotFoundExeption(ex.Message);
+            }
+            /*XElement Customerroot = XMLTools.LoadListFromXmlElement(customerPath);
+            Customer c = this.getCustomer();
+            XElement customerList = XMLTools.LoadListFromXmlElement(customerPath);
+            int index2 = customerList.
             int index = customerList.FindIndex(t => t.Id == numofcustomer && t.Deleted == false);
             if (index == -1)
                 throw new Exception("DAL: Customer with the same id not found...");
             Customer c = customerList.FirstOrDefault(t => t.Id == numofcustomer && t.Deleted == false);
-            return c.Latitude;
+            return c.Latitude;*/
         }
         public double DistanceCustomerLONG(int numofcustomer)
         {
-            List<DO.Customer> customerList = XMLTools.LoadListFromXMLSerialzer<DO.Customer>(customerPath);
-            int index = customerList.FindIndex(t => t.Id == numofcustomer && t.Deleted == false);
-            if (index == -1)
-                throw new Exception("DAL: Customer with the same id not found...");
-            Customer c = customerList.FirstOrDefault(t => t.Id == numofcustomer && t.Deleted == false);
-            return c.Longitude;
+            /* List<DO.Customer> customerList = XMLTools.LoadListFromXMLSerialzer<DO.Customer>(customerPath);
+             int index = customerList.FindIndex(t => t.Id == numofcustomer && t.Deleted == false);
+             if (index == -1)
+                 throw new Exception("DAL: Customer with the same id not found...");
+             Customer c = customerList.FirstOrDefault(t => t.Id == numofcustomer && t.Deleted == false);
+             return c.Longitude;*/
+            try
+            {
+                Customer c = this.getCustomer(numofcustomer);
+                return c.Longitude;
+            }
+            catch (IDdNotFoundExeption ex)
+            {
+                throw new IDdNotFoundExeption(ex.Message);
+            }
         }
 
 

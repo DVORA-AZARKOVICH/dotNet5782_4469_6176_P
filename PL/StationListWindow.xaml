@@ -10,7 +10,7 @@
         <ImageBrush ImageSource="/images/view.jpg" Stretch="Fill" />
     </Window.Background> -->
     <Grid>
-        <Grid Name="UpGrid" Height="60" Grid.Row="0" VerticalAlignment="Top" Width="auto" Margin="0,23,0,0">
+        <Grid Name="UpGrid" Height="60" Grid.Row="0" VerticalAlignment="Top" Width="auto" Margin="0,23,0,0" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>

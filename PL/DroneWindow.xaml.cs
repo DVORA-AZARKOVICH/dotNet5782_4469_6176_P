@@ -108,7 +108,7 @@ namespace PL
         {
             //bl.simultor(cuurent drone, e.Argument, bw ) // 
             DroneToList d = new DroneToList();
-            d = bl.NextState(DroneId.Text);
+            //d = bl.NextState(DroneId.Text);
             for (int i = 0; i <= 100;i++)
             {
                 if (worker.CancellationPending == true)

@@ -26,6 +26,7 @@ namespace PL
             InitializeComponent();
             bl = b;
             customerForListDataGrid.IsReadOnly = true;
+            customerForListDataGrid.ItemsSource = bl.getCustomerList();
         }
     }
 }
