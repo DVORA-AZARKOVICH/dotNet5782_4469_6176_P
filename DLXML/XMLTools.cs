@@ -61,7 +61,7 @@ namespace Dal
         {
             try
             {
-                FileStream file = new FileStream(dir + filePath, FileMode.Create);
+                FileStream file = new FileStream(dir+filePath, FileMode.Create);
                 XmlSerializer x = new XmlSerializer(list.GetType());
                 x.Serialize(file, list);
                 file.Close();
@@ -72,11 +72,13 @@ namespace Dal
             }
         }
         public static List<T> LoadListFromXMLSerialzer<T>(string filePath)
-        {
+           {
             try
             {
-                if (File.Exists(dir + filePath))
-                {
+               if (File.Exists(dir + filePath))
+
+               // if (File.Exists(filePath))
+                    {
                     List<T> list;
                     XmlSerializer x = new XmlSerializer(typeof(List<T>));
                     FileStream file = new FileStream(dir + filePath, FileMode.Open);

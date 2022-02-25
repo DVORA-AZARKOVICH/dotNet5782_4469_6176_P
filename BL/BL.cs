@@ -14,7 +14,7 @@ namespace BL
     {
         #region Constructor
 
-        
+
         static readonly BLApi.IBL instance = new BL();
         public static IBL Instance { get => instance; }
 
@@ -38,15 +38,15 @@ namespace BL
             double medium = 5.5;
             double heavy = 7.5;
             double chargingRate = 2;
-             /*  ob = Dalob.GetElectricity();
-               double available = ob[0];
-               double light = ob[1];
-               double medium = ob[2];
-               double heavy = ob[3];
-               double chargingRate = ob[4];*/
-             //converting the DAL drone list to BL list
-             IEnumerable <DroneToList> temp;
-            temp = from item in Dalob.getDroneList(item => item.Deleted == false)
+            /*  ob = Dalob.GetElectricity();
+              double available = ob[0];
+              double light = ob[1];
+              double medium = ob[2];
+              double heavy = ob[3];
+              double chargingRate = ob[4];*/
+            //converting the DAL drone list to BL list
+            IEnumerable<DroneToList> temp;
+            /*temp = from item in Dalob.getDroneList(item => item.Deleted == false)
                    select new BO.DroneToList()
                    {
                        Id = item.Id,
@@ -54,12 +54,21 @@ namespace BL
                        Weight = (BO.WeightCategories)item.Maxweight
 
 
-                   };
+                   };*/
 
-            dronetolistBL = temp.ToList();
+            // dronetolistBL = temp.ToList();
             var parcellist = Dalob.getParcelList(item => item.Deleted == false).ToList();
             var stationlist = Dalob.getStationList(item => item.Deleted == false);
             var customerlist = Dalob.getCustomerList(item => item.Deleted == false);
+            var temp2 = Dalob.getDroneList(item => item.Deleted == false);
+            var tem3 = from item in Dalob.getDroneList(item => item.Deleted == false)
+                       select new BO.DroneToList()
+                       {
+                           Id = item.Id,
+                           Model = item.Model,
+                           Weight = (BO.WeightCategories)item.Maxweight
+                       };
+            dronetolistBL = tem3.ToList();
             //Goes through all the packages and updates data accordingly
             for (int i = 0; i < parcellist.Count(); i++)
 
@@ -740,8 +749,8 @@ namespace BL
         }
         public List<DroneToList> getdroneList()
         {
-             var drones = from drone in dalob.getDroneList(station => station.Deleted == false)
-                          select convertTodroneInParcel(drone);
+            var drones = from drone in dalob.getDroneList(station => station.Deleted == false)
+                         select convertTodroneInParcel(drone);
             if (drones.Any())
             {
                 var t = dronetolistBL.ToList();
@@ -763,7 +772,7 @@ namespace BL
         {
             DroneToList d2 = dronetolistBL.Find(d3 => d3.Id == id);
             dronetolistBL.Remove(d2);
-            if (d2.BatteryStatus==100)
+            if (d2.BatteryStatus == 100)
             {
                 d2.Status = DroneStatus.free;
             }
@@ -773,8 +782,9 @@ namespace BL
                 d2.Status = DroneStatus.inMaintence;
             }
             dronetolistBL.Add(d2);
-            return d2;          
+            return d2;
         }
+
 
         #endregion
 
@@ -853,41 +863,41 @@ namespace BL
             }
 
 
-            }
-            public BO.Station getStation(int num)
+        }
+        public BO.Station getStation(int num)
+        {
+            DO.Station st = Dalob.getStation(num);
+            var Drones = from drone in Dalob.getDroneChargeList(drone => drone.Stationid == st.Id)
+                             //where drone.Stationid == st.Id
+                         select new DroneCharge() { Id = drone.Droneid };
+            foreach (var item in Drones)
             {
-                DO.Station st = Dalob.getStation(num);
-                var Drones = from drone in Dalob.getDroneChargeList(drone => drone.Stationid == st.Id)
-                                 //where drone.Stationid == st.Id
-                             select new DroneCharge() { Id = drone.Droneid };
-                foreach (var item in Drones)
-                {
-                    foreach (var drone in dronetolistBL)
-                        if (item.Id == drone.Id)
-                        {
-                            item.BatteryStatus = drone.BatteryStatus;
-                            break;
-                        }
-                }
-                BO.Station s = new BO.Station()
-                {
-                    Id = st.Id,
-                    Name = st.Name,
-                    Location = new Location(st.Latitude, st.Longitude),
-                    Chargslot = st.Chargslot,
-                    DronesInCharging = Drones,
-                };
-                return s;
+                foreach (var drone in dronetolistBL)
+                    if (item.Id == drone.Id)
+                    {
+                        item.BatteryStatus = drone.BatteryStatus;
+                        break;
+                    }
             }
-            public IEnumerable<StationToList> getStationList()
+            BO.Station s = new BO.Station()
             {
-                var stations = from station in Dalob.getStationList(station => station.Deleted == false)
-                               select convertToStationList(station);
-                if (stations.Any())
-                    return stations;
-                throw new Exceptions.emptyListException("Station list is empty");
-            }
-            public IEnumerable<StationToList> getStationsList(Predicate<StationToList> predicate)
+                Id = st.Id,
+                Name = st.Name,
+                Location = new Location(st.Latitude, st.Longitude),
+                Chargslot = st.Chargslot,
+                DronesInCharging = Drones,
+            };
+            return s;
+        }
+        public IEnumerable<StationToList> getStationList()
+        {
+            var stations = from station in Dalob.getStationList(station => station.Deleted == false)
+                           select convertToStationList(station);
+            if (stations.Any())
+                return stations;
+            throw new Exceptions.emptyListException("Station list is empty");
+        }
+        public IEnumerable<StationToList> getStationsList(Predicate<StationToList> predicate)
         {
             var stations = from item in getStationList()
                            where predicate(item)
@@ -927,8 +937,8 @@ namespace BL
         {
             {
                 var stations = from item in getStationList()
-                                where predicate(item)
-                                select item;
+                               where predicate(item)
+                               select item;
                 return stations;
             }
         }
@@ -1190,14 +1200,14 @@ namespace BL
         public IEnumerable<ParcelForList> getParcelList(Predicate<ParcelForList> predicate)
         {
             var parcels = from item in getParcelList()
-                         where predicate(item)
-                         select item;
+                          where predicate(item)
+                          select item;
             return parcels;
             //throw new Exceptions.emptyListException("there are no drones of this type");
         }
 
         #endregion
-       
+
         #region CalculationAndChecks
         public double MinCharge(double sumdistancemin, BO.WeightCategories weight)
         {
@@ -1275,46 +1285,95 @@ namespace BL
 
             return 10 - sum;
 
-            }//The function returns the audit digit of the ID card.
-            public bool CheckIdentityNumber(int id)
-            {
-                int x = id % 10;
-                if (x == LastDigitID(id / 10))
-                    return true;
-                return false;
-            }
-            public double SumCharge(DO.Parcel? itemparcel, DroneToList updatedrone)
-            {
-                double distaceDroneToSender = dalob.DistanceCustomer(itemparcel.Value.Senderid, updatedrone.Location.Latitude, updatedrone.Location.Longitude);
-                //distance betwean sender to target
-                double targetlat = dalob.DistanceCustomerLAT(itemparcel.Value.Targetid);
-                double targetlong = dalob.DistanceCustomerLONG(itemparcel.Value.Targetid);
-                double distanceSenderToTarget = dalob.DistanceCustomer(itemparcel.Value.Senderid, targetlat, targetlong);
-                //distance betwean target to the closest station
-                double mindistance1 = 0, newdistance1 = 0, newlong1 = 0, newlat1 = 0;
-                foreach (var itemstation in Dalob.getStationList(item => item.Deleted == false))
-                {
-                    newdistance1 = dalob.DistanceStation(itemstation.Id, targetlat, targetlong);
-                    if (newdistance1 < mindistance1)
-                    {
-                        newlong1 = itemstation.Longitude;
-                        newlat1 = itemstation.Latitude;
-                        mindistance1 = newdistance1;
-                    }
-                }
-                double sumdistancemin = distaceDroneToSender + distanceSenderToTarget + mindistance1;
-                double minrateofcharge = MinCharge(sumdistancemin, updatedrone.Weight);
-                return minrateofcharge;
-            }
-
-        public DroneToList NextState(string text)
+        }//The function returns the audit digit of the ID card.
+        public bool CheckIdentityNumber(int id)
         {
-            throw new NotImplementedException();
+            int x = id % 10;
+            if (x == LastDigitID(id / 10))
+                return true;
+            return false;
+        }
+        public double SumCharge(DO.Parcel? itemparcel, DroneToList updatedrone)
+        {
+            double distaceDroneToSender = dalob.DistanceCustomer(itemparcel.Value.Senderid, updatedrone.Location.Latitude, updatedrone.Location.Longitude);
+            //distance betwean sender to target
+            double targetlat = dalob.DistanceCustomerLAT(itemparcel.Value.Targetid);
+            double targetlong = dalob.DistanceCustomerLONG(itemparcel.Value.Targetid);
+            double distanceSenderToTarget = dalob.DistanceCustomer(itemparcel.Value.Senderid, targetlat, targetlong);
+            //distance betwean target to the closest station
+            double mindistance1 = 0, newdistance1 = 0, newlong1 = 0, newlat1 = 0;
+            foreach (var itemstation in Dalob.getStationList(item => item.Deleted == false))
+            {
+                newdistance1 = dalob.DistanceStation(itemstation.Id, targetlat, targetlong);
+                if (newdistance1 < mindistance1)
+                {
+                    newlong1 = itemstation.Longitude;
+                    newlat1 = itemstation.Latitude;
+                    mindistance1 = newdistance1;
+                }
+            }
+            double sumdistancemin = distaceDroneToSender + distanceSenderToTarget + mindistance1;
+            double minrateofcharge = MinCharge(sumdistancemin, updatedrone.Weight);
+            return minrateofcharge;
         }
 
+      /*  void IBL.NextState(int id)
+        {
+            bool flag = false;
+            BO.Drone d = getDrone(id);
+            switch (d.Status)
+            {
+                case BO.DroneStatus.free:
+                    {
+                        try
+                        {
+                            UpdateParcelToDrone(id);
+                        }
+                        catch (Exception)
+                        {
+                            UpdateDroneToCharge(id);
+                        }
+                    }
+                    break;
+                case BO.DroneStatus.busy:
+                    {
+                        switch (d.TheParcel.Status)
+                        {
+                            case BO.ParcelStatus.deliverd:
+
+                                break;
+                            case BO.ParcelStatus.pickedUp:
+                                break;
+
+
+                        }
+
+                    }
+
+                    break;
+                case BO.DroneStatus.inMaintence:
+                    {
+                        if (d.BatteryStatus == 100)
+                        {
+                            UpdateReleseDroneFromCharge(id, DateTime.Now);
+                            UpdateParcelToDrone(id);
+                        }
+                        else
+                        {
+                            flag = true;
+                        }
+
+                    }
+                    break;
+            }
+
+
+        }*/
 
         #endregion
     }
-    }
 
 
+
+
+}

@@ -29,9 +29,23 @@ namespace Dal
         static DataSource()
         {
             Initialize();
+            
+            CustomerRoot = XMLTools.LoadListFromXmlElement(customerPath);
+            var v = from p in customelist
+                    select new XElement("Customer",
+                                                new XElement("Id", p.Id),
+                                                new XElement("Name", p.Name),
+                                                new XElement("Phone", p.Phone),
+                                                new XElement("Longitude", p.Longitude),
+                                                new XElement("Latitude", p.Latitude),
+                                                new XElement("Deleted", p.Deleted)
+                                                );
+
+            CustomerRoot = new XElement("Customers", v);
+            CustomerRoot.Save(customerPath);
             XMLTools.SaveListToXNLSerialzer(dronelist, dronePath);
             XMLTools.SaveListToXNLSerialzer(parcellist, parcelPath);
-            XMLTools.SaveListToXNLSerialzer(customelist, customerPath);
+            //XMLTools.SaveListToXmlElement(CustomerRoot, customerPath);
             XMLTools.SaveListToXNLSerialzer(dronechargelist, dronchargePath);
             XMLTools.SaveListToXNLSerialzer(stationlist, stationPath);
             XMLTools.SaveListToXNLSerialzer(power, powerConsumptionRequest);
