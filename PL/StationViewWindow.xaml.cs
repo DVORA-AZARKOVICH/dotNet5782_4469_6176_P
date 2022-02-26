@@ -96,8 +96,14 @@ namespace PL
         private void addThis_Click(object sender, RoutedEventArgs e)
         {
             Station s = new Station();
-            s=addGrid.DataContext as Station;
+            s.Id = Convert.ToInt32(id.Text);
+            s.Name = name.Text;
+            s.Chargslot = Convert.ToInt32(chargslot.Text);
+            s.Location = new Location(Convert.ToInt32(latitude.Text), Convert.ToInt32(longitude.Text));
+             //=addGrid.DataContext as Station;
             bl.AddStation(s);
+            MessageBox.Show("New station was added seccessfully!", "added!", MessageBoxButton.OK, MessageBoxImage.None);
+            this.Close();
         }
 
         private void close_Click(object sender, RoutedEventArgs e)

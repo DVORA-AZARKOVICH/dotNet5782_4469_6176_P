@@ -26,19 +26,16 @@ namespace PL
         /// initilizes the grids shown when adding a new customer.
         /// </summary>
         /// <param name="b"></param>
-        public CustomersViewWindow(BLApi.IBL b)
+        public CustomersViewWindow(BLApi.IBL b )
         {
             InitializeComponent();
             bl = b;
-            //customer = c;
-            grid1.Visibility = Visibility.Hidden;
+            updateGrid.Visibility = Visibility.Hidden;
             parcels.Visibility = Visibility.Hidden;
             addGrid.Visibility = Visibility.Visible;
             add.Visibility = Visibility.Hidden;
             update.Visibility = Visibility.Hidden;
-            grid1.DataContext = customer;
-            ingoingParcelsDataGrid.DataContext = customer.IngoingParcels;
-            outgoingParcelsDataGrid.DataContext=customer.OutgoingParcels;
+            updateGrid.DataContext = customer;
         }
         /// <summary>
         /// initilizes the grids that are shown when updating or viewing a customer's details.
@@ -50,12 +47,16 @@ namespace PL
             InitializeComponent();
             bl = b;
             customer = b.getCustomer(c.Id);
-            grid1.DataContext = c;
+            updateGrid.DataContext = c;
             parcels.DataContext = bl;
-            grid1.Visibility = Visibility.Visible;
+            updateGrid.Visibility = Visibility.Visible;
             parcels.Visibility = Visibility.Visible;
             addGrid.Visibility = Visibility.Hidden;
             addThis.Visibility = Visibility.Hidden;
+            ingoingParcelsDataGrid.DataContext = customer.IngoingParcels;
+            outgoingParcelsDataGrid.DataContext = customer.OutgoingParcels;
+            latitudeText.Text = customer.Location.Latitude.ToString();
+            longitudeText.Text = customer.Location.Longitude.ToString();
         }
 
         private void ingoingParcelsDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -116,6 +117,8 @@ namespace PL
             c.PhoneNumber = phone.Text;
             c.Location = new Location(Convert.ToInt32(latitude.Text), Convert.ToInt32(longitude.Text));
             bl.AddCustomer(c);
+            MessageBox.Show("New customer was added seccessfully!", "added!", MessageBoxButton.OK, MessageBoxImage.None);
+            this.Close();
         }
 
     }

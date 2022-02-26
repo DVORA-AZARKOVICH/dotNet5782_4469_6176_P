@@ -73,7 +73,7 @@
             </DataGrid>
         </Grid>
         <Button x:Name="update" Content="update" HorizontalAlignment="Left" Margin="61,353,0,0" VerticalAlignment="Top" Height="44" Width="75" Click="update_Click"/>
-        <Button x:Name="add" Content="add customer" HorizontalAlignment="Left" Margin="150,353,0,0" VerticalAlignment="Top" Height="44" Width="75" Click="add_Click"/>
+        <Button x:Name="add" Content="add station" HorizontalAlignment="Left" Margin="150,353,0,0" VerticalAlignment="Top" Height="44" Width="75" Click="add_Click"/>
         <Button x:Name="addThis" Content="add" HorizontalAlignment="Left" Margin="150,353,0,0" VerticalAlignment="Top" Height="44" Width="75" Click="addThis_Click"/>
         <Button x:Name="close" Content="close" HorizontalAlignment="Left" Margin="240,353,0,0" VerticalAlignment="Top" Height="44" Width="75" Click="close_Click"/>
     </Grid>

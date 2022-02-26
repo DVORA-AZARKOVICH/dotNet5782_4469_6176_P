@@ -21,7 +21,7 @@
   <Drone>
     <Id>1000003</Id>
     <Model>a</Model>
-    <Maxweight>light</Maxweight>
+    <Maxweight>medium</Maxweight>
     <Deleted>false</Deleted>
   </Drone>
   <Drone>
