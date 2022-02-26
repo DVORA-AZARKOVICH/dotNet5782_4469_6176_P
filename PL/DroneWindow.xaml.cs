@@ -77,6 +77,7 @@ namespace PL
             weight_d.Visibility = Visibility.Hidden;
             weight.Visibility = Visibility.Visible;
             Status.Visibility = Visibility.Visible;
+            
             battery.Text = " ";
             DroneId.Text = " ";
         }
@@ -84,9 +85,9 @@ namespace PL
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
 
-            /*if (e.Cancelled == true)
+           /* if (e.Cancelled == true)
             {
-                worker.Value = 0;
+                progBarTime.Value = 0;
                 curPer.PersonalStatus = Status.SINGLE;
                 MessageBox.Show("Try next time...");
             }
@@ -100,17 +101,25 @@ namespace PL
 
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            int precent = e.ProgressPercentage;
-            battery.Text =Convert.ToString( precent);
+            Drone dt = new Drone();
+            int idd = Convert.ToInt32(DroneId.Text);
+            dt = bl.getDrone(idd);
+            battery.Text = dt.BatteryStatus.ToString();
+            status_d.Text = dt.Status.ToString();
+            DroneId.Text = " ";
+            /*int buttery = e.ProgressPercentage;
+            progBarTime.Value = precent;
+            if (precent > 50)
+                curPer.PersonalStatus = Status.ENGAGED;*/
         }
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            //bl.simultor(cuurent drone, e.Argument, bw ) // 
-            DroneToList d = new DroneToList();
-            int id2 = Convert.ToInt32(DroneId.Text);
-            bl.NextState(id2);
-            for (int i = 0; i <= 100;i++)
+            Drone d = new Drone();
+            int idd = int.Parse(e.Argument.ToString());
+            d = bl.getDrone(idd);
+            double buterry = d.BatteryStatus;
+            while(buterry<100)
             {
                 if (worker.CancellationPending == true)
                 {
@@ -120,15 +129,20 @@ namespace PL
                 else
                 {
                     Thread.Sleep(500);
+                    bl.NextState(idd);                  
                     if (worker.WorkerReportsProgress == true)
-                    {
-                        i = (int)d.BatteryStatus;
-                        worker.ReportProgress(i);
-                    }
+                        worker.ReportProgress(idd);
 
                 }
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            int idd = Convert.ToInt32(DroneId.Text);
+            worker.RunWorkerAsync(idd);
+        }
+
 
         /// <summary>
         /// initilizes the drone update window
@@ -149,10 +163,9 @@ namespace PL
             myDrone = selectedItem;
             myData = new MyData() { Id = selectedItem.Id, BatteryStatus = selectedItem.BatteryStatus, Status = selectedItem.Status, Model = selectedItem.Model, Location = selectedItem.Location1, ParcelId = selectedItem.ParcelId, Weight = selectedItem.Weight };
             this.DataContext = myData;
+
             add.Visibility = Visibility.Hidden;
             update.Visibility = Visibility.Visible;
-            status_d.Visibility = Visibility.Visible;
-            weight_d.Visibility = Visibility.Visible;
             weight.Visibility = Visibility.Hidden;
             Status.Visibility = Visibility.Hidden;
             station.Visibility = Visibility.Hidden;
@@ -160,6 +173,10 @@ namespace PL
             battery.IsReadOnly = true;
             latitude.IsReadOnly = true;
             longitude.IsReadOnly = true;
+            weight_d.Visibility = Visibility.Visible;
+            battery.Text = selectedItem.BatteryStatus.ToString();
+            status_d.Text = selectedItem.Status.ToString();
+            weight_d.Text = selectedItem.Weight.ToString();
             if (selectedItem.Status == DroneStatus.free)
             {
                 sendToCharging.Visibility = Visibility.Visible;
@@ -337,12 +354,7 @@ namespace PL
             this.Close();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-         //    worker.RunWorkerAsync(cbDays.SelectedValue);
-        }
-
+  
 
 
     }

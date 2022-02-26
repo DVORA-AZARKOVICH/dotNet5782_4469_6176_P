@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="parcelListWindow" Height="450" Width="800" >
- <!--   <Window.Background>
+  <Window.Background>
         <ImageBrush ImageSource="/images/view.jpg" Stretch="Fill" />
-    </Window.Background> -->
-    <Grid Visibility="Visible" ShowGridLines="False" Panel.ZIndex="-1">
+    </Window.Background>
+    <Grid Visibility="Visible"  ShowGridLines="False" Panel.ZIndex="-1">
 
         <Grid.ColumnDefinitions >
             <ColumnDefinition Width="*"/>
@@ -38,7 +38,7 @@
                 <DataGridTextColumn x:Name="weightColumn" Binding="{Binding Weight}" Header="Weight" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Visibility="Visible" Name="sender" Content="group by sender" HorizontalAlignment="Left" Margin="124,28,0,0" VerticalAlignment="Top" Height="30" Width="127" RenderTransformOrigin="0.496,0.461" Click="sender_Click"/>
+        <Button Visibility="Visible" Name="sender" Content="group by sender" HorizontalAlignment="Left" Margin="124,28,0,0" VerticalAlignment="Top" Height="30" Width="127" RenderTransformOrigin="0.496,0.461" Click="sender_Click" IsEnabled="False"/>
         <Button Visibility="Visible" Name="reciver" Content="group by reciver" HorizontalAlignment="Left" Margin="268,28,0,0" VerticalAlignment="Top" Height="30" Width="132" RenderTransformOrigin="0.496,0.461" Click="reciver_Click"/>
         <Label Visibility="Visible" Name="sortLable" Content="status:" HorizontalAlignment="Left" Margin="420,30,0,0" VerticalAlignment="Top" Width="78" Height="28"/>
         <ComboBox Visibility="Visible" Name="sort" HorizontalAlignment="Left" Margin="503,30,0,0" VerticalAlignment="Top" Width="130" Height="28" SelectionChanged="sort_SelectionChanged" />
