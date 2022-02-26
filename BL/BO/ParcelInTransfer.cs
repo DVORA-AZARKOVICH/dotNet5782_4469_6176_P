@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace BL.BO
 {
     public class ParcelInTransfer
     {
         public int Id { get; set; }
-        public bool Status { get; set; }//מחכה למשלוח או בדרך ללקוח
+        public ParcelInTransf Status { get; set; }//מחכה למשלוח או בדרך ללקוח
         public WeightCategories Weight { get; set; }
         public CustomerInParcel Sender { get; set; }
         public CustomerInParcel Reciver { get; set; }

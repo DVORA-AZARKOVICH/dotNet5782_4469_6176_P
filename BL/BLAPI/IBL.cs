@@ -64,7 +64,7 @@ namespace BLApi
         int LastDigitID(int x);
         bool CheckIdentityNumber(int id);
         double SumCharge(DO.Parcel? itemparcel, DroneToList updatedrone);
-       // void NextState(int id);
+        void NextState(int id);
 
         #endregion
     }

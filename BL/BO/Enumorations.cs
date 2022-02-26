@@ -14,4 +14,6 @@ namespace BL.BO
 
     public enum ParcelStatus { deliverd, pickedUp, attached , Created }
 
+    public enum ParcelInTransf{wautToCollect,intransfer}
+
 }

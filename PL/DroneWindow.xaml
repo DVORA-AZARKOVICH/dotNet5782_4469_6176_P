@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="DroneWindow" Height="450" Width="800">
-    <!--  <Window.Background>
+    <Window.Background>
         <ImageBrush ImageSource="/images/view.jpg" Stretch="Fill" />
-    </Window.Background> -->
+    </Window.Background> 
     <Grid ShowGridLines="False" HorizontalAlignment="Left" Width="800" Margin="10,0,0,0" Name="droneGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="115*"/>
@@ -31,7 +31,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Label Content="Enter drone ID:" FontSize="15" HorizontalAlignment="Left" Grid.Column="1" Margin="5,3,0,7" Width="240" FontFamily="Aharoni" Grid.Row="1"/>
-        <Label Content="buttery" FontSize="15" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" Margin="0,0,0,8" Width="224" FontFamily="Aharoni"/>
+        <Label  Content="buttery" FontSize="15" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" Margin="0,0,0,8" Width="224" FontFamily="Aharoni"/>
         <Label Content="Max weight" FontSize="15" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" Margin="0,39,0,0" Width="224" Grid.RowSpan="2" FontFamily="Aharoni" Height="32" VerticalAlignment="Top"/>
         <Label Content="Model" FontSize="15" HorizontalAlignment="Center" Grid.Row="4" Grid.Column="1" Margin="0,3,0,8" Width="224" FontFamily="Aharoni"/>
         <Label Content="Status" FontSize="15" HorizontalAlignment="Center" Grid.Row="4" Grid.Column="1" Margin="0,36,0,9" Width="224" Grid.RowSpan="2" FontFamily="Aharoni"/>
