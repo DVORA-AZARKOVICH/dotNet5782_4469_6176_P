@@ -49,12 +49,12 @@ namespace PL
         {
             InitializeComponent();
             bl = b;
-            //customer = b.getCustomer(c.Id);
+            customer = b.getCustomer(c.Id);
             grid1.DataContext = c;
             parcels.DataContext = bl;
             grid1.Visibility = Visibility.Visible;
             parcels.Visibility = Visibility.Visible;
-            addGrid.Visibility = Visibility.Visible;
+            addGrid.Visibility = Visibility.Hidden;
             addThis.Visibility = Visibility.Hidden;
         }
 

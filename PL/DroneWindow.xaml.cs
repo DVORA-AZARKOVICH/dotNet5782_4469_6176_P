@@ -105,7 +105,7 @@ namespace PL
             int idd = Convert.ToInt32(DroneId.Text);
             dt = bl.getDrone(idd);
             battery.Text = dt.BatteryStatus.ToString();
-            status_d.Text = dt.Status.ToString();
+            Status_d.Text = dt.Status.ToString();
             DroneId.Text = " ";
             /*int buttery = e.ProgressPercentage;
             progBarTime.Value = precent;

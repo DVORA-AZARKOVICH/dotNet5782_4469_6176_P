@@ -31,8 +31,12 @@ namespace PL
 
         private void customerForListDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            CustomerForList c=sender as CustomerForList;
-            CustomersViewWindow win = new CustomersViewWindow(bl,c); 
+            //DroneWindow dw = new DroneWindow(bl, (DroneToList)DroneListView.SelectedItem);
+            ////dw.Closed += Dw_Closed;
+            ////dw.Show();
+            ////Customer c=;
+            CustomersViewWindow win = new CustomersViewWindow(bl, (CustomerForList)customerForListDataGrid.SelectedItem);
+            win.ShowDialog();
         }
     }
 }
