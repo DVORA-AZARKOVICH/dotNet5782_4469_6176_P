@@ -29,11 +29,16 @@ namespace PL
         public CustomersViewWindow(BLApi.IBL b)
         {
             InitializeComponent();
+            bl = b;
+            //customer = c;
             grid1.Visibility = Visibility.Hidden;
             parcels.Visibility = Visibility.Hidden;
             addGrid.Visibility = Visibility.Visible;
             add.Visibility = Visibility.Hidden;
             update.Visibility = Visibility.Hidden;
+            grid1.DataContext = customer;
+            ingoingParcelsDataGrid.DataContext = customer.IngoingParcels;
+            outgoingParcelsDataGrid.DataContext=customer.OutgoingParcels;
         }
         /// <summary>
         /// initilizes the grids that are shown when updating or viewing a customer's details.
@@ -44,8 +49,8 @@ namespace PL
         {
             InitializeComponent();
             bl = b;
-            customer = b.getCustomer(c.Id);
-            grid1.DataContext = customer;
+            //customer = b.getCustomer(c.Id);
+            grid1.DataContext = c;
             parcels.DataContext = bl;
             grid1.Visibility = Visibility.Visible;
             parcels.Visibility = Visibility.Visible;

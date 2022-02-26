@@ -36,7 +36,7 @@ namespace PL
             station = bl.getStation(st.Id);
            updateGrid.DataContext=station;
             addGrid.Visibility = Visibility.Hidden;
-            drones.DataContext=station;
+            dronesInChargingDataGrid.ItemsSource = station.DronesInCharging;
             addThis.Visibility = Visibility.Hidden;
         }
         /// <summary>

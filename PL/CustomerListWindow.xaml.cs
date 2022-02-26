@@ -28,5 +28,11 @@ namespace PL
             customerForListDataGrid.IsReadOnly = true;
             customerForListDataGrid.ItemsSource = bl.getCustomerList();
         }
+
+        private void customerForListDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            CustomerForList c=sender as CustomerForList;
+            CustomersViewWindow win = new CustomersViewWindow(bl,c); 
+        }
     }
 }

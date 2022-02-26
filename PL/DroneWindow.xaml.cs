@@ -73,8 +73,8 @@ namespace PL
             pickUp.Visibility = Visibility.Hidden;
             release.Visibility = Visibility.Hidden;
             delieverd.Visibility = Visibility.Hidden;
-            status_d.Visibility = Visibility.Hidden;
-            weight_d.Visibility = Visibility.Hidden;
+           // status_d.Visibility = Visibility.Hidden;
+            //weight_d.Visibility = Visibility.Hidden;
             weight.Visibility = Visibility.Visible;
             Status.Visibility = Visibility.Visible;
             battery.Text = " ";
@@ -148,10 +148,9 @@ namespace PL
             myDrone = selectedItem;
             myData = new MyData() { Id = selectedItem.Id, BatteryStatus = selectedItem.BatteryStatus, Status = selectedItem.Status, Model = selectedItem.Model, Location = selectedItem.Location, ParcelId = selectedItem.ParcelId, Weight = selectedItem.Weight };
             this.DataContext = myData;
+            
             add.Visibility = Visibility.Hidden;
             update.Visibility = Visibility.Visible;
-            status_d.Visibility = Visibility.Visible;
-            weight_d.Visibility = Visibility.Visible;
             weight.Visibility = Visibility.Hidden;
             Status.Visibility = Visibility.Hidden;
             station.Visibility = Visibility.Hidden;
@@ -159,6 +158,10 @@ namespace PL
             battery.IsReadOnly = true;
             latitude.IsReadOnly = true;
             longitude.IsReadOnly = true;
+            weight_d.Visibility = Visibility.Visible;
+            battery.Text = selectedItem.BatteryStatus.ToString();
+            Status_d.Text = selectedItem.Status.ToString();
+            weight_d.Text = selectedItem.Weight.ToString();
             if (selectedItem.Status == DroneStatus.free)
             {
                 sendToCharging.Visibility = Visibility.Visible;

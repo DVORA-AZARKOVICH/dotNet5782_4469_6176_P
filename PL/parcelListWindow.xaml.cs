@@ -25,7 +25,6 @@ namespace PL
         {
             InitializeComponent();
             bl = b;
-            parcelForListDataGrid.IsReadOnly = true; 
             sort.ItemsSource=Enum.GetValues(typeof(ParcelStatus));
             parcelForListDataGrid.ItemsSource=bl.getParcelList();
         }

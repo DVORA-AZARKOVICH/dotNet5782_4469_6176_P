@@ -15,19 +15,19 @@
   <Drone>
     <Id>1000002</Id>
     <Model>a</Model>
-    <Maxweight>light</Maxweight>
+    <Maxweight>medium</Maxweight>
     <Deleted>false</Deleted>
   </Drone>
   <Drone>
     <Id>1000003</Id>
     <Model>a</Model>
-    <Maxweight>medium</Maxweight>
+    <Maxweight>light</Maxweight>
     <Deleted>false</Deleted>
   </Drone>
   <Drone>
     <Id>1000004</Id>
     <Model>a</Model>
-    <Maxweight>light</Maxweight>
+    <Maxweight>medium</Maxweight>
     <Deleted>false</Deleted>
   </Drone>
 </ArrayOfDrone>
