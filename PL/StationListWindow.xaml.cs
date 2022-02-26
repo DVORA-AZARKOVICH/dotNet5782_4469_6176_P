@@ -36,8 +36,7 @@ namespace PL
         {
             try
             {
-                var t = bl.getStationList().GroupBy(x => x.FreeChargingSlots);
-                stationToListDataGrid.ItemsSource = t;
+                stationToListDataGrid.ItemsSource = bl.getStationList().GroupBy(x => x.FreeChargingSlots);
             }
             catch (Exception ex)
             {

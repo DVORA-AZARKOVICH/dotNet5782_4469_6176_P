@@ -27,6 +27,7 @@ namespace PL
             bl = b;
             parcelForListDataGrid.IsReadOnly = true; 
             sort.ItemsSource=Enum.GetValues(typeof(ParcelStatus));
+            parcelForListDataGrid.ItemsSource=bl.getParcelList();
         }
         public parcelListWindow(BLApi.IBL b, Customer c)
         {
@@ -84,28 +85,28 @@ namespace PL
                     var t = bl.getParcelList(item => item.Status == ParcelStatus.attached);
                     parcelForListDataGrid.ItemsSource = t;
                     if (!t.Any())
-                        throw new Exception("there are no drones of this type");
+                        throw new Exception("there are no parcels of this type");
                 }
                 if ((ParcelStatus)sort.SelectedItem == ParcelStatus.Created)
                 {
                     var t = bl.getParcelList(item => item.Status == ParcelStatus.Created);
                     parcelForListDataGrid.ItemsSource = t;
                     if (!t.Any())
-                        throw new Exception("there are no drones of this type");
+                        throw new Exception("there are no parcels of this type");
                 }
                 if ((ParcelStatus)sort.SelectedItem == ParcelStatus.deliverd)
                 {
                     var t = bl.getParcelList(item => item.Status == ParcelStatus.deliverd);
                     parcelForListDataGrid.ItemsSource = t;
                     if (!t.Any())
-                        throw new Exception("there are no drones of this type");
+                        throw new Exception("there are no parcels of this type");
                 }
                 if ((ParcelStatus)sort.SelectedItem == ParcelStatus.pickedUp)
                 {
                     var t = bl.getParcelList(item => item.Status == ParcelStatus.pickedUp);
                     parcelForListDataGrid.ItemsSource = t;
                     if (!t.Any())
-                        throw new Exception("there are no drones of this type");
+                        throw new Exception("there are no parcels of this type");
                 }
 
             }

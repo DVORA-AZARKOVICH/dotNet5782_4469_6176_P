@@ -32,8 +32,12 @@ namespace PL
         public StationViewWindow(BLApi.IBL b,BL.BO.StationToList st)
         {
             InitializeComponent();
-            station = bl.getStation(st.Id);
             bl = b;
+            station = bl.getStation(st.Id);
+           updateGrid.DataContext=station;
+            addGrid.Visibility = Visibility.Hidden;
+            drones.DataContext=station;
+            addThis.Visibility = Visibility.Hidden;
         }
         /// <summary>
         /// initilizes the grids for adding a station.
@@ -62,17 +66,25 @@ namespace PL
                 }
                 else if (station.Name == nameTextBox.Text && station.Chargslot != Convert.ToInt32(chargslotTextBox.Text))
                 {
+                   //chargslotTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
                     bl.UpdatStationChargeslots(station.Id, Convert.ToInt32(chargslotTextBox.Text));
                 }
                 else if(station.Name != nameTextBox.Text && station.Chargslot == Convert.ToInt32(chargslotTextBox.Text))
                 {
                     bl.UpdateStationName(station.Id,nameTextBox.Text);
                 }
+                else if (station.Name != nameTextBox.Text && station.Chargslot != Convert.ToInt32(chargslotTextBox.Text))
+                {
+                    bl.UpdateStationName(station.Id, nameTextBox.Text);
+                    bl.UpdatStationChargeslots(station.Id, Convert.ToInt32(chargslotTextBox.Text));
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK,MessageBoxImage.Error);
             }
+            this.Close();
+
         }
 
         private void add_Click(object sender, RoutedEventArgs e)
