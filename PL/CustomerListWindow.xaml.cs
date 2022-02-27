@@ -32,7 +32,13 @@ namespace PL
         private void customerForListDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             CustomersViewWindow win = new CustomersViewWindow(bl, (CustomerForList)customerForListDataGrid.SelectedItem);
+            win.Closed += win_Closed;
             win.ShowDialog();
+        }
+
+        private void win_Closed(object sender, EventArgs e)
+        {
+            customerForListDataGrid.ItemsSource = bl.getCustomerList();
         }
     }
 }

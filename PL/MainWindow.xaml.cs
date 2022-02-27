@@ -33,7 +33,8 @@ namespace PL
 
         private void manager_Click(object sender, RoutedEventArgs e)
         {
-            ManagerWindow win=new ManagerWindow();
+            Password win=new Password();
+            //ManagerWindow win=new ManagerWindow();
             win.Show();
         }
 

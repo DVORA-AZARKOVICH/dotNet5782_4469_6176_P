@@ -34,7 +34,7 @@ namespace PL
 
         private void parcels_Click(object sender, RoutedEventArgs e)
         {
-            new parcelListWindow(b).Show();
+            new ParcelListWindow2(b).Show();
         }
 
         private void station_Click(object sender, RoutedEventArgs e)

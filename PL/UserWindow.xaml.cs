@@ -19,36 +19,36 @@ namespace PL
     /// Interaction logic for UserWindow.xaml
     /// </summary>
 
-    public partial class UserWindow : Window
-    {
-        private BLApi.IBL bl;
-        private Customer customer;
-        public UserWindow(BL.BO.Customer c)
-        {
-            InitializeComponent();
-            customer = c;
-        }
+    //public partial class UserWindow : Window
+    //{
+    //    private BLApi.IBL bl;
+    //    private Customer customer;
+    //    public UserWindow(BL.BO.Customer c)
+    //    {
+    //        InitializeComponent();
+    //        customer = c;
+    //    }
 
 
-        private void ShowIncoming_Click(object sender, RoutedEventArgs e)
-        {
-            parcelListWindow win=new parcelListWindow(bl,customer);
+    //    private void ShowIncoming_Click(object sender, RoutedEventArgs e)
+    //    {
+    //        ParcelListWindow2 win = new ParcelListWindow2(bl, customer);
 
-        }
+    //    }
 
-        private void Add_Click(object sender, RoutedEventArgs e)
-        {
-            parcelListWindow win = new parcelListWindow(bl, customer,e);
-        }
+    //    private void Add_Click(object sender, RoutedEventArgs e)
+    //    {
+    //        ParcelListWindow2 win = new ParcelListWindow2(bl, customer, e);
+    //    }
 
-        private void ShowIngoing_Click(object sender, RoutedEventArgs e)
-        {
+    //    private void ShowIngoing_Click(object sender, RoutedEventArgs e)
+    //    {
 
-        }
+    //    }
 
-        private void ShowOutgoing_Click(object sender, RoutedEventArgs e)
-        {
+    //    private void ShowOutgoing_Click(object sender, RoutedEventArgs e)
+    //    {
 
-        }
+    //    }
     }
-}
+

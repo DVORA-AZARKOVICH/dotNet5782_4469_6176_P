@@ -14,14 +14,54 @@ using System.Windows.Shapes;
 
 namespace PL
 {
-    /// <summary>
-    /// Interaction logic for ParcelWindow.xaml
-    /// </summary>
+
     public partial class ParcelWindow : Window
     {
-        public ParcelWindow()
+        private BLApi.IBL bl;
+        private BL.BO.Parcel parcel;
+        /// <summary>
+        /// constractor for showing\updating a parcel
+        /// </summary>
+        /// <param name="b"></param>
+        /// <param name="p"></param>
+        public ParcelWindow(BLApi.IBL b,BL.BO.Parcel p)
         {
             InitializeComponent();
+            bl = b;
+            parcel = b.getParcel(p.Id);
+            updateGrid.DataContext = parcel;
+            AddGrid.Visibility = Visibility.Hidden;
+            senderGrid.DataContext = parcel.Sender;
+            recieverGrid.DataContext = parcel.Receiver;
+        }
+        
+        public ParcelWindow(BLApi.IBL b)
+        {
+            InitializeComponent();
+            this.bl = b;
+            AddGrid.Visibility = Visibility.Visible;
+            recieverGrid.Visibility = Visibility.Hidden;
+            senderGrid.Visibility = Visibility.Hidden;
+        }
+
+        private void update_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void newParcel_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void add_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

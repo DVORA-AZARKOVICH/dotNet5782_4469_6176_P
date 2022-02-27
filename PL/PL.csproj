@@ -22,4 +22,8 @@
     <Resource Include="images\view.jpg" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ate\" />
+  </ItemGroup>
+
 </Project>

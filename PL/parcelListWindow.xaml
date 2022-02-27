@@ -6,41 +6,7 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="parcelListWindow" Height="450" Width="800" >
-  <Window.Background>
-        <ImageBrush ImageSource="/images/view.jpg" Stretch="Fill" />
-    </Window.Background>
-    <Grid Visibility="Visible"  ShowGridLines="False" Panel.ZIndex="-1">
+    <Grid>
 
-        <Grid.ColumnDefinitions >
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <DataGrid x:Name="parcelForListDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" Margin="124,81,124,95" >
-            <DataGrid.Columns >
-                <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="priorityColumn" Binding="{Binding Priority}" Header="Priority" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="reciverNameColumn" Binding="{Binding ReciverName}" Header="Reciver Name" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="senderNameColumn" Binding="{Binding SenderName}" Header="Sender Name" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="statusColumn" Binding="{Binding Status}" Header="Status" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="weightColumn" Binding="{Binding Weight}" Header="Weight" Width="SizeToHeader"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <Button Visibility="Visible" Name="sender" Content="group by sender" HorizontalAlignment="Left" Margin="124,28,0,0" VerticalAlignment="Top" Height="30" Width="127" RenderTransformOrigin="0.496,0.461" Click="sender_Click" IsEnabled="False"/>
-        <Button Visibility="Visible" Name="reciver" Content="group by reciver" HorizontalAlignment="Left" Margin="268,28,0,0" VerticalAlignment="Top" Height="30" Width="132" RenderTransformOrigin="0.496,0.461" Click="reciver_Click"/>
-        <Label Visibility="Visible" Name="sortLable" Content="status:" HorizontalAlignment="Left" Margin="420,30,0,0" VerticalAlignment="Top" Width="78" Height="28"/>
-        <ComboBox Visibility="Visible" Name="sort" HorizontalAlignment="Left" Margin="503,30,0,0" VerticalAlignment="Top" Width="130" Height="28" SelectionChanged="sort_SelectionChanged" />
     </Grid>
 </Window>

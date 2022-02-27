@@ -55,13 +55,14 @@ namespace PL
             if (selectedStation != null)
             {
                 StationViewWindow win = new StationViewWindow(bl, selectedStation);
+                win.Closed += win_Closed;
                 win.ShowDialog();
             }
         }
+        private void win_Closed(object sender, EventArgs e)
+        {
+            stationToListDataGrid.ItemsSource = bl.getStationList();
+        }
 
-   //     private void Group_Click(object sender, RoutedEventArgs e)
-    //    {
-//
- //       }
     }
 }
