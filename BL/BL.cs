@@ -835,6 +835,7 @@ namespace BL
 
                     }
                     break;
+            }
                     if (flag)
                     {
                         d.BatteryStatus = (int)(Math.Min(5 + d.BatteryStatus, 100) * 100) / 100.0;
@@ -858,7 +859,7 @@ namespace BL
 
                      };
                      dronetolistBL.Add(dtl);*/
-            }
+            
 
 
         }

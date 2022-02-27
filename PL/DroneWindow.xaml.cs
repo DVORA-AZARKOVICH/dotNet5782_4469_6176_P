@@ -29,13 +29,14 @@ namespace PL
         bool F;
         private BLApi.IBL bl;
         private DroneToList myDrone;
+        bool automaticflag;
        // public MyData myData;
 
         /// <summary>
         /// initilizes the add drone window
         /// </summary>
         /// <param name="b">object of type BL</param>
-        public DroneWindow(BLApi.IBL b)
+         public DroneWindow(BLApi.IBL b)
         {
             InitializeComponent();
             worker = new BackgroundWorker();
@@ -106,7 +107,7 @@ namespace PL
             int idd = int.Parse(e.Argument.ToString());
             d = bl.getDrone(idd);
             double buterry = d.BatteryStatus;
-            while(buterry<100)
+            while(automaticflag&& buterry<100)
             {
                 if (worker.CancellationPending == true)
                 {
@@ -115,19 +116,32 @@ namespace PL
                 }
                 else
                 {
-                    Thread.Sleep(500);
-                    bl.NextState(idd);                  
-                    if (worker.WorkerReportsProgress == true)
-                        worker.ReportProgress(idd);
+                    try
+                    {
+                        Thread.Sleep(500);
+                        bl.NextState(idd);
+                        if (worker.WorkerReportsProgress == true)
+                            worker.ReportProgress(idd);
+
+                    }
+                    catch (ThreadException ex)
+                    {
+                        worker.ReportProgress(-1, ex);
+                        e.Cancel = true;
+                    }
+
 
                 }
+                }
             }
-        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             int idd = Convert.ToInt32(DroneId.Text);
-            worker.RunWorkerAsync(idd);
+            // worker.RunWorkerAsync(idd);
+            DroneAutomatic d = new DroneAutomatic(idd);
+            d.Show();
+
         }
 
 

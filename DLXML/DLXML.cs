@@ -200,12 +200,15 @@ namespace Dal
             int index = droneList.FindIndex(t => t.Id == item.Id && t.Deleted == false);
             if (index == -1)
             {
-                throw new IdExistException("DL: Drone with the same id already exists...");
-            }
-            item.Deleted = false;
-            droneList.Add(item);
+                item.Deleted = false;
+                droneList.Add(item);
 
-            XMLTools.SaveListToXNLSerialzer<DO.Drone>(droneList, dronePath);
+                XMLTools.SaveListToXNLSerialzer<DO.Drone>(droneList, dronePath);
+   
+            }
+            else
+                throw new IdExistException("DL: Drone with the same id already exists...");
+
         }
         public Drone getDrone(int id)
         {
