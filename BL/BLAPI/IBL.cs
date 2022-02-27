@@ -53,6 +53,7 @@ namespace BLApi
         DO.Parcel? CheckByDistance(IEnumerable<DO.Parcel> parcellist, Location c, double mindistance, DroneToList dts);
         void UpdatePickedByDrone(int numofdrone);
         void UpdateDeliverdByDrone(int numofdrone);
+        Parcel getParcel(int num);
         IEnumerable<ParcelForList> getParcelList();
         IEnumerable<ParcelForList> getParcelList(Predicate<ParcelForList> pradicate);
         #endregion
