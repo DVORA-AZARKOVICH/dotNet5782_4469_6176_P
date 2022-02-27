@@ -29,6 +29,7 @@ namespace PL
         bool F;
         private BLApi.IBL bl;
         private DroneToList myDrone;
+        bool automaticflag;
        // public MyData myData;
 
         /// <summary>
