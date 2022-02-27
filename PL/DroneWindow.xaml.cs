@@ -20,20 +20,6 @@ namespace PL
 {
     /// <summary>
     /// Interaction logic for DroneWindow.xaml
-    /// </summary>
-    public class MyData
-    {
-        public int Id { get; set; }
-        public string Model { get; set; }
-        public WeightCategories Weight { get; set; }
-        public double BatteryStatus { get; set; }
-        public DroneStatus Status { get; set; }
-        public Location Location { get; set; }
-        public int ParcelId { get; set; }
-
-        
-
-    }
     /// <summary>
     /// Interaction logic for DroneWindow.xaml
     /// </summary>
@@ -43,8 +29,7 @@ namespace PL
         bool F;
         private BLApi.IBL bl;
         private DroneToList myDrone;
-        public MyData myData;
-        bool automaticflag = true;
+       // public MyData myData;
 
         /// <summary>
         /// initilizes the add drone window
@@ -60,9 +45,10 @@ namespace PL
 
             worker.WorkerReportsProgress = true;
             worker.WorkerSupportsCancellation = true;
+            updateGrid.Visibility = Visibility.Hidden;
 
             bl = b;
-            myData = new MyData();
+            //myData = new MyData();
             Status.ItemsSource = Enum.GetValues(typeof(DroneStatus));
             weight.ItemsSource = Enum.GetValues(typeof(WeightCategories));
             var t = from item in bl.getStationList()
@@ -74,13 +60,13 @@ namespace PL
             pickUp.Visibility = Visibility.Hidden;
             release.Visibility = Visibility.Hidden;
             delieverd.Visibility = Visibility.Hidden;
-           // status_d.Visibility = Visibility.Hidden;
-            //weight_d.Visibility = Visibility.Hidden;
-            weight.Visibility = Visibility.Visible;
-            Status.Visibility = Visibility.Visible;
-            outomatic.Visibility = Visibility.Hidden;
-            battery.Text = " ";
-            DroneId.Text = " ";
+            //// status_d.Visibility = Visibility.Hidden;
+            // //weight_d.Visibility = Visibility.Hidden;
+            // weight.Visibility = Visibility.Visible;
+            // Status.Visibility = Visibility.Visible;
+
+            // battery.Text = " ";
+            // DroneId.Text = " ";
         }
 
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -106,7 +92,7 @@ namespace PL
             int idd = Convert.ToInt32(DroneId.Text);
             dt = bl.getDrone(idd);
             battery.Text = dt.BatteryStatus.ToString();
-            Status_d.Text = dt.Status.ToString();
+            //Status_d.Text = dt.Status.ToString();
             DroneId.Text = " ";
             /*int buttery = e.ProgressPercentage;
             progBarTime.Value = precent;
@@ -175,23 +161,29 @@ namespace PL
 
             bl = b;
             myDrone = selectedItem;
-            myData = new MyData() { Id = selectedItem.Id, BatteryStatus = selectedItem.BatteryStatus, Status = selectedItem.Status, Model = selectedItem.Model, Location = selectedItem.Location1, ParcelId = selectedItem.ParcelId, Weight = selectedItem.Weight };
-            this.DataContext = myData;
+            updateGrid.DataContext = myDrone;
+            addGrid.Visibility = Visibility.Hidden;
+
+            //myDrone = selectedItem;
+            //myData = new MyData() { Id = selectedItem.Id, BatteryStatus = selectedItem.BatteryStatus, Status = selectedItem.Status, Model = selectedItem.Model, Location = selectedItem.Location1, ParcelId = selectedItem.ParcelId, Weight = selectedItem.Weight };
+            //this.DataContext = myData;
 
             add.Visibility = Visibility.Hidden;
             update.Visibility = Visibility.Visible;
             weight.Visibility = Visibility.Hidden;
             Status.Visibility = Visibility.Hidden;
             station.Visibility = Visibility.Hidden;
-            DroneId.IsReadOnly = true;
-            battery.IsReadOnly = true;
-            latitude.IsReadOnly = true;
-            longitude.IsReadOnly = true;
-            weight_d.Visibility = Visibility.Visible;
-            battery.Text = selectedItem.BatteryStatus.ToString();
-            Status_d.Text = selectedItem.Status.ToString();
-            weight_d.Text = selectedItem.Weight.ToString();
-            if (selectedItem.Status == DroneStatus.free)
+            //DroneId.IsReadOnly = true;
+            //battery.IsReadOnly = true;
+            Latitude.IsReadOnly = true;
+            Longitude.IsReadOnly = true;
+            Longitude.Text=myDrone.Location1.Longitude.ToString();
+            Latitude.Text = myDrone.Location1.Latitude.ToString();
+            //weight_d.Visibility = Visibility.Visible;
+            //battery.Text = selectedItem.BatteryStatus.ToString();
+            //Status_d.Text = selectedItem.Status.ToString();
+            //weight_d.Text = selectedItem.Weight.ToString();
+            if (myDrone.Status == DroneStatus.free)
             {
                 sendToCharging.Visibility = Visibility.Visible;
                 sendToParcel.Visibility = Visibility.Visible;
@@ -199,7 +191,7 @@ namespace PL
                 release.Visibility = Visibility.Hidden;
                 delieverd.Visibility = Visibility.Hidden;
             }
-            else if (selectedItem.Status == DroneStatus.inMaintence)
+            else if (myDrone.Status == DroneStatus.inMaintence)
             {
                 sendToCharging.Visibility = Visibility.Hidden;
                 sendToParcel.Visibility = Visibility.Hidden;
@@ -207,7 +199,7 @@ namespace PL
                 release.Visibility = Visibility.Visible;
                 delieverd.Visibility = Visibility.Hidden;
             }
-            else if (selectedItem.Status == DroneStatus.busy)
+            else if (myDrone.Status == DroneStatus.busy)
             {
                 sendToCharging.Visibility = Visibility.Hidden;
                 sendToParcel.Visibility = Visibility.Hidden;
@@ -278,7 +270,7 @@ namespace PL
         private void update_Click(object sender, RoutedEventArgs e)
         {
             bl.UpdateDrone(myDrone.Id, model.Text);
-            this.DataContext = myData;
+            this.DataContext = myDrone;
             this.Close();
         }
 
@@ -295,7 +287,7 @@ namespace PL
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
             }
-            this.DataContext = myData;
+            this.DataContext = myDrone;
             this.Close();
         }
 
@@ -312,7 +304,7 @@ namespace PL
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
             }
-            this.DataContext = myData;
+            this.DataContext = myDrone;
             this.Close();
         }
 
@@ -329,7 +321,7 @@ namespace PL
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
             }
-            this.DataContext = myData;
+            this.DataContext = myDrone;
             this.Close();
         }
 
@@ -346,7 +338,7 @@ namespace PL
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
             }
-            this.DataContext = myData;
+            this.DataContext = myDrone;
             this.Close();
         }
 
@@ -364,7 +356,7 @@ namespace PL
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
             }
-            this.DataContext = myData;
+            this.DataContext = myDrone;
             this.Close();
         }
 
