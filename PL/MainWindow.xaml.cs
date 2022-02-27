@@ -43,6 +43,12 @@ namespace PL
             verifyWindow win = new verifyWindow(b);//.ShowDialog();
             win.Show();
         }
+
+        private void newCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            CustomersViewWindow win = new CustomersViewWindow(b);
+            win.Show();
+        }
     }
 }
 

@@ -9,7 +9,7 @@
     <!--  <Window.Background>
         <ImageBrush ImageSource="/images/view.jpg" Stretch="Fill" />
     </Window.Background> -->
- <!--   <Grid ShowGridLines="False" HorizontalAlignment="Left" Width="800" Margin="10,0,0,0">
+    <Grid ShowGridLines="False" HorizontalAlignment="Left" Width="800" Margin="10,0,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0*"/>
             <ColumnDefinition/>
@@ -30,7 +30,7 @@
         </Grid.RowDefinitions>
         <Button Name="ShowOutgoing" Grid.Column="2" Content="show my Outgoing parcels" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Center" Height="54" Width="160" Click="ShowOutgoing_Click"/>
         <Button Name="Add" Grid.Column="3" Content="add a parcel" HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Center" Height="54" Width="160" Click="Add_Click"/>
-        <Button x:Name="ShowIngoing" Grid.Column="4" Content="show my Incoming parcels" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Center" Height="54" Width="160" Click="ShowIngoing_Click"/>
+        <Button x:Name="ShowIngoing" Grid.Column="4" Content="show my Incoming parcels" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Center" Height="54" Width="160" Click="ShowIncoming_Click"/>
         <Label Grid.Column="3" Content="Welcome!" FontSize="35" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Center" Grid.ColumnSpan="2" Height="55" Width="170"/>
-    </Grid> -->
+    </Grid >
 </Window>

@@ -18,7 +18,7 @@
             </Grid.RowDefinitions>
             <TextBlock Name="id" Text="user ID:" FontSize="20"/>
             <TextBlock Name="name" Text="user name:" Grid.Column="0" Grid.Row="1"  FontSize="20"/>
-            <TextBox Name="UserID" Grid.Column="1" Grid.Row="0"/>
+            <PasswordBox Name="UserID" Grid.Column="1" Grid.Row="0"/>
             <TextBox Name="UserName" Grid.Column="1" Grid.Row="1"/>
         </Grid>
         <Button Name="cEnter" Content="Enter" HorizontalAlignment="Left" Margin="96,133,0,0" VerticalAlignment="Top" Height="29" Width="76" Click="cEnter_Click"/>

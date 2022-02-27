@@ -29,25 +29,26 @@ namespace PL
 
         private void cEnter_Click(object sender, RoutedEventArgs e)
         {
-            //try
-            //{
-            //    BL.BO.Customer c = bl.getCustomer(Convert.ToInt32(UserID.Text));
+            try
+            {
+                customer = bl.getCustomer(Convert.ToInt32(UserID.Password));
 
-            //    if (UserName.Text == c.Name)
-            //    {
-            //        UserWindow win = new UserWindow(customer);
-            //        this.Close();
-            //    }
-            //    else throw new Exception("ID or user name is incorrect");
-            //}
-            //catch (Exception ex)
-            //{
+                if (UserName.Text == customer.Name)
+                {
+                    UserWindow win = new UserWindow(bl,customer);
+                    win.Show();
+                    this.Close();
+                }
+                else throw new Exception("ID or user name is incorrect");
+            }
+            catch (Exception ex)
+            {
 
-            //    MessageBox.Show(ex.Message,
-            //        "ERROR",
-            //        MessageBoxButton.OK,
-            //        MessageBoxImage.Error);
-            //}
+                MessageBox.Show(ex.Message,
+                    "ERROR",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
         }
     }
 }

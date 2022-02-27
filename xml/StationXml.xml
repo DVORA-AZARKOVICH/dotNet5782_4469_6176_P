@@ -3,16 +3,16 @@
   <Station>
     <Id>10000000</Id>
     <Name>station65</Name>
-    <Longitude>30.774281343805736</Longitude>
-    <Latitude>34.86134174739073</Latitude>
+    <Longitude>29.82066939157465</Longitude>
+    <Latitude>34.427261241910635</Latitude>
     <Chargslot>6</Chargslot>
     <Deleted>false</Deleted>
   </Station>
   <Station>
     <Id>10000001</Id>
     <Name>station66</Name>
-    <Longitude>31.672854560275027</Longitude>
-    <Latitude>34.20130804237039</Latitude>
+    <Longitude>30.35932478371976</Longitude>
+    <Latitude>35.52280058736112</Latitude>
     <Chargslot>6</Chargslot>
     <Deleted>false</Deleted>
   </Station>

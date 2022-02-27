@@ -27,6 +27,7 @@
         <Button Name="manager" Grid.Column="1" Content="Enter as manager" FontSize="30" Grid.Row="3" VerticalAlignment="Center" Grid.ColumnSpan="5" Height="52" Width="396" HorizontalAlignment="Left" Margin="98,0,0,0" Click="manager_Click"/>
         <Button Name="customer" Grid.Column="2" Content="Enter as customer" FontSize="30" Grid.Row="4" VerticalAlignment="Center" Grid.ColumnSpan="4" Height="52" Width="343" HorizontalAlignment="Left" Margin="10,0,0,0" Click="customer_Click"/>
         <TextBlock  Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontSize="40" Grid.Row="1" TextWrapping="Wrap" Text="       welcome!" VerticalAlignment="Center" Height="52" Width="343"/>
+        <Button Name="newCustomer" Grid.Column="2" Content="New customer" FontSize="30" Grid.Row="5" VerticalAlignment="Center" Grid.ColumnSpan="4" Height="52" Width="343" HorizontalAlignment="Left" Margin="10,0,0,0" Click="newCustomer_Click"/>
 
     </Grid>
 

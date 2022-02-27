@@ -21,6 +21,7 @@ namespace PL
     public partial class ParcelListWindow2 : Window
     {
         public BLApi.IBL bl;
+        public Customer customer;
         public ParcelListWindow2(BLApi.IBL b)
         {
             InitializeComponent();
@@ -32,21 +33,25 @@ namespace PL
         {
             InitializeComponent();
             bl = b;
-            parcelForListDataGrid.IsReadOnly = true;
-
-            IEnumerable<ParcelForList> parcels = b.getParcelList(item => item.ReciverName == c.Name);
-            sort.ItemsSource = Enum.GetValues(typeof(ParcelStatus));
+           // parcelForListDataGrid.IsReadOnly = true;
+            parcelForListDataGrid.ItemsSource = b.getParcelList(item => item.ReciverName == c.Name);
+           // sort.ItemsSource = Enum.GetValues(typeof(ParcelStatus));
+            sort.Visibility = Visibility.Hidden;
+            reciver.Visibility = Visibility.Hidden;
+            sender.Visibility = Visibility.Hidden;
 
         }
         public ParcelListWindow2(BLApi.IBL b, Customer c, EventArgs e)
         {
             InitializeComponent();
             bl = b;
-            parcelForListDataGrid.IsReadOnly = true;
+            customer = c;
 
-            IEnumerable<ParcelForList> parcels = b.getParcelList(item => item.SenderName == c.Name);
-            sort.ItemsSource = Enum.GetValues(typeof(ParcelStatus));
-
+            parcelForListDataGrid.ItemsSource = bl.getParcelList(item => item.SenderName == c.Name);
+            // sort.ItemsSource = Enum.GetValues(typeof(ParcelStatus));
+            sort.Visibility = Visibility.Hidden;
+            reciver.Visibility = Visibility.Hidden;
+            sender.Visibility = Visibility.Hidden;
         }
 
         private void sender_Click(object sender, RoutedEventArgs e)
