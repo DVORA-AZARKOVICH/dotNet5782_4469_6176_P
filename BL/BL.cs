@@ -696,6 +696,7 @@ namespace BL
                         //אם זה הפניה לא צריך להסיר?
                         dronetolistBL.Remove(dts);
                         dts.ParcelId = p.Value.Id;
+                        dts.Status = DroneStatus.busy;
                         DO.Parcel pp = Dalob.getParcel(p.Value.Id);
                         pp.Scheduled = DateTime.Now;
                         Dalob.deleteParcel(pp.Id);

@@ -40,5 +40,12 @@ namespace PL
         {
             customerForListDataGrid.ItemsSource = bl.getCustomerList();
         }
+
+        private void add_Click(object sender, RoutedEventArgs e)
+        {
+            CustomersViewWindow addCustomer = new CustomersViewWindow(bl);
+            addCustomer.ShowDialog();
+            this.Close();
+        }
     }
 }

@@ -40,7 +40,7 @@ namespace PL
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            ParcelWindow win = new ParcelWindow(bl);
+            ParcelWindow win = new ParcelWindow(bl, customer ,sender);
             win.Show();
         }
 

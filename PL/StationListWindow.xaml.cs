@@ -59,6 +59,14 @@ namespace PL
                 win.ShowDialog();
             }
         }
+
+        private void add_Click(object sender, RoutedEventArgs e)
+        {
+            StationViewWindow win = new StationViewWindow(bl);
+            win.Closed += win_Closed;
+            win.ShowDialog();
+        }
+
         private void win_Closed(object sender, EventArgs e)
         {
             stationToListDataGrid.ItemsSource = bl.getStationList();
