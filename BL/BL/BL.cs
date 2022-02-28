@@ -769,22 +769,6 @@ namespace BL
             return drones;
             //throw new Exceptions.emptyListException("there are no drones of this type");
         }
-       /* public DroneToList NextState(int id)
-        {
-            DroneToList d2 = dronetolistBL.Find(d3 => d3.Id == id);
-            dronetolistBL.Remove(d2);
-            if (d2.BatteryStatus == 100)
-            {
-                d2.Status = DroneStatus.free;
-            }
-            else
-            {
-                d2.BatteryStatus += 5;
-                d2.Status = DroneStatus.inMaintence;
-            }
-            dronetolistBL.Add(d2);
-            return d2;
-        }*/
         public void NextState(int id ,ref bool flagcontinue,ref int parcelid)
         {
             bool flag = false;
@@ -799,6 +783,7 @@ namespace BL
                             UpdateParcelToDrone(id);
                             parcelid = d.TheParcel.Id;
                             d.Status = DroneStatus.busy;
+                            d.BatteryStatus -= 6.2;
                         }
                         catch (Exception)
                         {
@@ -812,12 +797,16 @@ namespace BL
                         {
                             UpdateReleseDroneFromCharge(id, DateTime.Now);
                             UpdateParcelToDrone(id);
+                            DroneToList dts = dronetolistBL.Find(item => item.Id == id);
+                            if(dts!=null)
+
                             flagcontinue = false;
-                            parcelid = d.TheParcel.Id;
+                            parcelid = dts.ParcelId;
                             if (parcelid != 0)
                                 d.Status = DroneStatus.busy;
                             else
                                 d.Status = DroneStatus.free;
+                            d.BatteryStatus -= 6.2;
                         }
                         else
                         {
@@ -835,6 +824,7 @@ namespace BL
                                 {
                                     UpdateDeliverdByDrone(id);
                                     parcelid = d.TheParcel.Id;
+                                    d.BatteryStatus -= 6.2;
                                 }
                                 break;
                             case BO.ParcelInTransf.wautToCollect:
@@ -842,6 +832,7 @@ namespace BL
                                     UpdatePickedByDrone(id);
                                     parcelid = 0;
                                     d.Status = DroneStatus.free;
+                                    d.BatteryStatus -= 6.2;
 
                                 }
                                 break;
@@ -1025,7 +1016,6 @@ namespace BL
             }
             throw new Exceptions.emptyListException("there are no station with free charging slots");
         }
-
         public IEnumerable<StationToList> getStationList(Predicate<StationToList> predicate)
         {
             {

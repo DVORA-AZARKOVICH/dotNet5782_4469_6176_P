@@ -165,8 +165,9 @@ namespace PL
             try
             {
                 int id = Convert.ToInt32(idparcel.Content);
-                ParcelWindow p = new ParcelWindow(bl, id);
-                p.Show();
+                Parcel p = bl.getParcel(id);
+                ParcelWindow p2 = new ParcelWindow(bl,p);
+                p2.Show();
             }
             catch (Exception ex)
             {

@@ -46,6 +46,27 @@ namespace PL
             }
             
         }
+        public ParcelWindow(BLApi.IBL b, BL.BO.Parcel p)
+        {
+            InitializeComponent();
+            bl = b;
+            parcel = bl.getParcel(p.Id);
+            //parcel = b.getParcel(p.Id);
+            updateGrid.DataContext = parcel;
+            AddGrid.Visibility = Visibility.Hidden;
+            senderGrid.DataContext = parcel.Sender;
+            recieverGrid.DataContext = parcel.Receiver;
+            add.Visibility = Visibility.Hidden;
+            if (parcel.PickedUp != null)
+            {
+                updatePickedUp.Visibility = Visibility.Hidden;
+            }
+            if (parcel.Delivered != null)
+            {
+                updateDelivered.Visibility = Visibility.Hidden;
+            }
+
+        }
 
         public ParcelWindow(BLApi.IBL b)
         {
