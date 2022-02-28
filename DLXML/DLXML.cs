@@ -180,7 +180,7 @@ namespace Dal
             try
             {
                 CustomerElement = (from p in CustomerRoot.Elements()
-                                   where Convert.ToInt32(p.Element("id").Value) == id
+                                   where Convert.ToInt32(p.Element("Id").Value) == id
                                    select p).FirstOrDefault();
                 CustomerElement.Remove();
                 CustomerRoot.Save(customerPath);

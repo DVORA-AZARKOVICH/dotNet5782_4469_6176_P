@@ -34,9 +34,9 @@ namespace BL
         {
 
             double available = 0;
-            double light = 2.5;
-            double medium = 5.5;
-            double heavy = 7.5;
+            double light = 15.5;
+            double medium = 25.5;
+            double heavy = 37.5;
             double chargingRate = 2;
             /*  ob = Dalob.GetElectricity();
               double available = ob[0];
