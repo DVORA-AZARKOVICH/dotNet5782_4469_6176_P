@@ -42,10 +42,25 @@ namespace PL
             new StationListWindow(b).Show();
         }
 
-        private void customers_Click(object sender, RoutedEventArgs e)
+      private void customers_Click(object sender, RoutedEventArgs e)
         {
             new CustomerListWindow(b).Show();
         }
 
+        private void customers_Click_1(object sender, RoutedEventArgs e)
+        {
+
+            new CustomerListWindow(b).Show();
+        }
+
+        private void customers_clicking(object sender, MouseButtonEventArgs e)
+        {
+            new CustomerListWindow(b).Show();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            new CustomerListWindow(b).Show();
+        }
     }
 }

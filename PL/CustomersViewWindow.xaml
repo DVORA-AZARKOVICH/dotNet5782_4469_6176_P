@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="CustomersViewWindow" Height="450" Width="800" >
-
+    <Window.Background>
+        <ImageBrush ImageSource="/images/lit.PNG" Stretch="Fill" />
+    </Window.Background>
     <Grid>
         <Grid x:Name="updateGrid" HorizontalAlignment="Left" Margin="100,100,0,0" VerticalAlignment="Top" Height="200" Width="300">
             <Grid.ColumnDefinitions>

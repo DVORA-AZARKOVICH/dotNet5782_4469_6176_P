@@ -11,6 +11,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="images\2.png" />
+    <None Remove="images\data-storage.png" />
+    <None Remove="images\drone .png" />
+    <None Remove="images\electric-station.png" />
+    <None Remove="images\lit.PNG" />
     <None Remove="images\view.jpg" />
   </ItemGroup>
 
@@ -19,6 +24,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="images\2.png" />
+    <Resource Include="images\data-storage.png" />
+    <Resource Include="images\drone .png" />
+    <Resource Include="images\electric-station.png" />
+    <Resource Include="images\lit.PNG" />
     <Resource Include="images\view.jpg" />
   </ItemGroup>
 

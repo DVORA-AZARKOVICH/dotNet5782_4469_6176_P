@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="ParcelWindow" Height="450" Width="800">
+    <Window.Background>
+        <ImageBrush ImageSource="/images/lit.PNG" Stretch="Fill" />
+    </Window.Background>
     <Grid>
         <Grid x:Name="updateGrid" HorizontalAlignment="Left" Margin="144,0,0,0" VerticalAlignment="Center" Height="237" Width="227">
             <Grid.ColumnDefinitions>
@@ -97,7 +100,7 @@
         <Label Name="senderLabel" Content="sender:" HorizontalAlignment="Left" Margin="478,99,0,0" VerticalAlignment="Top" Height="26" Width="62"/>
         <Button Name="update" Content="update" HorizontalAlignment="Left" Margin="118,341,0,0" VerticalAlignment="Top" Height="33" Width="74" Click="update_Click"/>
         <Button Name="newParcel" Content="new parcel" HorizontalAlignment="Left" Margin="220,341,0,0" VerticalAlignment="Top" Height="33" Width="74" Click="newParcel_Click"/>
-        <Button Name="add" Content="add parcel" HorizontalAlignment="Left" Margin="220,341,0,0" VerticalAlignment="Top" Height="33" Width="74" Click="add_Click"/>
+        <Button Name="add" Content="add parcel" HorizontalAlignment="Left" Margin="220,342,0,0" VerticalAlignment="Top" Height="33" Width="74" Click="add_Click"/>
         <Button Name="Exit" Content="Exit" HorizontalAlignment="Left" Margin="326,342,0,0" VerticalAlignment="Top" Height="32" Width="74" Click="Exit_Click"/>
     </Grid>
 </Window>

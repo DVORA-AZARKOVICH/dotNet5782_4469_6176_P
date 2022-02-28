@@ -6,7 +6,11 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="verifyWindow" Height="200" Width="300">
+    <Window.Background>
+        <ImageBrush ImageSource="/images/lit.PNG" Stretch="Fill" />
+    </Window.Background>
     <Grid Name="Grid" ShowGridLines="True">
+     
         <Grid Margin="23,51,23,51">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>

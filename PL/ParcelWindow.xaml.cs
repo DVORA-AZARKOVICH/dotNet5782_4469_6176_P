@@ -37,8 +37,10 @@ namespace PL
         
         public ParcelWindow(BLApi.IBL b)
         {
+
             InitializeComponent();
             this.bl = b;
+            newParcel.Visibility = Visibility.Hidden;
             AddGrid.Visibility = Visibility.Visible;
             recieverGrid.Visibility = Visibility.Hidden;
             senderGrid.Visibility = Visibility.Hidden;
