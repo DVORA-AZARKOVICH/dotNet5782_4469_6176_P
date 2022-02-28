@@ -549,7 +549,7 @@ namespace BL
                 BO.DroneToList dronetolist = null;
                 dronetolist = dronetolistBL.Find(item => item.Id == numofdrone && item.Status == DroneStatus.free);
                 if (dronetolist is null)
-                    throw new Exception("the Done is not free to deliver to charge");//הרחפן לא פנוי אז אי אפשר לשלוח אותו לטעינה
+                    throw new Exception("the Drone is not free to deliver to charge");//הרחפן לא פנוי אז אי אפשר לשלוח אותו לטעינה
                 IEnumerable<DO.Station> stationlist = Dalob.getStationList(item => item.Deleted == false);
                 List<DO.Station> t = stationlist.ToList();
                 Location c = new Location(dronetolist.Location1.Latitude, dronetolist.Location1.Longitude);

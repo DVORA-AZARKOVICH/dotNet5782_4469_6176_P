@@ -143,9 +143,15 @@ namespace PL
 
         private void DroneListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            DroneWindow dw = new DroneWindow(bl, (DroneToList)DroneListView.SelectedItem);
-            dw.Closed += Dw_Closed;
-            dw.Show();
+            try
+            {
+                DroneWindow dw = new DroneWindow(bl, (DroneToList)DroneListView.SelectedItem);
+                dw.Closed += Dw_Closed;
+                dw.Show();
+            }catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private void Dw_Closed(object sender, EventArgs e)
         {

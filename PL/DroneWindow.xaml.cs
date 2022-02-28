@@ -288,7 +288,6 @@ namespace PL
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
             }
-            this.DataContext = myDrone;
             this.Close();
         }
 

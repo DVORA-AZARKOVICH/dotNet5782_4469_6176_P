@@ -53,24 +53,32 @@ namespace PL
             parcels.Visibility = Visibility.Visible;
             addGrid.Visibility = Visibility.Hidden;
             addThis.Visibility = Visibility.Hidden;
-            ingoingParcelsDataGrid.DataContext = customer.IngoingParcels;
-            outgoingParcelsDataGrid.DataContext = customer.OutgoingParcels;
+            ingoingParcelsDataGrid.DataContext = bl.getParcelList(item => item.ReciverName == c.Name);
+            outgoingParcelsDataGrid.DataContext = bl.getParcelList(item => item.SenderName == c.Name);
             latitudeText.Text = customer.Location.Latitude.ToString();
             longitudeText.Text = customer.Location.Longitude.ToString();
         }
 
         private void ingoingParcelsDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            ParcelWindow win = new ParcelWindow(bl, ingoingParcelsDataGrid.SelectedItem as ParcelForList);
-            //win.Closed += Win_Closed;
-            win.Show();
+            ParcelForList p = ingoingParcelsDataGrid.SelectedItem as ParcelForList;
+            if (p != null)
+            {
+                ParcelWindow win = new ParcelWindow(bl, p);
+                //win.Closed += Win_Closed;
+                win.Show();
+            }
         }
 
         private void outgoingParcelsDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            ParcelWindow win = new ParcelWindow(bl, outgoingParcelsDataGrid.SelectedItem as ParcelForList);
-           // win.Closed += Win_Closed;
-            win.Show();
+            ParcelForList p = outgoingParcelsDataGrid.SelectedItem as ParcelForList;
+            if (p != null)
+            {
+                ParcelWindow win = new ParcelWindow(bl, p);
+                //win.Closed += Win_Closed;
+                win.Show();
+            }
         }
 
         private void update_Click(object sender, RoutedEventArgs e)
@@ -117,7 +125,6 @@ namespace PL
             c.Location = new Location(Convert.ToInt32(latitude.Text), Convert.ToInt32(longitude.Text));
             bl.AddCustomer(c);
             MessageBox.Show("New customer was added seccessfully!", "added!", MessageBoxButton.OK, MessageBoxImage.None);
-            this.Close();
         }
 
     }

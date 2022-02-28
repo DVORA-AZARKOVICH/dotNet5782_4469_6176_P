@@ -40,7 +40,7 @@ namespace PL
             {
                 updatePickedUp.Visibility = Visibility.Hidden;
             }
-            if (parcel.Delivered != null)
+            else if (parcel.Delivered != null)
             {
                 updateDelivered.Visibility = Visibility.Hidden;
             }

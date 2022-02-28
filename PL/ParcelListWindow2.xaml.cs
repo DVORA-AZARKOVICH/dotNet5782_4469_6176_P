@@ -128,20 +128,23 @@ namespace PL
         private void newParcel_Click(object sender, RoutedEventArgs e)
         {
             ParcelWindow win = new ParcelWindow(bl);
+            win.Closed += Win_Closed;
             win.Show();
         }
 
         private void parcelForListDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ParcelForList p = parcelForListDataGrid.SelectedItem as ParcelForList;
-            if (p != null) {
+            if (p != null) 
+            {
                 ParcelWindow win = new ParcelWindow(bl,p);
                 win.Closed += Win_Closed;
-                win.Show(); }
+                win.Show();
+            }
         }
         private void Win_Closed(object sender, EventArgs e)
         {
-            parcelForListDataGrid.ItemsSource = bl.getdroneList();
+            parcelForListDataGrid.ItemsSource =bl.getParcelList();
         }
     }
 }
