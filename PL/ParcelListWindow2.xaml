@@ -28,14 +28,14 @@
             <RowDefinition/>
             <RowDefinition Height="62.006"/>
         </Grid.RowDefinitions>
-        <DataGrid x:Name="parcelForListDataGrid" Grid.ColumnSpan="6" Margin="133,10,133,0" Grid.RowSpan="4" Grid.Row="2" MouseDoubleClick="parcelForListDataGrid_MouseDoubleClick">
-            <DataGrid.Columns >
-                <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="priorityColumn" Binding="{Binding Priority}" Header="Priority" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="reciverNameColumn" Binding="{Binding ReciverName}" Header="Reciver Name" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="senderNameColumn" Binding="{Binding SenderName}" Header="Sender Name" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="statusColumn" Binding="{Binding Status}" Header="Status" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="weightColumn" Binding="{Binding Weight}" Header="Weight" Width="SizeToHeader"/>
+        <DataGrid x:Name="parcelForListDataGrid" IsReadOnly="True" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="1,14,10,0" RowDetailsVisibilityMode="VisibleWhenSelected" MouseDoubleClick="parcelForListDataGrid_MouseDoubleClick" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="4" Grid.Row="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
+                <DataGridTextColumn Binding="{Binding Priority}" Header="Priority" Width="SizeToHeader"/>
+                <DataGridTextColumn Binding="{Binding ReciverName}" Header="Reciver Name" Width="SizeToHeader"/>
+                <DataGridTextColumn Binding="{Binding SenderName}" Header="Sender Name" Width="SizeToHeader"/>
+                <DataGridTextColumn Binding="{Binding Status}" Header="Status" Width="SizeToHeader"/> 
+                <DataGridTextColumn Binding="{Binding Weight}" Header="Weight" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button Name="sender" Content="group by sender" Grid.Column="1" VerticalAlignment="Center" RenderTransformOrigin="1.277,8.041" Height="62" Width="133" Grid.Row="1" Click="sender_Click"/>

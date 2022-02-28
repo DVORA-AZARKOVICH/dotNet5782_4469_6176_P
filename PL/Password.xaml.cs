@@ -27,11 +27,21 @@ namespace PL
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (password == password_text.Password)
+            try
             {
-                ManagerWindow win = new ManagerWindow();
-                win.Show();
-                this.Close();
+                if (password == password_text.Password)
+                {
+                    ManagerWindow win = new ManagerWindow();
+                    win.Show();
+                    this.Close();
+                }
+                else throw new Exception("the password is incorrect!");
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                password_text.Clear();
             }
         }
     }

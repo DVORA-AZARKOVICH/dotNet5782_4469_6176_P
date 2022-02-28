@@ -101,9 +101,9 @@
             </Image.RenderTransform>
         </Image>
         <Label Content="view drone list" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="115" />
-        <Label Content="view customer list" Grid.Row="1" Grid.Column="5" HorizontalAlignment="Left" Margin="114,0,0,0" VerticalAlignment="Center" RenderTransformOrigin="10.409,1.574" Grid.ColumnSpan="2"/>
-        <Label Content="view statio list" Grid.Row="5"  Grid.Column="1" HorizontalAlignment="Left" Margin="114,25,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="30" Grid.RowSpan="2" Width="91"/>
-        <Label Content="view parcel list" Grid.Row="5" Grid.Column="6" HorizontalAlignment="Left" Margin="10,25,0,0"  VerticalAlignment="Top" Grid.ColumnSpan="2" Width="105"/>
+        <Label Content="view customer list" Grid.Row="1" Grid.Column="5" HorizontalAlignment="Left" Margin="104,0,0,0" VerticalAlignment="Center" RenderTransformOrigin="10.409,1.574" Grid.ColumnSpan="3" Width="139"/>
+        <Label Content="view statio list" Grid.Row="5"  Grid.Column="2" Margin="0,25,0,0" VerticalAlignment="Top" Height="30" Grid.RowSpan="2" Width="115"/>
+        <Label Content="view parcel list" Grid.Row="5" Grid.Column="5" HorizontalAlignment="Left" Margin="111,26,0,0"  VerticalAlignment="Top" Grid.ColumnSpan="3" Width="118" Grid.RowSpan="2"/>
         <Image   MouseRightButtonDown="customers_clicking"  Grid.Column="6" HorizontalAlignment="Left" Height="96" Margin="21,27,0,0" VerticalAlignment="Top" Width="108" Source="/images/2.png" Grid.RowSpan="3" Grid.Row="1" Grid.ColumnSpan="2"/>
         <Button Content="" Grid.Column="6" Margin="10,49,0,10" Grid.Row="1" Width="79" MouseRightButtonDown="customers_clicking" MouseRightButtonUp="customers_clicking" Click="Button_Click" Grid.RowSpan="2" HorizontalAlignment="Left"/>
     </Grid>

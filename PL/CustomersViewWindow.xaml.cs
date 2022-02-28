@@ -61,12 +61,16 @@ namespace PL
 
         private void ingoingParcelsDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            
+            ParcelWindow win = new ParcelWindow(bl, ingoingParcelsDataGrid.SelectedItem as ParcelForList);
+            //win.Closed += Win_Closed;
+            win.Show();
         }
 
         private void outgoingParcelsDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-
+            ParcelWindow win = new ParcelWindow(bl, outgoingParcelsDataGrid.SelectedItem as ParcelForList);
+           // win.Closed += Win_Closed;
+            win.Show();
         }
 
         private void update_Click(object sender, RoutedEventArgs e)

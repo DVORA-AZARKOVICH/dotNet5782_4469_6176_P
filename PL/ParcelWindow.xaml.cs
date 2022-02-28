@@ -25,16 +25,25 @@ namespace PL
         /// </summary>
         /// <param name="b"></param>
         /// <param name="p"></param>
-        public ParcelWindow(BLApi.IBL b,BL.BO.Parcel p)
+        public ParcelWindow(BLApi.IBL b,BL.BO.ParcelForList p)
         {
             InitializeComponent();
             bl = b;
-            parcel = b.getParcel(p.Id);
+            parcel = bl.getParcel(p.Id);
+            //parcel = b.getParcel(p.Id);
             updateGrid.DataContext = parcel;
             AddGrid.Visibility = Visibility.Hidden;
             senderGrid.DataContext = parcel.Sender;
             recieverGrid.DataContext = parcel.Receiver;
             add.Visibility = Visibility.Hidden;
+            if (parcel.PickedUp != null)
+            {
+                updatePickedUp.Visibility = Visibility.Hidden;
+            }
+            if (parcel.Delivered != null)
+            {
+                updateDelivered.Visibility = Visibility.Hidden;
+            }
             
         }
 
@@ -55,7 +64,10 @@ namespace PL
                                   select item.Id;
             priority.ItemsSource=Enum.GetValues(typeof(Priority));
             weight.ItemsSource = Enum.GetValues(typeof(WeightCategories));
-            
+            updateDelivered.Visibility=Visibility.Hidden;
+            updatePickedUp.Visibility=Visibility.Hidden;
+            senderLabel.Visibility=Visibility.Hidden;  
+            reciverLabel.Visibility=Visibility.Hidden; 
         }
         public ParcelWindow(BLApi.IBL b,int id)
         {
@@ -98,7 +110,10 @@ namespace PL
                                   select item.Id;
             priority.ItemsSource = Enum.GetValues(typeof(Priority));
             weight.ItemsSource = Enum.GetValues(typeof(WeightCategories));
-            
+            updateDelivered.Visibility = Visibility.Hidden;
+            updatePickedUp.Visibility = Visibility.Hidden;
+            senderLabel.Visibility = Visibility.Hidden;
+            reciverLabel.Visibility = Visibility.Hidden;
         }
 
         private void add_Click(object sender, RoutedEventArgs e)
@@ -126,6 +141,16 @@ namespace PL
         {
             this.Close();
 
+        }
+
+        private void updateDelivered_Click(object sender, RoutedEventArgs e)
+        {
+            bl.UpdateDeliverdByDrone(parcel.Droneinparcel.Id);
+        }
+
+        private void updatePickedUp_Click(object sender, RoutedEventArgs e)
+        {
+            bl.UpdatePickedByDrone(parcel.Droneinparcel.Id);
         }
     }
 }
