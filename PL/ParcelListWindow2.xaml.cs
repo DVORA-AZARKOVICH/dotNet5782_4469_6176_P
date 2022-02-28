@@ -33,9 +33,9 @@ namespace PL
         {
             InitializeComponent();
             bl = b;
-           // parcelForListDataGrid.IsReadOnly = true;
+          
             parcelForListDataGrid.ItemsSource = b.getParcelList(item => item.ReciverName == c.Name);
-           // sort.ItemsSource = Enum.GetValues(typeof(ParcelStatus));
+           
             sort.Visibility = Visibility.Hidden;
             reciver.Visibility = Visibility.Hidden;
             sender.Visibility = Visibility.Hidden;
@@ -47,9 +47,8 @@ namespace PL
             InitializeComponent();
             bl = b;
             customer = c;
-
             parcelForListDataGrid.ItemsSource = bl.getParcelList(item => item.SenderName == c.Name);
-            // sort.ItemsSource = Enum.GetValues(typeof(ParcelStatus));
+            
             sort.Visibility = Visibility.Hidden;
             reciver.Visibility = Visibility.Hidden;
             sender.Visibility = Visibility.Hidden;
@@ -134,11 +133,13 @@ namespace PL
 
         private void parcelForListDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            ParcelForList p = parcelForListDataGrid.SelectedItem as ParcelForList;
-            Parcel pr = bl.getParcel(p.Id);
-            ParcelWindow dw = new ParcelWindow(bl,pr);
-          //  dw.Closed += Dw_Closed;
-            dw.Show();
+            ParcelWindow win = new ParcelWindow(bl,parcelForListDataGrid.SelectedItem as ParcelForList);
+            win.Closed += Win_Closed;
+            win.Show();
+        }
+        private void Win_Closed(object sender, EventArgs e)
+        {
+            parcelForListDataGrid.ItemsSource = bl.getdroneList();
         }
     }
 }

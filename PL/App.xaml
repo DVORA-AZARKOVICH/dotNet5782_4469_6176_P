@@ -26,5 +26,13 @@
             <Setter Property="Control.Foreground" Value="Red"/>
         </Style>
 
+        <Style TargetType="Label">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Control.FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="Control.FontSize" Value="14"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+        </Style>
+
     </Application.Resources>
 </Application>

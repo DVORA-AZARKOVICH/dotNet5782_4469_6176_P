@@ -106,6 +106,13 @@ namespace PL
         {
             this.Close();
         }
+
+        private void dronesInChargingDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            DroneWindow dw = new DroneWindow(bl, (DroneToList)dronesInChargingDataGrid.SelectedItem);
+            //dw.Closed += Dw_Closed;
+            dw.Show();
+        }
     }
 
 }

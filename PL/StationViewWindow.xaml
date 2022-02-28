@@ -35,7 +35,7 @@
             <Label Content="Longitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
             <TextBlock x:Name="longitudeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" Text="{Binding Location.Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
         </Grid>
-        <Grid x:Name="addGrid" HorizontalAlignment="Left" Margin="98,89,0,0" VerticalAlignment="Top" Height="197" Width="235">
+        <Grid x:Name="addGrid"  HorizontalAlignment="Left" Margin="98,89,0,0" VerticalAlignment="Top" Height="197" Width="235">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -65,7 +65,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Content="Drones In Charging:"  HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <DataGrid x:Name="dronesInChargingDataGrid" DisplayMemberPath="DronesInCharging" HorizontalAlignment="Left" Height="182" ItemsSource="{Binding}" Margin="3,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="259">
+            <DataGrid x:Name="dronesInChargingDataGrid" IsReadOnly="True" DisplayMemberPath="DronesInCharging" HorizontalAlignment="Left" Height="182" ItemsSource="{Binding}" Margin="3,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="259" MouseDoubleClick="dronesInChargingDataGrid_MouseDoubleClick">
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="batteryStatusColumn" Binding="{Binding BatteryStatus}" Header="Battery Status" Width="SizeToHeader"/>
                     <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
