@@ -57,12 +57,34 @@ namespace PL
             weight.ItemsSource = Enum.GetValues(typeof(WeightCategories));
             
         }
+        public ParcelWindow(BLApi.IBL b,int id)
+        {
+
+            InitializeComponent();
+            this.bl = b;
+            Parcel p = bl.getParcel(id);
+            //newParcel.Visibility = Visibility.Hidden;
+            AddGrid.Visibility = Visibility.Visible;
+            recieverGrid.Visibility = Visibility.Hidden;
+            senderGrid.Visibility = Visibility.Hidden;
+            // update.Visibility = Visibility.Hidden;
+            updateGrid.Visibility = Visibility.Hidden;
+            Sender.ItemsSource = from item in bl.getCustomerList()
+                                 select item.Id;
+            Reciver.ItemsSource = from item in bl.getCustomerList()
+                                  select item.Id;
+            priority.ItemsSource = Enum.GetValues(typeof(Priority));
+            weight.ItemsSource = Enum.GetValues(typeof(WeightCategories));
+
+        }
+
 
         public ParcelWindow(BLApi.IBL b,BL.BO.Customer c ,object e)
         {
 
             InitializeComponent();
             this.bl = b;
+            
             //newParcel.Visibility = Visibility.Hidden;
             AddGrid.Visibility = Visibility.Visible;
             recieverGrid.Visibility = Visibility.Hidden;
