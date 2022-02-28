@@ -17,7 +17,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
-            <Button Name="Group" Content="group stations by free charging slots" Grid.Row="0"  Margin="187,-2,5,2" Click="Group_Click" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2"/> 
+            <Button Name="Group" Content="group stations by free charging slots" Grid.Row="0"  Margin="187,-2,5,2" Click="Group_Click" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2"/>
             <Button Name="refresh" Content="refresh" Grid.Column="2" Grid.Row="0"  Margin="0,-2,0,2" Click="refresh_Click" Width="200"/>
         </Grid >
         <DataGrid x:Name="stationToListDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="196,138,196,81" RowDetailsVisibilityMode="VisibleWhenSelected" MouseDoubleClick="stationToListDataGrid_MouseDoubleClick">
@@ -28,5 +28,7 @@
                 <DataGridTextColumn x:Name="busyChargingSlotsColumn" Binding="{Binding BusyChargingSlots}" Header="Busy Charging Slots" Width="SizeToHeader" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Button x:Name="add" Content="add station" HorizontalAlignment="Left" Margin="325,358,0,0" VerticalAlignment="Top" Height="44" Width="75" Click="add_Click" RenderTransformOrigin="3.074,0.953"/>
+
     </Grid>
 </Window>

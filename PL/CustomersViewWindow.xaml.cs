@@ -33,7 +33,7 @@ namespace PL
             updateGrid.Visibility = Visibility.Hidden;
             parcels.Visibility = Visibility.Hidden;
             addGrid.Visibility = Visibility.Visible;
-            add.Visibility = Visibility.Hidden;
+            //add.Visibility = Visibility.Hidden;
             update.Visibility = Visibility.Hidden;
             updateGrid.DataContext = customer;
         }
@@ -97,12 +97,7 @@ namespace PL
             }
         }
 
-        private void add_Click(object sender, RoutedEventArgs e)
-        {
-            CustomersViewWindow addCustomer = new CustomersViewWindow(bl);
-            addCustomer.ShowDialog();
-            this.Close();
-        }
+
 
         private void close_Click(object sender, RoutedEventArgs e)
         {

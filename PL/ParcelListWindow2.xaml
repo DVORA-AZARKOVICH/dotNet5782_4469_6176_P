@@ -28,7 +28,7 @@
             <RowDefinition/>
             <RowDefinition Height="62.006"/>
         </Grid.RowDefinitions>
-        <DataGrid x:Name="parcelForListDataGrid" Grid.ColumnSpan="6" Margin="133,10,133,0" Grid.RowSpan="4" Grid.Row="2">
+        <DataGrid x:Name="parcelForListDataGrid" Grid.ColumnSpan="6" Margin="133,10,133,0" Grid.RowSpan="4" Grid.Row="2" MouseDoubleClick="parcelForListDataGrid_MouseDoubleClick">
             <DataGrid.Columns >
                 <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="priorityColumn" Binding="{Binding Priority}" Header="Priority" Width="SizeToHeader"/>
@@ -38,11 +38,10 @@
                 <DataGridTextColumn x:Name="weightColumn" Binding="{Binding Weight}" Header="Weight" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
-
         <Button Name="sender" Content="group by sender" Grid.Column="1" VerticalAlignment="Center" RenderTransformOrigin="1.277,8.041" Height="62" Width="133" Grid.Row="1" Click="sender_Click"/>
         <Button Name="reciver" Content="group by reciver"  Grid.Column="2" VerticalAlignment="Center" Height="62" Width="123" Grid.Row="1" Click="reciver_Click"/>
-        <Label Content="Status:" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="3" Margin="0,62,0,0" Height="57" Width="134" Grid.RowSpan="2"/>
+        <Label Name="statusLabel" Content="Status:" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="3" Margin="0,62,0,0" Height="57" Width="134" Grid.RowSpan="2"/>
         <ComboBox Name="sort" Grid.Column="4" Margin="1,10,133,0" Grid.Row="1" VerticalAlignment="Top" Height="40" Grid.ColumnSpan="2" SelectionChanged="sort_SelectionChanged"/>
-
+        <Button Name="newParcel" Content="new parcel" HorizontalAlignment="Left" Margin="37,0,0,0" VerticalAlignment="Center" Height="42" Width="86" Click="newParcel_Click" Grid.Column="2" Grid.Row="6"/>
     </Grid>
 </Window>

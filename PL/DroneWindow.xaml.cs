@@ -270,8 +270,8 @@ namespace PL
 
         private void update_Click(object sender, RoutedEventArgs e)
         {
-            bl.UpdateDrone(myDrone.Id, model.Text);
-            this.DataContext = myDrone;
+            bl.UpdateDrone(myDrone.Id, Model.Text);
+           // this.DataContext = myDrone;
             this.Close();
         }
 

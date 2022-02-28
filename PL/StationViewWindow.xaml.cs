@@ -50,7 +50,7 @@ namespace PL
             updateGrid.Visibility = Visibility.Hidden;
             drones.Visibility = Visibility.Hidden;
             addGrid.Visibility = Visibility.Visible;
-            add.Visibility = Visibility.Hidden;
+            //add.Visibility = Visibility.Hidden;
             update.Visibility = Visibility.Hidden;
             addThis.Visibility = Visibility.Visible;
             close.Visibility = Visibility.Visible;
@@ -87,11 +87,7 @@ namespace PL
 
         }
 
-        private void add_Click(object sender, RoutedEventArgs e)
-        {
-            StationViewWindow win = new StationViewWindow(bl);
-            win.ShowDialog();
-        }
+
 
         private void addThis_Click(object sender, RoutedEventArgs e)
         {

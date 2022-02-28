@@ -39,6 +39,7 @@ namespace PL
             sort.Visibility = Visibility.Hidden;
             reciver.Visibility = Visibility.Hidden;
             sender.Visibility = Visibility.Hidden;
+            newParcel.Visibility = Visibility.Hidden;
 
         }
         public ParcelListWindow2(BLApi.IBL b, Customer c, EventArgs e)
@@ -52,6 +53,7 @@ namespace PL
             sort.Visibility = Visibility.Hidden;
             reciver.Visibility = Visibility.Hidden;
             sender.Visibility = Visibility.Hidden;
+            newParcel.Visibility = Visibility.Hidden;
         }
 
         private void sender_Click(object sender, RoutedEventArgs e)
@@ -124,6 +126,19 @@ namespace PL
                     MessageBoxImage.Error);
             }
         }
+        private void newParcel_Click(object sender, RoutedEventArgs e)
+        {
+            ParcelWindow win = new ParcelWindow(bl);
+            win.Show();
+        }
 
+        private void parcelForListDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ParcelForList p = parcelForListDataGrid.SelectedItem as ParcelForList;
+            Parcel pr = bl.getParcel(p.Id);
+            ParcelWindow dw = new ParcelWindow(bl,pr);
+          //  dw.Closed += Dw_Closed;
+            dw.Show();
+        }
     }
 }
