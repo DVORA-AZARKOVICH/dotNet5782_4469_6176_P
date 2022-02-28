@@ -133,9 +133,11 @@ namespace PL
 
         private void parcelForListDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            ParcelWindow win = new ParcelWindow(bl,parcelForListDataGrid.SelectedItem as ParcelForList);
-            win.Closed += Win_Closed;
-            win.Show();
+            ParcelForList p = parcelForListDataGrid.SelectedItem as ParcelForList;
+            if (p != null) {
+                ParcelWindow win = new ParcelWindow(bl,p);
+                win.Closed += Win_Closed;
+                win.Show(); }
         }
         private void Win_Closed(object sender, EventArgs e)
         {

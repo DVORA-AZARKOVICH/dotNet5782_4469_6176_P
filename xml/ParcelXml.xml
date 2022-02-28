@@ -43,7 +43,7 @@
     <Id>1003</Id>
     <Senderid>325036179</Senderid>
     <Targetid>325036180</Targetid>
-    <Weightcategory>medium</Weightcategory>
+    <Weightcategory>light</Weightcategory>
     <Priority>regular</Priority>
     <Requested>2022-02-28T20:23:55.4927616+02:00</Requested>
     <Droneid>0</Droneid>
