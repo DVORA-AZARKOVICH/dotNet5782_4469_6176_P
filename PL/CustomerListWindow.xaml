@@ -7,10 +7,10 @@
         mc:Ignorable="d"
         Title="CustomerListWindow" Height="450" Width="800">
    <Window.Background>
-        <ImageBrush ImageSource="/images/view.jpg" Stretch="Fill" />
+        <ImageBrush ImageSource="/images/lit.PNG" Stretch="Fill" />
     </Window.Background> 
     <Grid>
-        <DataGrid x:Name="customerForListDataGrid" AutoGenerateColumns="False" MouseDoubleClick="customerForListDataGrid_MouseDoubleClick" EnableRowVirtualization="True" Margin="111,73,90,107" RowDetailsVisibilityMode="VisibleWhenSelected">
+        <DataGrid x:Name="customerForListDataGrid" AutoGenerateColumns="False" MouseDoubleClick="customerForListDataGrid_MouseDoubleClick" EnableRowVirtualization="True" Margin="100,90,100,90" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="arrivedColumn" Binding="{Binding Arrived}" Header="Arrived" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="deliveredColumn" Binding="{Binding Delivered}" Header="Delivered" Width="SizeToHeader"/>

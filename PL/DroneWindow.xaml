@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="DroneWindow" Height="450" Width="800">
     <Window.Background>
-        <ImageBrush ImageSource="/images/view.jpg" Stretch="Fill" />
+        <ImageBrush ImageSource="/images/lit.PNG" Stretch="Fill" />
     </Window.Background>
     <Grid ShowGridLines="False" HorizontalAlignment="Left" Width="800" Margin="10,0,0,0" Name="droneGrid">
         <Grid.ColumnDefinitions>

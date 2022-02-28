@@ -33,6 +33,8 @@ namespace PL
             {
                 customer = bl.getCustomer(Convert.ToInt32(UserID.Password));
 
+                
+                
                 if (UserName.Text == customer.Name)
                 {
                     UserWindow win = new UserWindow(bl,customer);
