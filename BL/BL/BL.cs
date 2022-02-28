@@ -642,7 +642,7 @@ namespace BL
                         s = stations;
                         s.Chargslot++;
                         Dalob.addStation(s);
-                        Dalob.deleteDroneCharge(numofdrone);
+                        //Dalob.deleteDroneCharge(numofdrone);
 
                     }
                     catch (Exception ex)
@@ -768,7 +768,7 @@ namespace BL
             return drones;
             //throw new Exceptions.emptyListException("there are no drones of this type");
         }
-        public DroneToList NextState(int id)
+       /* public DroneToList NextState(int id)
         {
             DroneToList d2 = dronetolistBL.Find(d3 => d3.Id == id);
             dronetolistBL.Remove(d2);
@@ -783,8 +783,8 @@ namespace BL
             }
             dronetolistBL.Add(d2);
             return d2;
-        }
-        void IBL.NextState(int id)
+        }*/
+        public void NextState(int id)
         {
             bool flag = false;
             BO.Drone d = getDrone(id);
