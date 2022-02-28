@@ -3,25 +3,17 @@
   <Station>
     <Id>10000000</Id>
     <Name>station65</Name>
-    <Longitude>30.41349544441956</Longitude>
-    <Latitude>35.62837592634762</Latitude>
-    <Chargslot>6</Chargslot>
-    <Deleted>true</Deleted>
-  </Station>
-  <Station>
-    <Id>10000001</Id>
-    <Name>station66</Name>
-    <Longitude>29.556391368879186</Longitude>
-    <Latitude>35.10771397832209</Latitude>
+    <Longitude>30.54441578106229</Longitude>
+    <Latitude>34.72606836758837</Latitude>
     <Chargslot>6</Chargslot>
     <Deleted>false</Deleted>
   </Station>
   <Station>
-    <Id>10000000</Id>
-    <Name>station65</Name>
-    <Longitude>30.41349544441956</Longitude>
-    <Latitude>35.62837592634762</Latitude>
-    <Chargslot>4</Chargslot>
+    <Id>10000001</Id>
+    <Name>station66</Name>
+    <Longitude>33.13682185073235</Longitude>
+    <Latitude>34.971652766210795</Latitude>
+    <Chargslot>6</Chargslot>
     <Deleted>false</Deleted>
   </Station>
 </ArrayOfStation>

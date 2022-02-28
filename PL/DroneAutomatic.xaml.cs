@@ -162,7 +162,7 @@ namespace PL
 
         private void idparcel_Click(object sender, RoutedEventArgs e)
         {
-            try
+         /*   try
             {
                 int id = Convert.ToInt32(idparcel.Content);
                 Parcel p = bl.getParcel(id);
@@ -172,7 +172,7 @@ namespace PL
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK);
-            }
+            }*/
         }
 
         private void cancel_Click(object sender, RoutedEventArgs e)
