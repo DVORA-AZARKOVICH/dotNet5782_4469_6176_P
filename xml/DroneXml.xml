@@ -9,7 +9,7 @@
   <Drone>
     <Id>1000001</Id>
     <Model>a</Model>
-    <Maxweight>medium</Maxweight>
+    <Maxweight>light</Maxweight>
     <Deleted>false</Deleted>
   </Drone>
   <Drone>

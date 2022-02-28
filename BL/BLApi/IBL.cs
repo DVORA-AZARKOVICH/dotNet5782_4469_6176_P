@@ -32,6 +32,7 @@ namespace BLApi
         ParcelInTransfer convertToParcelInTransfer(DO.Parcel p);
         List<DroneToList> getdroneList();
         IEnumerable<DroneToList> getdroneList(Predicate<DroneToList> predicate);
+        void NextState(int id);
         #endregion
 
         #region Station
@@ -65,7 +66,7 @@ namespace BLApi
         int LastDigitID(int x);
         bool CheckIdentityNumber(int id);
         double SumCharge(DO.Parcel? itemparcel, DroneToList updatedrone);
-        void NextState(int id);
+        
 
         #endregion
     }

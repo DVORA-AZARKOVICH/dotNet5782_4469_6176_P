@@ -38,6 +38,18 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Label Name="buttery" Content="buttery" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="8" VerticalAlignment="Center" Grid.ColumnSpan="3" Height="37" Width="133" Margin="66,0,0,0"/>
+        <Label  Name="status" Content="Status" Grid.Column="7" HorizontalAlignment="Center" Grid.Row="7" VerticalAlignment="Center" Height="36" Width="66" RenderTransformOrigin="-0.358,0.492"/>
+        <Label Visibility="Visible" Name="actualstatus" Content="status"  Grid.Column="7" HorizontalAlignment="Center" Grid.Row="8" VerticalAlignment="Center" Width="65" Height="36"/>
+        <Label  Visibility="Visible" Content="Authomatic" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center" Width="66" Height="36" Grid.Row="1"/>
+        <Label Content="ID:" Grid.Column="3" HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Center" Height="36" Width="67"/>
+        <Label Content="id" Visibility="Visible" Name="id"  Grid.Column="5" HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Center" Width="67" Height="35"/>
+        <Button Name="start" Content="start" Grid.Column="3" Grid.Row="3" VerticalAlignment="Center" Height="36" Width="67" Click="start_Click"/>
+        <Button Name="stop" Content="stop" Grid.Column="7" Grid.Row="3" VerticalAlignment="Center" Width="66" Height="35" Click="stop_Click"/>
+        <Button x:Name="cancel" Content="cancel" Grid.Column="5" Grid.Row="3" VerticalAlignment="Center" Height="35" Width="67" Click="cancel_Click"/>
+        <Label Content="buttery" Grid.Column="2" HorizontalAlignment="Left" Margin="34,18,0,0" Grid.Row="6" VerticalAlignment="Top" Width="57" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <Label Name="the_parcel" Content="The Parcel" Grid.Column="4" Margin="0,35,0,36" Grid.RowSpan="3" Grid.Row="9"/>
+        <Label Name="pp" Content="" Grid.Column="5" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Row="10" VerticalAlignment="Center" Height="36" Width="62"/>
 
 
     </Grid>

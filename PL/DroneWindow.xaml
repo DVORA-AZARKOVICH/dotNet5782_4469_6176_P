@@ -114,7 +114,7 @@
         <Button Name="release"  Content="release from charging" Grid.Column="2" HorizontalAlignment="Left" Margin="11,0,0,0" Grid.Row="10" VerticalAlignment="Center" Height="33" Width="235" Click="release_Click"  FontFamily="Aharoni" FontSize="16"/>
         <Button Name="delieverd"  Content="update delivery" Grid.Column="2" HorizontalAlignment="Left" Margin="11,0,0,0" Grid.Row="10" VerticalAlignment="Center" Height="33" Width="235" Click="delieverd_Click"  FontFamily="Aharoni" FontSize="16"/>
         <Button Name="pickUp"  Content="update pick up" Grid.Column="1" Grid.Row="10" VerticalAlignment="Center" Height="33" Width="246" Click="pickUp_Click" FontFamily="Aharoni" FontSize="16"/>
-        <Button Content="outomatic" Grid.Column="1" Grid.Row="11" Grid.RowSpan="1" Width="245" Height="34" VerticalAlignment="Top" Click="Button_Click"/>
+        <Button Content="outomatic" Grid.Column="1" Grid.Row="11" Grid.RowSpan="1" Width="245" Click="Button_Click" Margin="0,0,0,2"/>
         <!-- <TextBlock Name="weight_d" Grid.Column="2" HorizontalAlignment="Left" Margin="11,6,0,0" Grid.Row="3" VerticalAlignment="Top" Width="235" Height="28" RenderTransformOrigin="0.265,0.53" Text="{Binding Path= Weight}"/>
         <TextBlock Name="Status_d" Grid.Column="2" Text="{Binding Path = Status}" HorizontalAlignment="Left" Margin="11,39,0,10" Grid.Row="4" Width="235" Grid.RowSpan="2" RenderTransformOrigin="0.506,0.843"/> -->
 

@@ -137,9 +137,9 @@ namespace PL
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            int idd = Convert.ToInt32(DroneId.Text);
+            int idd =1* Convert.ToInt32(Id.Text);
             // worker.RunWorkerAsync(idd);
-            DroneAutomatic d = new DroneAutomatic(idd);
+            DroneAutomatic d = new DroneAutomatic(bl,idd);
             d.Show();
 
         }
