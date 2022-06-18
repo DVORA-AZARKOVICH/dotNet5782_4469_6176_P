@@ -46,6 +46,27 @@ namespace PL
             }
             
         }
+        public ParcelWindow(BLApi.IBL b, BL.BO.Parcel p)
+        {
+            InitializeComponent();
+            bl = b;
+            parcel = bl.getParcel(p.Id);
+            //parcel = b.getParcel(p.Id);
+            updateGrid.DataContext = parcel;
+            AddGrid.Visibility = Visibility.Hidden;
+            senderGrid.DataContext = parcel.Sender;
+            recieverGrid.DataContext = parcel.Receiver;
+            add.Visibility = Visibility.Hidden;
+            if (parcel.PickedUp != null)
+            {
+                updatePickedUp.Visibility = Visibility.Hidden;
+            }
+            if (parcel.Delivered != null)
+            {
+                updateDelivered.Visibility = Visibility.Hidden;
+            }
+
+        }
 
         public ParcelWindow(BLApi.IBL b)
         {
@@ -69,12 +90,34 @@ namespace PL
             senderLabel.Visibility=Visibility.Hidden;  
             reciverLabel.Visibility=Visibility.Hidden; 
         }
+        public ParcelWindow(BLApi.IBL b,int id)
+        {
+
+            InitializeComponent();
+            this.bl = b;
+            Parcel p = bl.getParcel(id);
+            //newParcel.Visibility = Visibility.Hidden;
+            AddGrid.Visibility = Visibility.Visible;
+            recieverGrid.Visibility = Visibility.Hidden;
+            senderGrid.Visibility = Visibility.Hidden;
+            // update.Visibility = Visibility.Hidden;
+            updateGrid.Visibility = Visibility.Hidden;
+            Sender.ItemsSource = from item in bl.getCustomerList()
+                                 select item.Id;
+            Reciver.ItemsSource = from item in bl.getCustomerList()
+                                  select item.Id;
+            priority.ItemsSource = Enum.GetValues(typeof(Priority));
+            weight.ItemsSource = Enum.GetValues(typeof(WeightCategories));
+
+        }
+
 
         public ParcelWindow(BLApi.IBL b,BL.BO.Customer c ,object e)
         {
 
             InitializeComponent();
             this.bl = b;
+            
             //newParcel.Visibility = Visibility.Hidden;
             AddGrid.Visibility = Visibility.Visible;
             recieverGrid.Visibility = Visibility.Hidden;

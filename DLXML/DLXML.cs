@@ -180,7 +180,7 @@ namespace Dal
             try
             {
                 CustomerElement = (from p in CustomerRoot.Elements()
-                                   where Convert.ToInt32(p.Element("id").Value) == id
+                                   where Convert.ToInt32(p.Element("Id").Value) == id
                                    select p).FirstOrDefault();
                 CustomerElement.Remove();
                 CustomerRoot.Save(customerPath);
@@ -376,7 +376,7 @@ namespace Dal
             XMLTools.SaveListToXNLSerialzer<DO.Dronecharge>(dronechargeList, dronchargePath);
         }
         public void deleteDroneCharge(int id)
-        {
+     {
             List<DO.Dronecharge> dronechargeList = XMLTools.LoadListFromXMLSerialzer<DO.Dronecharge>(dronchargePath);
             int index = dronechargeList.FindIndex(t => t.Droneid == id && t.Deleted == false);
             if (index == -1)
@@ -565,7 +565,6 @@ namespace Dal
             return s.Longitude;
 
         }
-        //to use customer's
         public double DistanceCustomerLAT(int numofcustomer)
         {
             try
@@ -589,12 +588,6 @@ namespace Dal
         }
         public double DistanceCustomerLONG(int numofcustomer)
         {
-            /* List<DO.Customer> customerList = XMLTools.LoadListFromXMLSerialzer<DO.Customer>(customerPath);
-             int index = customerList.FindIndex(t => t.Id == numofcustomer && t.Deleted == false);
-             if (index == -1)
-                 throw new Exception("DAL: Customer with the same id not found...");
-             Customer c = customerList.FirstOrDefault(t => t.Id == numofcustomer && t.Deleted == false);
-             return c.Longitude;*/
             try
             {
                 Customer c = this.getCustomer(numofcustomer);
@@ -620,10 +613,6 @@ namespace Dal
                 serializer.Deserialize(stream);
             }
             return temp3;
-          /*  var temp1 = XMLTools.LoadListFromXmlElement(powerConsumptionRequest);
-            var temp2 = temp1.Element("double").Elements();
-            var temp3 = temp2.Select(e => Convert.ToDouble(e.Value)).ToArray();
-            return temp3;*/
 
         }
 

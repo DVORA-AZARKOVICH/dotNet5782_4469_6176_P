@@ -119,7 +119,7 @@ namespace PL
                     try
                     {
                         Thread.Sleep(500);
-                        bl.NextState(idd);
+                       // bl.NextState(idd);
                         if (worker.WorkerReportsProgress == true)
                             worker.ReportProgress(idd);
 

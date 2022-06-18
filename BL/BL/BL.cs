@@ -34,9 +34,9 @@ namespace BL
         {
 
             double available = 0;
-            double light = 2.5;
-            double medium = 5.5;
-            double heavy = 7.5;
+            double light = 15.5;
+            double medium = 25.5;
+            double heavy = 37.5;
             double chargingRate = 2;
             /*  ob = Dalob.GetElectricity();
               double available = ob[0];
@@ -769,23 +769,7 @@ namespace BL
             return drones;
             //throw new Exceptions.emptyListException("there are no drones of this type");
         }
-       /* public DroneToList NextState(int id)
-        {
-            DroneToList d2 = dronetolistBL.Find(d3 => d3.Id == id);
-            dronetolistBL.Remove(d2);
-            if (d2.BatteryStatus == 100)
-            {
-                d2.Status = DroneStatus.free;
-            }
-            else
-            {
-                d2.BatteryStatus += 5;
-                d2.Status = DroneStatus.inMaintence;
-            }
-            dronetolistBL.Add(d2);
-            return d2;
-        }*/
-        public void NextState(int id)
+        public void NextState(int id ,ref bool flagcontinue,ref int parcelid)
         {
             bool flag = false;
             BO.Drone d = getDrone(id);
@@ -793,9 +777,13 @@ namespace BL
             {
                 case BO.DroneStatus.free:
                     {
+                        flagcontinue = false;
                         try
                         {
                             UpdateParcelToDrone(id);
+                            parcelid = d.TheParcel.Id;
+                            d.Status = DroneStatus.busy;
+                            d.BatteryStatus -= 6.2;
                         }
                         catch (Exception)
                         {
@@ -809,6 +797,16 @@ namespace BL
                         {
                             UpdateReleseDroneFromCharge(id, DateTime.Now);
                             UpdateParcelToDrone(id);
+                            DroneToList dts = dronetolistBL.Find(item => item.Id == id);
+                            if(dts!=null)
+
+                            flagcontinue = false;
+                            parcelid = dts.ParcelId;
+                            if (parcelid != 0)
+                                d.Status = DroneStatus.busy;
+                            else
+                                d.Status = DroneStatus.free;
+                            d.BatteryStatus -= 6.2;
                         }
                         else
                         {
@@ -819,16 +817,23 @@ namespace BL
                     break;
                 case BO.DroneStatus.busy:
                     {
+                        flagcontinue = false;
                         switch (d.TheParcel.Status)
                         {
                             case BO.ParcelInTransf.intransfer:
                                 {
                                     UpdateDeliverdByDrone(id);
+                                    parcelid = d.TheParcel.Id;
+                                    d.BatteryStatus -= 6.2;
                                 }
                                 break;
                             case BO.ParcelInTransf.wautToCollect:
                                 {
                                     UpdatePickedByDrone(id);
+                                    parcelid = 0;
+                                    d.Status = DroneStatus.free;
+                                    d.BatteryStatus -= 6.2;
+
                                 }
                                 break;
 
@@ -1011,7 +1016,6 @@ namespace BL
             }
             throw new Exceptions.emptyListException("there are no station with free charging slots");
         }
-
         public IEnumerable<StationToList> getStationList(Predicate<StationToList> predicate)
         {
             {
@@ -1141,7 +1145,7 @@ namespace BL
                 try
                 {
                     DO.Parcel p = (DO.Parcel)Dalob.getParcel((int)dts.ParcelId);
-                    if (p.Pickedup == null && p.Scheduled != null)
+                    if (p.Delieverd == null && p.Scheduled != null)
                     {
                         double sum1 = dalob.DistanceCustomer(p.Senderid, dts.Location1.Latitude, dts.Location1.Longitude);
                         double sumcharge = MinCharge(sum1, dts.Weight);
@@ -1149,7 +1153,7 @@ namespace BL
                         dts.BatteryStatus = dts.BatteryStatus - sumcharge;
                         dts.Location1 = new Location(c.Value.Latitude, c.Value.Longitude);
                         Dalob.deleteParcel(p.Id);
-                        p.Pickedup = DateTime.Now;
+                        p.Delieverd = DateTime.Now;
                         Dalob.updateParcel2(p);
 
                     }

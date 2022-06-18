@@ -32,7 +32,7 @@ namespace BLApi
         ParcelInTransfer convertToParcelInTransfer(DO.Parcel p);
         List<DroneToList> getdroneList();
         IEnumerable<DroneToList> getdroneList(Predicate<DroneToList> predicate);
-        void NextState(int id);
+        void NextState(int id, ref bool flagcontinue,ref int parcelid);
         #endregion
 
         #region Station
